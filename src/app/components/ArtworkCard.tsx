@@ -14,7 +14,7 @@ export default function ArtworkCard({
   altText = "Artwork image",
 }: ArtworkCardProps) {
   return (
-    <div className="bg-red-500">
+    <article className="border border-gray-300 rounded-lg p-4 flex flex-col items-center bg-white gap-5">
       <Image
         // className="dark:invert"
         src={imageSrc}
@@ -27,6 +27,6 @@ export default function ArtworkCard({
       />
       <h3 style={{ marginTop: 12 }}>{title}</h3>
       <p>{description}</p>
-    </div>
+    </article>
   );
 }
