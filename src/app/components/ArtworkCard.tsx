@@ -23,6 +23,7 @@ export default function ArtworkCard({
         width={300}
         height={300}
         priority
+        className="rounded-lg"
       />
       <h3 className="mt-2">{title}</h3>
       <p>{description}</p>
