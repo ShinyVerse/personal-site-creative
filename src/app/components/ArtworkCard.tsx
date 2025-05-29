@@ -14,7 +14,7 @@ export default function ArtworkCard({
   altText = "Artwork image",
 }: ArtworkCardProps) {
   return (
-    <article className="border border-gray-300 rounded-lg p-4 flex flex-col items-center bg-white ">
+    <article className="border border-grey rounded-lg p-4 flex flex-col items-center bg-white ">
       <Image
         src={imageSrc}
         alt={altText}
