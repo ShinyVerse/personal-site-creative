@@ -19,26 +19,24 @@ export default async function ArtworkPage() {
     content_type: "photo",
   });
   const photos = res.items;
-  console.log(photos[0].fields);
-
-  console.log(JSON.stringify(photos[0], null, 2));
 
   return (
     <main>
       <h1>Recent Artwork</h1>
       <p>Here are up to 5 of my latest pieces.</p>
-      {photos.map((photo) => {
-        const parsedPhoto = PhotoEntrySchema.safeParse(photo);
-        if (!parsedPhoto.success) {
-          console.log("Validation error:", parsedPhoto.error.format());
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        {photos.map((photo) => {
+          const parsedPhoto = PhotoEntrySchema.safeParse(photo);
+          if (!parsedPhoto.success) {
+            console.log("Validation error:", parsedPhoto.error.format());
 
-          return null;
-        }
-        const validPhoto = parsedPhoto.data;
+            return null;
+          }
+          const validPhoto = parsedPhoto.data;
 
-        return (
-          <div key={validPhoto.sys.id}>
+          return (
             <ArtworkCard
+              key={validPhoto.sys.id}
               title={validPhoto.fields.title}
               description={
                 validPhoto.fields.description.content[0].content[0].value ||
@@ -47,9 +45,9 @@ export default async function ArtworkPage() {
               imageSrc={"https:" + validPhoto.fields.image.fields.file.url}
               altText={validPhoto.fields.altText}
             />
-          </div>
-        );
-      })}
+          );
+        })}
+      </section>
     </main>
   );
 }

@@ -14,9 +14,8 @@ export default function ArtworkCard({
   altText = "Artwork image",
 }: ArtworkCardProps) {
   return (
-    <article className="border border-gray-300 rounded-lg p-4 flex flex-col items-center bg-white gap-5">
+    <article className="border border-gray-300 rounded-lg p-4 flex flex-col items-center bg-white ">
       <Image
-        // className="dark:invert"
         src={imageSrc}
         alt={altText}
         // width={photo.fields.thumbnail.fields.file.details.image.width}
@@ -25,7 +24,7 @@ export default function ArtworkCard({
         height={300}
         priority
       />
-      <h3 style={{ marginTop: 12 }}>{title}</h3>
+      <h3 className="mt-2">{title}</h3>
       <p>{description}</p>
     </article>
   );

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 // export default async function Home() {
 //   const res = await client.getEntries({ content_type: "photo" });
 //   const photos = res.items;
@@ -46,20 +44,6 @@ export default async function HomePage() {
   return (
     <main>
       <h1>Welcome to My Personal Site</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/artwork">Artwork</Link>
-          </li>
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <Link href="/career">Career Portfolio</Link>
-          </li>
-        </ul>
-      </nav>
-      <p>Explore my work and learn more about me.</p>
       <h2>Todo list</h2>
       <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
         <li>Set up contentful: ✅ </li>
