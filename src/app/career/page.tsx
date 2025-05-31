@@ -1,3 +1,5 @@
+import { JobEntriesSchema, JobEntry } from "@/lib/jobEntrySchemas";
+import { createClient } from "contentful";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,18 +10,27 @@ export const metadata: Metadata = {
 import React from "react";
 
 type CareerEntryProps = {
-  title: string;
-  description: string;
-  skills: string[];
+  // title: string;
+  // description: string;
+  // skills: string[];
+  job: JobEntry;
   isLast?: boolean;
 };
 
-const CareerEntry: React.FC<CareerEntryProps> = ({
-  title,
-  description,
-  skills,
-  isLast,
-}) => {
+const client = createClient({
+  space: process.env.CONTENTFUL_SPACE_ID as string,
+  accessToken: process.env.CONTENTFUL_ACCESS_KEY as string,
+});
+
+const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
+  const {
+    title,
+    summary,
+    employmentStart,
+    employmentEnd,
+    achievements,
+    techAndSkills,
+  } = job.fields;
   return (
     <div className="relative pl-12">
       {/* Bubble centered over the line */}
@@ -35,10 +46,35 @@ const CareerEntry: React.FC<CareerEntryProps> = ({
       >
         <div>
           <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="mt-1">{description}</p>
-          <p className="mt-1 font-semibold pb-5">
-            Skills: <span className="font-normal">{skills.join(", ")}</span>
+          <p>
+            <time dateTime={String(employmentStart)}>
+              {new Date(employmentStart)
+                .toLocaleDateString()
+                .split("/")
+                .slice(1)
+                .join("/")}
+            </time>
+            {" → "}
+            <time dateTime={String(employmentEnd)}>
+              {new Date(employmentEnd)
+                .toLocaleDateString()
+                .split("/")
+                .slice(1)
+                .join("/")}
+            </time>
           </p>
+          <p className="mt-1">{summary}</p>
+          <ul>
+            {achievements?.map((achievement) => (
+              <li
+                key={achievement}
+                className="mt-1 font-semibold ml-12 list-disc"
+              >
+                {achievement}
+              </li>
+            ))}
+            {techAndSkills && <p>Tech : {techAndSkills}</p>}
+          </ul>
         </div>
       </div>
     </div>
@@ -69,15 +105,22 @@ const entries: Entry[] = [
   },
 ];
 
-export default function CareerPage() {
+export default async function CareerPage() {
+  const res = await client.getEntries({
+    content_type: "jobEntry",
+  });
+  const jobs = res.items;
+
+  const parsedJobs = JobEntriesSchema.safeParse(jobs);
+
   return (
     <main>
       <h1>Career Portfolio</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        {entries.map((entry, idx) => (
+        {parsedJobs?.data?.map((job, idx) => (
           <CareerEntry
             key={idx}
-            {...entry}
+            job={job}
             isLast={idx === entries.length - 1}
           />
         ))}

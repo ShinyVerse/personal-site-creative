@@ -8,8 +8,18 @@ export default async function HomePage() {
         <li>pull down from contentful ✅</li>
         <li>Sort out page structure ✅</li>
         <li>Start on sorting styling/fonts (global css for general tags)✅ </li>
-        <li>Add fake data for now (just to play with tags)</li>
-        <li>Add more images and sort out thumbnails </li>
+        <li>Add fake data for now (just to play with tags)✅</li>
+        <li>Add more images ✅</li>
+        <li>Add job details in contentful ✅</li>
+        <li>Add all job details in contentful</li>
+        <li>Add job zod type ✅</li>
+        <li>Extract job entry component out </li>
+        <li>Clean up tailwind classes per already sorted page</li>
+        <li>Get feedback on metadata/SEO and semantic for Artwork stuff</li>
+        <li>Get feedback on metadata/SEO and semantic for Career stuff</li>
+        <li>Sort Artwork page out (single carousel) </li>
+        <li>Find effective home for contentful createClient</li>
+        <li>Sort thumbnails/ or remove? </li>
       </ol>
     </main>
   );
