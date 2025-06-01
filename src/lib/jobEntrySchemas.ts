@@ -12,7 +12,7 @@ export const JobEntrySchema = z.object({
     achievements: z.array(z.string()).optional(),
     techAndSkills: z.string().optional(),
     employmentStart: z.string(),
-    employmentEnd: z.string(),
+    employmentEnd: z.string().optional().default("Present"),
   }),
 });
 

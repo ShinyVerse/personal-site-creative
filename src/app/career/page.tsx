@@ -55,12 +55,20 @@ const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
                 .join("/")}
             </time>
             {" → "}
-            <time dateTime={String(employmentEnd)}>
-              {new Date(employmentEnd)
-                .toLocaleDateString()
-                .split("/")
-                .slice(1)
-                .join("/")}
+            <time
+              dateTime={
+                employmentEnd === "Present"
+                  ? String(Date.now())
+                  : String(employmentEnd)
+              }
+            >
+              {employmentEnd === "Present"
+                ? "Present"
+                : new Date(employmentEnd)
+                    .toLocaleDateString()
+                    .split("/")
+                    .slice(1)
+                    .join("/")}
             </time>
           </p>
           <p className="mt-1">{summary}</p>
@@ -81,30 +89,6 @@ const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
   );
 };
 
-type Entry = {
-  title: string;
-  description: string;
-  skills: string[];
-};
-
-const entries: Entry[] = [
-  {
-    title: "Frontend Developer",
-    description: "Worked on building responsive UI components.",
-    skills: ["React", "TypeScript", "CSS"],
-  },
-  {
-    title: "Backend Engineer",
-    description: "Developed REST APIs and database schemas.",
-    skills: ["Node.js", "Express", "MongoDB"],
-  },
-  {
-    title: "Fullstack Engineer",
-    description: "Did many things.",
-    skills: ["Node.js", "Express", "MongoDB"],
-  },
-];
-
 export default async function CareerPage() {
   const res = await client.getEntries({
     content_type: "jobEntry",
@@ -121,7 +105,7 @@ export default async function CareerPage() {
           <CareerEntry
             key={idx}
             job={job}
-            isLast={idx === entries.length - 1}
+            isLast={idx === parsedJobs.data.length - 1}
           />
         ))}
       </div>
