@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { createClient } from "contentful";
-import ArtworkCard from "../components/ArtworkCard";
-import { PhotoEntriesSchema, PhotoEntrySchema } from "@/lib/photoSchemas";
+import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { Carousel } from "../components/ArtworkCarousel";
 
 const client = createClient({
@@ -23,35 +22,12 @@ export default async function ArtworkPage() {
 
   const parsedPhotos = PhotoEntriesSchema.safeParse(photos);
 
-  console.log("parsedPhotos", parsedPhotos);
-
   return (
-    <main>
+    <main className="flex items-center flex-col">
       <h1>Recent Artwork</h1>
       <p>Here are up to 5 of my latest pieces.</p>
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <Carousel photos={parsedPhotos.data}></Carousel>
-        {/* {photos.map((photo) => {
-          const parsedPhoto = PhotoEntrySchema.safeParse(photo);
-          if (!parsedPhoto.success) {
-            return null;
-          }
-          const validPhoto = parsedPhoto.data;
-
-          return (
-           
-            // <ArtworkCard
-            //   key={validPhoto.sys.id}
-            //   title={validPhoto.fields.title}
-            //   description={
-            //     validPhoto.fields.description.content[0].content[0].value ||
-            //     "No description"
-            //   }
-            //   imageSrc={"https:" + validPhoto.fields.image.fields.file.url}
-            //   altText={validPhoto.fields.altText}
-            // />
-          );
-        })} */}
+      <section className="w-full h-1/2">
+        {parsedPhotos.data && <Carousel photos={parsedPhotos.data}></Carousel>}
       </section>
     </main>
   );
