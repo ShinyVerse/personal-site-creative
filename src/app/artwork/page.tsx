@@ -29,8 +29,7 @@ export default async function ArtworkPage() {
 
   return (
     <main className={styles.root()}>
-      <h1>Recent Artwork</h1>
-      <p>Here are up to 5 of my latest pieces.</p>
+      {/* <h2>Recent Artwork</h1> */}
       <section className={styles.section()}>
         {parsedPhotos.data && <Carousel photos={parsedPhotos.data}></Carousel>}
       </section>
