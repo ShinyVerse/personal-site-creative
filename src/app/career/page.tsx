@@ -2,6 +2,13 @@ import { CareerEntry } from "@/app/components/CareerPage/CareerEntry";
 import { client } from "@/lib/contentfulClient";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
 import { Metadata } from "next";
+import { tv } from "tailwind-variants";
+
+const careerPageStyles = tv({
+  slots: {
+    root: "flex flex-col",
+  },
+});
 
 export const metadata: Metadata = {
   title: "Laura Jackson Career",
@@ -9,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CareerPage() {
+  const styles = careerPageStyles();
   const res = await client.getEntries({
     content_type: "jobEntry",
   });
@@ -19,7 +27,7 @@ export default async function CareerPage() {
   return (
     <main>
       <h1>Career Portfolio</h1>
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className={styles.root()}>
         {parsedJobs?.data?.map((job, idx) => (
           <CareerEntry
             key={idx}

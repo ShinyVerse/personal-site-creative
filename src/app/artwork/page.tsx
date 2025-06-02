@@ -3,6 +3,14 @@ import { Metadata } from "next";
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { Carousel } from "@/app/components/ArtworkCarousel";
 import { client } from "@/lib/contentfulClient";
+import { tv } from "tailwind-variants";
+
+const artworkPageStyles = tv({
+  slots: {
+    root: "flex items-center flex-col",
+    section: "w-full h-1/2",
+  },
+});
 
 export const metadata: Metadata = {
   title: "Laura Jackson Recent Artwork",
@@ -11,6 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ArtworkPage() {
+  const styles = artworkPageStyles();
   const res = await client.getEntries({
     content_type: "photo",
   });
@@ -19,10 +28,10 @@ export default async function ArtworkPage() {
   const parsedPhotos = PhotoEntriesSchema.safeParse(photos);
 
   return (
-    <main className="flex items-center flex-col">
+    <main className={styles.root()}>
       <h1>Recent Artwork</h1>
       <p>Here are up to 5 of my latest pieces.</p>
-      <section className="w-full h-1/2">
+      <section className={styles.section()}>
         {parsedPhotos.data && <Carousel photos={parsedPhotos.data}></Carousel>}
       </section>
     </main>
