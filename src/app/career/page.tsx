@@ -1,5 +1,5 @@
+import { client } from "@/lib/contentfulClient";
 import { JobEntriesSchema, JobEntry } from "@/lib/jobEntrySchemas";
-import { createClient } from "contentful";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,17 +10,9 @@ export const metadata: Metadata = {
 import React from "react";
 
 type CareerEntryProps = {
-  // title: string;
-  // description: string;
-  // skills: string[];
   job: JobEntry;
   isLast?: boolean;
 };
-
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID as string,
-  accessToken: process.env.CONTENTFUL_ACCESS_KEY as string,
-});
 
 const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
   const {

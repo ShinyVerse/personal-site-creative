@@ -1,12 +1,8 @@
 import { Metadata } from "next";
-import { createClient } from "contentful";
+
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { Carousel } from "../components/ArtworkCarousel";
-
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID as string,
-  accessToken: process.env.CONTENTFUL_ACCESS_KEY as string,
-});
+import { client } from "@/lib/contentfulClient";
 
 export const metadata: Metadata = {
   title: "Laura Jackson Recent Artwork",
