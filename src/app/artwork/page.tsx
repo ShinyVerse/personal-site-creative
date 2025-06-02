@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
-import { Carousel } from "../components/ArtworkCarousel";
+import { Carousel } from "@/app/components/ArtworkCarousel";
 import { client } from "@/lib/contentfulClient";
 
 export const metadata: Metadata = {
