@@ -20,7 +20,7 @@ export default async function HomePage() {
         <li>Sort Artwork page out (single carousel) ✅</li>
         <li>Update Artwork content with meaningful data</li>
         <li>Find effective home for contentful createClient ✅</li>
-        <li>Actually deploy - sort out prod envs</li>
+        <li>Actually deploy - sort out prod envs ✅</li>
         <li>Sort thumbnails/ or remove? </li>
       </ol>
     </main>
