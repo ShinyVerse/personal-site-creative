@@ -12,7 +12,7 @@ export const carouselStyles = tv({
     outerBorder: "border border-black border-1 rounded-lg p-4 bg-grey",
     innerBorder: "border border-black border-4 rounded-lg p-4 bg-white",
     image:
-      "w-[300px] h-[300px] md:w-[500px] md:h-[500px]  object-cover rounded-md",
+      "w-[200px] h-[200px] md:w-[300px] md:h-[300px]  object-cover rounded-md",
     content: "text-center space-y-1",
     title: "text-xl font-semibold",
     description: "text-sm text-muted-foreground",
