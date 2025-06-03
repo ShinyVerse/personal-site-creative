@@ -22,6 +22,8 @@ export default async function HomePage() {
         <li>Find effective home for contentful createClient ✅</li>
         <li>Actually deploy - sort out prod envs ✅</li>
         <li>Sort thumbnails/ or remove? </li>
+        <li>About me page dummy data ✅</li>
+        <li>Playwright test</li>
       </ol>
     </main>
   );
