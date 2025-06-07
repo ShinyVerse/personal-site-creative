@@ -4,11 +4,11 @@ import { tv } from "tailwind-variants";
 
 const aboutPageStyles = tv({
   slots: {
-    root: "grid  px-2 sm:px-4 max-w-7xl mx-auto",
-    leftSection: "grid gap-8 md:grid-cols-2 items-start",
-    leftSectionInner: "flex flex-col md:flex-row gap-4 items-center",
+    root: "grid px-2 sm:px-4 max-w-8xl mx-auto",
+    leftSection: "grid gap-8 lg:grid-cols-2 items-start",
+    leftSectionInner: "flex flex-col lg:flex-row gap-4 items-center",
     rightSection:
-      "flex flex-col md:flex-row gap-4 items-center mt-0 md:mt-[50px]",
+      "flex flex-col lg:flex-row gap-4 items-center mt-0 lg:mt-[80px]",
   },
 });
 
@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <main className={styles.root()}>
       {/* Top Section */}
-      <section className="grid place-items-center text-center gap-4">
+      <section className="grid place-items-center text-center gap-2">
         <Image
           src="/pixMe.svg"
           alt="An illustration of me"
@@ -41,10 +41,10 @@ export default function AboutPage() {
       <section className={styles.leftSection()}>
         <div className={styles.leftSectionInner()}>
           <Image
-            src="/strawberry.svg"
-            alt="Strawberry"
-            width={200}
-            height={200}
+            src="/arty.svg"
+            alt="An illustration of a girl painting"
+            width={300}
+            height={300}
           />
           <div>
             <h3>Art and visual pursuits</h3>
@@ -58,11 +58,11 @@ export default function AboutPage() {
 
         <div className={styles.rightSection()}>
           <Image
-            src="/me.svg"
-            alt="An illustration of me"
-            width={200}
-            height={200}
-            className="md:order-last"
+            src="/coding.svg"
+            alt="An illustration of a girl coding"
+            width={250}
+            height={250}
+            className="lg:order-last"
           />
           <div>
             <h3>Technical exploration</h3>
@@ -95,11 +95,11 @@ export default function AboutPage() {
 
         <div className={styles.rightSection()}>
           <Image
-            src="/me.svg"
-            alt="An illustration of me"
-            width={200}
-            height={200}
-            className="md:order-last"
+            src="/cooking.svg"
+            alt="An illustration of a girl cooking"
+            width={300}
+            height={300}
+            className="lg:order-last"
           />
           <div>
             <h3>Cooking</h3>
@@ -115,12 +115,12 @@ export default function AboutPage() {
 
       {/* Bottom Section */}
       <section className="grid place-items-center text-center gap-4">
-        <h2>Mouths I feed:</h2>
+        <h2>Employing me feeds these mouths:</h2>
         <ul className="flex flex-wrap justify-center gap-4">
           <li>
             <Image
               src="/katara.png"
-              alt="Me avatar"
+              alt="Image of Katara the cat"
               width={150}
               height={150}
               className="rounded-full"
@@ -129,7 +129,7 @@ export default function AboutPage() {
           <li>
             <Image
               src="/dusty.png"
-              alt="Me avatar"
+              alt="Image of Dusty the duprasi"
               width={150}
               height={150}
               className="rounded-full"
@@ -138,7 +138,16 @@ export default function AboutPage() {
           <li>
             <Image
               src="/sokka.png"
-              alt="Me avatar"
+              alt="Image of Sokka the cat"
+              width={150}
+              height={150}
+              className="rounded-full"
+            />
+          </li>
+          <li>
+            <Image
+              src="/greg.png"
+              alt="Image of Greg the fish"
               width={150}
               height={150}
               className="rounded-full"
