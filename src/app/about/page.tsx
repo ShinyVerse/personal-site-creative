@@ -6,9 +6,9 @@ const aboutPageStyles = tv({
   slots: {
     root: "grid px-2 sm:px-4 max-w-8xl mx-auto",
     leftSection: "grid gap-8 lg:grid-cols-2 items-start",
-    leftSectionInner: "flex flex-col lg:flex-row gap-4 items-center",
+    leftSectionInner: "flex flex-col lg:flex-row gap-2 items-center",
     rightSection:
-      "flex flex-col lg:flex-row gap-4 items-center mt-0 lg:mt-[80px]",
+      "flex flex-col lg:flex-row gap-4 items-center mt-0 lg:mt-[60px]",
   },
 });
 
@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <main className={styles.root()}>
       {/* Top Section */}
-      <section className="grid place-items-center text-center gap-2">
+      {/* <section className="grid place-items-center text-center gap-2">
         <Image
           src="/pixMe.svg"
           alt="An illustration of me"
@@ -35,7 +35,7 @@ export default function AboutPage() {
           feugiat posuere aliquam. Nulla porttitor tellus sit amet maximus
           posuere. Aliquam malesuada a velit ut egestas.
         </p>
-      </section>
+      </section> */}
 
       {/* Middle Section */}
       <section className={styles.leftSection()}>
@@ -57,14 +57,7 @@ export default function AboutPage() {
         </div>
 
         <div className={styles.rightSection()}>
-          <Image
-            src="/coding.svg"
-            alt="An illustration of a girl coding"
-            width={250}
-            height={250}
-            className="lg:order-last"
-          />
-          <div>
+          <div className="lg:order-last">
             <h3>Technical exploration</h3>
             <p>
               Duis mi odio, cursus ac varius iaculis, interdum eget nunc. Nullam
@@ -72,18 +65,18 @@ export default function AboutPage() {
               posuere. Aliquam malesuada a velit ut egestas.
             </p>
           </div>
+          <Image
+            src="/coding.svg"
+            alt="An illustration of a girl coding"
+            width={250}
+            height={250}
+          />
         </div>
       </section>
 
       <section className={styles.leftSection()}>
         <div className={styles.leftSectionInner()}>
-          <Image
-            src="/strawberry.svg"
-            alt="Strawberry"
-            width={200}
-            height={200}
-          />
-          <div>
+          <div className="mr-[-60px]">
             <h3>Gardening and growing</h3>
             <p>
               Natoque penatibus et magnis dis parturient montes, nascetur
@@ -91,6 +84,12 @@ export default function AboutPage() {
               cursus ante ut diam elementum tincidunt.
             </p>
           </div>
+          <Image
+            src="/gardening.svg"
+            alt="An illustration of a girl gardening"
+            width={280}
+            height={280}
+          />
         </div>
 
         <div className={styles.rightSection()}>
