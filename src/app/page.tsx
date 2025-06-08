@@ -5,7 +5,7 @@ interface PageProps {
 }
 
 export default async function HomePage({ searchParams }: PageProps) {
-  const params = await searchParams;
+  const params = searchParams;
   const page = params.page ?? "1";
 
   const res = await fetch(`https://catfact.ninja/breeds?page=${page}`, {
