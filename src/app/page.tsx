@@ -1,6 +1,53 @@
-export default async function HomePage() {
+import { z } from "zod";
+
+export const CatSchema = z.object({
+  breed: z.string(),
+  country: z.string(),
+  origin: z.string(),
+  coat: z.string(),
+  pattern: z.string(),
+});
+
+// type CatType = z.infer<typeof CatSchema>;
+
+export const BreedCollectionSchema = z.array(CatSchema);
+
+interface PageProps {
+  searchParams: { page?: string };
+}
+
+export default async function HomePage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const page = params.page ?? "1";
+
+  const res = await fetch(`https://catfact.ninja/breeds?page=${page}`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`API error: ${res.status} - ${text}`);
+  }
+
+  const data = await res.json();
+
+  // Validate with Zod
+  const cats = BreedCollectionSchema.parse(data.data);
+
+  const currentPage = Number(page);
+
   return (
     <main>
+      {cats.map((kitty) => (
+        <li key={kitty.breed}>
+          {kitty.breed} — {kitty.origin}
+        </li>
+      ))}
+      <nav>
+        {currentPage > 1 && <a href={`?page=${currentPage - 1}`}>Previous</a>}
+        {/* Add Next button conditionally if needed */}
+        <a href={`?page=${currentPage + 1}`}>Next</a>
+      </nav>
       <h1>Welcome to My Personal Site</h1>
       <h2>Todo list</h2>
       <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">

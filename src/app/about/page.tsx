@@ -1,11 +1,12 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { tv } from "tailwind-variants";
+import Image from "next/image";
+import Link from "next/link";
 
 const aboutPageStyles = tv({
   slots: {
     root: "grid px-2 sm:px-4 max-w-8xl mx-auto",
-    leftSection: "grid gap-8 lg:grid-cols-2 items-start",
+    leftSection: "grid gap-8 lg:grid-cols-1 items-start",
     leftSectionInner: "flex flex-col lg:flex-row gap-2 items-center",
     rightSection:
       "flex flex-col lg:flex-row gap-4 items-center mt-0 lg:mt-[60px]",
@@ -47,49 +48,79 @@ export default function AboutPage() {
             height={300}
           />
           <div>
-            <h3>Art and visual pursuits</h3>
+            <h3>Paint, Pixels & Possibilities</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci
-              varius natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus.
+              Often caught scribbling in a sketchpad, experimenting in
+              Procreate, or tinkering with a stubborn traditional piece.
+              I&apos;m on a gentle quest to find my style, currently working on
+              a deeper understanding of faces and expressions. Forever chasing
+              curious techniques, making brushes of my own, and seeing where the
+              inspiration takes me. Some works evolve beyond expectation; others
+              find completion earlier than imagined.
             </p>
+            <p>
+              Checkout my recent pieces <Link href="/artwork">here</Link>
+            </p>
+
+            <Link
+              rel="noopener noreferrer nofollow"
+              target="_blank"
+              href="https://www.instagram.com/supershinyverse/"
+              className="flex flex-row flex-nowrap"
+            >
+              Or my instagram
+              <Image
+                className="ml-1"
+                src="/instagram.svg"
+                alt="Instagram icon"
+                width={20}
+                height={20}
+              />
+            </Link>
           </div>
         </div>
 
         <div className={styles.rightSection()}>
-          <div className="lg:order-last">
-            <h3>Technical exploration</h3>
-            <p>
-              Duis mi odio, cursus ac varius iaculis, interdum eget nunc. Nullam
-              feugiat posuere aliquam. Nulla porttitor tellus sit amet maximus
-              posuere. Aliquam malesuada a velit ut egestas.
-            </p>
-          </div>
           <Image
             src="/coding.svg"
             alt="An illustration of a girl coding"
             width={250}
             height={250}
           />
+          <div>
+            <h3>From Sims to Syntax</h3>
+            <p>
+              I didn&apos;t start out as a developer and had little interaction
+              with computers early on—except for games. Most of my career has
+              been focused on React Native, a dash of Backend, and recently
+              I&apos;ve been enjoying the new challenges that Next.js brings. I
+              see myself as a product developer who cares deeply about the
+              people using what I build. I&apos;m driven by creating thoughtful,
+              user-friendly solutions that make a real difference, blending
+              creativity with practical problem-solving.
+            </p>
+          </div>
         </div>
       </section>
 
       <section className={styles.leftSection()}>
         <div className={styles.leftSectionInner()}>
-          <div className="mr-[-60px]">
-            <h3>Gardening and growing</h3>
-            <p>
-              Natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus. Ut mattis arcu ornare eros semper sodales. Mauris
-              cursus ante ut diam elementum tincidunt.
-            </p>
-          </div>
           <Image
             src="/gardening.svg"
             alt="An illustration of a girl gardening"
             width={280}
             height={280}
+            className="lg:order-last"
           />
+          <div className="mr-[-60px]">
+            <h3>Sowing and growing</h3>
+            <p>
+              Tending my garden with care, growing food for the table and
+              flowers for the soul. Organically keeping pests at bay by making
+              use of lure and companion plants. Some of my favorites to grow are
+              potatoes, beans, corn, snapdragons, and sage.
+            </p>
+          </div>
         </div>
 
         <div className={styles.rightSection()}>
@@ -101,12 +132,13 @@ export default function AboutPage() {
             className="lg:order-last"
           />
           <div>
-            <h3>Cooking</h3>
+            <h3>A Butter-Spattered Feeder</h3>
             <p>
-              Ut mattis arcu ornare eros semper sodales. Mauris cursus ante ut
-              diam elementum tincidunt. Nam dictum tortor cursus sem
-              consectetur, sed lacinia ligula ultricies. Nunc rhoncus ultrices
-              sodales.
+              A passionate feeder who explores global cuisines with curiosity
+              and glee. Restaurants spark inspiration, guiding playful
+              recreations and original dishes at home. From hand-pulled noodles
+              to decorated cakes, what lands on the table depends entirely on
+              the weather, what the cupboards hold—and the whim.
             </p>
           </div>
         </div>

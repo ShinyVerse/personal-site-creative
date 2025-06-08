@@ -9,6 +9,7 @@
   --muted: #f4f4f4;
   --dark: #0a0a0a;
   --light: #ededed;
+  --link: #3d3bae;
   --grey: #c2c2c2;
   --font-lato: "Lato", sans-serif;
 }
@@ -25,6 +26,7 @@ link: "", */
   --color-dark: var(--dark);
   --color-light: var(--light);
   --color-grey: var(--grey);
+  --color-link: var(--link);
   --font-family-lato: var(--font-lato);
 }
 
@@ -74,8 +76,12 @@ li {
   margin-bottom: 0.75rem;
 }
 
-p {
+p,
+a {
   font-size: 1.2rem;
   font-weight: 200;
   margin-bottom: 0.75rem;
+}
+a {
+  color: var(--link);
 }
