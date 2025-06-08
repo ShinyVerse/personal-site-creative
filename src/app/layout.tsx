@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Lato, Caveat } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
 
@@ -9,15 +9,11 @@ const lato = Lato({
   weight: ["400", "700"],
 });
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+const handwriting = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-handwriting",
+});
 
 export const metadata: Metadata = {
   title: "Laura Jackson Personal Site",
@@ -31,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} antialiased`}>
+      <body className={`${lato.variable} ${handwriting.variable}  antialiased`}>
         <Navbar />
         {children}
       </body>

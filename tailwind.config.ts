@@ -15,6 +15,10 @@ const config: Config = {
         grey: "#e0e0e0",
         link: "",
       },
+      fontFamily: {
+        sans: ["var(--font-lato)", "sans-serif"],
+        handwriting: ["var(--font-caveat)", "cursive"],
+      },
     },
   },
   plugins: [],

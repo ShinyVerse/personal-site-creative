@@ -12,6 +12,8 @@
   --link: #3d3bae;
   --grey: #c2c2c2;
   --font-lato: "Lato", sans-serif;
+  --font-caveat: "Caveat", sans-serif;
+  --font-satisfy: "Satisfy", sans-serif;
 }
 
 /*
@@ -62,6 +64,7 @@ h2 {
   font-size: 1.875rem;
   font-weight: 600;
   margin-bottom: 0.875rem;
+  font-family: var(--font-handwriting);
 }
 
 h3 {
@@ -76,12 +79,15 @@ li {
   margin-bottom: 0.75rem;
 }
 
-p,
-a {
+p {
   font-size: 1.2rem;
   font-weight: 200;
   margin-bottom: 0.75rem;
 }
+
 a {
+  font-size: 1.2rem;
+  font-weight: 200;
+  margin-bottom: 0.75rem;
   color: var(--link);
 }
