@@ -1,12 +1,13 @@
 import { BreedCollectionSchema } from "@/lib/cats";
 
-interface PageProps {
-  searchParams: { page?: string };
-}
+export default async function Page(props: {
+  searchParams?: Promise<{
+    page?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
 
-export default async function HomePage({ searchParams }: PageProps) {
-  const params = searchParams;
-  const page = params.page ?? "1";
+  const page = Number(searchParams?.page) || 1;
 
   const res = await fetch(`https://catfact.ninja/breeds?page=${page}`, {
     next: { revalidate: 60 },
