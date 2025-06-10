@@ -1,12 +1,13 @@
 import { BreedCollectionSchema } from "@/lib/cats";
 
-export default async function Page(props: {
+export default async function Page({
+  searchParams: searchParamsPromise,
+}: {
   searchParams?: Promise<{
     page?: string;
   }>;
 }) {
-  const searchParams = await props.searchParams;
-
+  const searchParams = await searchParamsPromise;
   const page = Number(searchParams?.page) || 1;
 
   const res = await fetch(`https://catfact.ninja/breeds?page=${page}`, {
@@ -23,7 +24,9 @@ export default async function Page(props: {
   // Validate with Zod
   const cats = BreedCollectionSchema.parse(data.data);
 
-  const currentPage = Number(page);
+  const { current_page, last_page } = data;
+  const currentPage = Number(current_page);
+  const lastPage = Number(last_page);
 
   return (
     <main>
@@ -35,31 +38,37 @@ export default async function Page(props: {
       <nav>
         {currentPage > 1 && <a href={`?page=${currentPage - 1}`}>Previous</a>}
         {/* Add Next button conditionally if needed */}
-        <a href={`?page=${currentPage + 1}`}>Next</a>
+        {lastPage !== currentPage && (
+          <a href={`?page=${current_page + 1}`}>Next</a>
+        )}
       </nav>
       <h1>Welcome to My Personal Site</h1>
       <h2>Todo list</h2>
-      <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-        <li>Set up contentful: ✅ </li>
-        <li>pull down from contentful ✅</li>
-        <li>Sort out page structure ✅</li>
-        <li>Start on sorting styling/fonts (global css for general tags)✅ </li>
-        <li>Add fake data for now (just to play with tags)✅</li>
-        <li>Add more images ✅</li>
-        <li>Add job details in contentful ✅</li>
-        <li>Add all job details in contentful ✅</li>
-        <li>Add job zod type ✅</li>
-        <li>Extract job entry component out ✅</li>
-        <li>Clean up tailwind classes per already sorted page ✅</li>
-        <li>Get feedback on metadata/SEO and semantic for Artwork stuff ✅</li>
-        <li>Get feedback on metadata/SEO and semantic for Career stuff ✅</li>
-        <li>Sort Artwork page out (single carousel) ✅</li>
-        <li>Update Artwork content with meaningful data</li>
-        <li>Find effective home for contentful createClient ✅</li>
-        <li>Actually deploy - sort out prod envs ✅</li>
-        <li>Sort thumbnails/ or remove? </li>
-        <li>About me page dummy data ✅</li>
+      <ol
+        reversed
+        className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]"
+      >
+        <li>Play with different API fetching</li>
         <li>Playwright test</li>
+        <li>About me page dummy data ✅</li>
+        <li>Sort thumbnails/ or remove? </li>
+        <li>Actually deploy - sort out prod envs ✅</li>
+        <li>Find effective home for contentful createClient ✅</li>
+        <li>Update Artwork content with meaningful data</li>
+        <li>Sort Artwork page out (single carousel) ✅</li>
+        <li>Get feedback on metadata/SEO and semantic for Career stuff ✅</li>
+        <li>Get feedback on metadata/SEO and semantic for Artwork stuff ✅</li>
+        <li>Clean up tailwind classes per already sorted page ✅</li>
+        <li>Extract job entry component out ✅</li>
+        <li>Add job zod type ✅</li>
+        <li>Add all job details in contentful ✅</li>
+        <li>Add job details in contentful ✅</li>
+        <li>Add more images ✅</li>
+        <li>Add fake data for now (just to play with tags)✅</li>
+        <li>Start on sorting styling/fonts (global css for general tags)✅ </li>
+        <li>Sort out page structure ✅</li>
+        <li>pull down from contentful ✅</li>
+        <li>Set up contentful: ✅ </li>
       </ol>
     </main>
   );

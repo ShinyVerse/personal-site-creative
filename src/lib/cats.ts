@@ -9,3 +9,6 @@ export const CatSchema = z.object({
 });
 
 export const BreedCollectionSchema = z.array(CatSchema);
+
+export type catsArrayType = z.infer<typeof BreedCollectionSchema>;
+export type catType = z.infer<typeof CatSchema>;
