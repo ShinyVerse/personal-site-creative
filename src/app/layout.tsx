@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Lato, Caveat } from "next/font/google";
+import { Lato, Caveat, Orbitron } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
 
 const lato = Lato({
   subsets: ["latin"],
   variable: "--font-lato",
+  weight: ["400", "700"],
+});
+const block = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-block",
   weight: ["400", "700"],
 });
 
@@ -26,8 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${lato.variable} ${handwriting.variable}  antialiased`}>
+    <html
+      className={`${lato.variable} ${handwriting.variable} ${block.variable} antialiased`}
+      lang="en"
+    >
+      <body>
         <Navbar />
         {children}
       </body>

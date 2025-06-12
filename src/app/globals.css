@@ -11,9 +11,8 @@
   --light: #ededed;
   --link: #3d3bae;
   --grey: #c2c2c2;
-  --font-lato: "Lato", sans-serif;
-  --font-caveat: "Caveat", sans-serif;
-  --font-satisfy: "Satisfy", sans-serif;
+  /* --font-lato: "Lato", sans-serif;
+  --font-handwriting: "Caveat", "cursive"; */
 }
 
 /*
@@ -30,42 +29,37 @@ link: "", */
   --color-grey: var(--grey);
   --color-link: var(--link);
   --font-family-lato: var(--font-lato);
+  --font-block: var(--font-block);
+  --font-handwriting: var(--font-handwriting);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ededed;
-    --foreground: #0a0a0a;
-    /* --primary: #4b3f72;
-    --secondary: #e6e6fa;
-    --accent: #ffc857;
-    --muted: #f4f4f4;
-    --dark: #0a0a0a;
-    --light: #ededed;
-    --grey: #e0e0e0; */
-  }
+:root {
+  --font-lato: "Lato", sans-serif;
+  --font-handwriting: "Caveat", cursive;
+  --font-block: "Orbitron", sans-serif;
 }
 
 html,
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-lato);
+  height: 100%;
+  /* background: var(--background); */
+  /* color: var(--foreground); */
+  /* font-family: var(--font-lato); */
 }
 
 h1 {
-  font-size: 2.25rem;
+  /* font-size: 2.25rem; */
   font-weight: 700;
   margin-bottom: 1rem;
-  font-family: var(--font-handwriting);
+  /* font-family: var(--font-handwriting); */
 }
 
 h2 {
   font-size: 1.875rem;
   font-weight: 600;
   margin-bottom: 0.875rem;
-  font-family: var(--font-handwriting);
+  /* font-family: var(--font-handwriting); */
 }
 
 h3 {
