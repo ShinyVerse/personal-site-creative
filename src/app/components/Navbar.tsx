@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { tv } from "tailwind-variants";
 import { motion } from "framer-motion"; // fixed import
@@ -21,7 +20,6 @@ export default function Navbar({
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const styles = navbarStyles();
-  // const [isOpen, setOpen] = useState(true);
 
   return (
     <motion.nav
