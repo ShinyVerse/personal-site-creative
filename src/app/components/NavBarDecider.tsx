@@ -1,0 +1,31 @@
+"use client";
+import { useIsMobile } from "../hooks/useIsMobile";
+import MobileNavbar from "./MobileNavBar";
+import Navbar from "./Navbar";
+import { useState } from "react";
+
+export default function NavBarDecider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const isMobile = useIsMobile();
+  const [isOpen, setIsOpen] = useState(true);
+  const navHeight = isOpen ? 200 : 50;
+
+  return (
+    <>
+      {isMobile ? (
+        <>
+          <MobileNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <main style={{ paddingTop: navHeight }}>{children}</main>
+        </>
+      ) : (
+        <>
+          <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <div className="flex-grow">{children}</div>
+        </>
+      )}
+    </>
+  );
+}

@@ -4,7 +4,7 @@ import { tv } from "tailwind-variants";
 
 const landingStyles = tv({
   slots: {
-    root: "w-full h-full bg-[#0f0f0f]",
+    root: "w-full h-screen bg-[#0f0f0f]",
   },
 });
 

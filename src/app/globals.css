@@ -11,8 +11,9 @@
   --light: #ededed;
   --link: #3d3bae;
   --grey: #c2c2c2;
-  /* --font-lato: "Lato", sans-serif;
-  --font-handwriting: "Caveat", "cursive"; */
+  --off-black: #0f0f0f
+    /* --font-lato: "Lato", sans-serif;
+  --font-handwriting: "Caveat", "cursive"; */;
 }
 
 /*
@@ -42,6 +43,7 @@ link: "", */
 
 html,
 body {
+  /* background: var(--off-black); */
   margin: 0;
   height: 100%;
   /* background: var(--background); */

@@ -13,9 +13,15 @@ const navbarStyles = tv({
   },
 });
 
-export default function Navbar() {
+export default function Navbar({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const styles = navbarStyles();
-  const [isOpen, setOpen] = useState(true);
+  // const [isOpen, setOpen] = useState(true);
 
   return (
     <motion.nav
@@ -23,7 +29,7 @@ export default function Navbar() {
       className="relative overflow-hidden flex-none"
     >
       <button
-        onClick={() => setOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
         className="absolute top-2 right-2 text-white z-10"
       >
         {isOpen ? <ChevronLeft /> : <ChevronRight />}

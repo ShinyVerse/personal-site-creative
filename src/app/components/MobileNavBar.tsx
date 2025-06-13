@@ -1,0 +1,65 @@
+"use client";
+
+import Link from "next/link";
+import { tv } from "tailwind-variants";
+import { motion } from "framer-motion";
+import { ChevronUp, ChevronDown } from "lucide-react";
+
+const navbarStyles = tv({
+  slots: {
+    list: "flex flex-col gap-3 list-none p-2 bg-[#0f0f0f]",
+    listItem: "text-white font-block text-sm p-2",
+  },
+});
+
+export default function MobileNavbar({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const styles = navbarStyles();
+
+  return (
+    <motion.nav
+      animate={{ height: isOpen ? 210 : 50 }}
+      className="fixed top-0 left-0 w-full z-50 bg-[#0f0f0f] overflow-hidden"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="absolute bottom-2 right-1/2 text-white z-10 "
+      >
+        {isOpen ? <ChevronUp size={28} /> : <ChevronDown size={28} />}
+      </button>
+
+      <ul className={`${styles.list()} w-full`}>
+        <li>
+          <Link href="/" className={styles.listItem()}>
+            {isOpen ? "Home" : ""}
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.listItem()} href="/artwork">
+            Artwork
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.listItem()} href="/about">
+            About
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.listItem()} href="/career">
+            Career Portfolio
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.listItem()} href="/experimental">
+            Landing
+          </Link>
+        </li>
+      </ul>
+    </motion.nav>
+  );
+}

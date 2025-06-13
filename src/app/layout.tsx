@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Lato, Caveat, Orbitron, Sarpanch } from "next/font/google";
-import Navbar from "@/app/components/Navbar";
+
 import "./globals.css";
+import NavBarDecider from "./components/NavBarDecider";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -43,9 +44,8 @@ export default function RootLayout({
       className={`${lato.variable} ${handwriting.variable} ${block.variable} ${loud.variable} antialiased`}
     >
       <body>
-        <div className="flex h-screen flex-row">
-          <Navbar />
-          <div className="flex-grow">{children}</div>
+        <div className="flex h-screen flex-col md:flex-row">
+          <NavBarDecider>{children}</NavBarDecider>
         </div>
       </body>
     </html>
