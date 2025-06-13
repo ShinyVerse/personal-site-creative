@@ -31,6 +31,7 @@ link: "", */
   --font-family-lato: var(--font-lato);
   --font-block: var(--font-block);
   --font-handwriting: var(--font-handwriting);
+  --font-loud: var(--font-loud);
 }
 
 :root {
@@ -55,11 +56,11 @@ h1 {
   /* font-family: var(--font-handwriting); */
 }
 
-h2 {
+/* font-family: var(--font-handwriting); */
+/* h2 {
   font-size: 1.875rem;
   font-weight: 600;
   margin-bottom: 0.875rem;
-  /* font-family: var(--font-handwriting); */
 }
 
 h3 {
@@ -85,4 +86,4 @@ a {
   font-weight: 200;
   margin-bottom: 0.75rem;
   color: var(--link);
-}
+} */

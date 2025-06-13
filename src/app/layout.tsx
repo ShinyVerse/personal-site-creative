@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Caveat, Orbitron } from "next/font/google";
+import { Lato, Caveat, Orbitron, Sarpanch } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
 
@@ -8,9 +8,16 @@ const lato = Lato({
   variable: "--font-lato",
   weight: ["400", "700"],
 });
+
 const block = Orbitron({
   subsets: ["latin"],
   variable: "--font-block",
+  weight: ["400", "700"],
+});
+
+const loud = Sarpanch({
+  subsets: ["latin"],
+  variable: "--font-loud",
   weight: ["400", "700"],
 });
 
@@ -32,12 +39,14 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${lato.variable} ${handwriting.variable} ${block.variable} antialiased`}
       lang="en"
+      className={`${lato.variable} ${handwriting.variable} ${block.variable} ${loud.variable} antialiased`}
     >
       <body>
-        <Navbar />
-        {children}
+        <div className="flex h-screen flex-row">
+          <Navbar />
+          <div className="flex-grow">{children}</div>
+        </div>
       </body>
     </html>
   );

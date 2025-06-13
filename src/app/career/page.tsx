@@ -6,7 +6,7 @@ import { tv } from "tailwind-variants";
 
 const careerPageStyles = tv({
   slots: {
-    root: "flex flex-col",
+    root: "p-5",
   },
 });
 
@@ -26,7 +26,6 @@ export default async function CareerPage() {
 
   return (
     <main>
-      <h1>Career Portfolio</h1>
       <div className={styles.root()}>
         {parsedJobs?.data?.map((job, idx) => (
           <CareerEntry
