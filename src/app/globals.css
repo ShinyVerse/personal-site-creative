@@ -11,9 +11,16 @@
   --light: #ededed;
   --link: #3d3bae;
   --grey: #c2c2c2;
-  --off-black: #0f0f0f
-    /* --font-lato: "Lato", sans-serif;
-  --font-handwriting: "Caveat", "cursive"; */;
+  --off-black: #0f0f0f;
+  --primary: #2a7ad5;
+  --secondary: #d52a7a;
+  --tertiary: #7ad52a;
+
+  --font-lato: "Lato", sans-serif;
+  --font-handwriting: "Caveat", cursive;
+  --font-block: "Orbitron", sans-serif;
+  /* --font-lato: "Lato", sans-serif;
+  --font-handwriting: "Caveat", "cursive"; */
 }
 
 /*
@@ -29,16 +36,12 @@ link: "", */
   --color-light: var(--light);
   --color-grey: var(--grey);
   --color-link: var(--link);
+  --color-main-red: var(--main-red);
+  --color-main-blue: var(--main-blue);
   --font-family-lato: var(--font-lato);
   --font-block: var(--font-block);
   --font-handwriting: var(--font-handwriting);
   --font-loud: var(--font-loud);
-}
-
-:root {
-  --font-lato: "Lato", sans-serif;
-  --font-handwriting: "Caveat", cursive;
-  --font-block: "Orbitron", sans-serif;
 }
 
 html,

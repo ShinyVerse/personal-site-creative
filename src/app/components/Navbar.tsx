@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { tv } from "tailwind-variants";
-import { motion } from "framer-motion"; // fixed import
+import { motion } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
 const navbarStyles = tv({
   slots: {
     list: "flex flex-col h-screen gap-7 list-none p-2 bg-[#0f0f0f]",
-    listItem: "text-white font-block text-lg border-b border-white p-2",
+    listItem:
+      "text-white font-block text-lg border-b border-white p-2 hover:text-primary active:text-secondary",
   },
 });
 
