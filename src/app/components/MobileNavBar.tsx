@@ -7,7 +7,9 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 
 const navbarStyles = tv({
   slots: {
-    list: "flex flex-col gap-3 list-none p-2 bg-[#0f0f0f]",
+    container: "fixed top-0 left-0 w-full z-50 bg-[#0f0f0f] overflow-hidden",
+    drawButton: "absolute bottom-2 right-1/2 text-white z-10",
+    list: "flex flex-col gap-3 list-none p-2 bg-[#0f0f0f] w-full",
     listItem: "text-white font-block text-sm p-2",
   },
 });
@@ -24,16 +26,16 @@ export default function MobileNavbar({
   return (
     <motion.nav
       animate={{ height: isOpen ? 210 : 50 }}
-      className="fixed top-0 left-0 w-full z-50 bg-[#0f0f0f] overflow-hidden"
+      className={styles.container()}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute bottom-2 right-1/2 text-white z-10 "
+        className={styles.drawButton()}
       >
         {isOpen ? <ChevronUp size={28} /> : <ChevronDown size={28} />}
       </button>
 
-      <ul className={`${styles.list()} w-full`}>
+      <ul className={styles.list()}>
         <li>
           <Link href="/" className={styles.listItem()}>
             {isOpen ? "Home" : ""}
