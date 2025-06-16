@@ -10,7 +10,7 @@ export default function NavBarDecider({
   children: React.ReactNode;
 }) {
   const isMobile = useIsMobile();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const navHeight = isOpen ? 200 : 50;
 
   return (
