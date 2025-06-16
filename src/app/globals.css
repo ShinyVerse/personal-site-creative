@@ -23,9 +23,8 @@
   --font-handwriting: "Caveat", "cursive"; */
 }
 
-/*
-link: "", */
 @theme inline {
+  --color-off-black: var(--off-black);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);

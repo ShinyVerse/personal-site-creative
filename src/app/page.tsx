@@ -48,8 +48,11 @@ export default async function Page({
         reversed
         className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]"
       >
+        <li>Play with experimental page layout</li>
+
         <li>Play with different API fetching</li>
         <li>Playwright test</li>
+        <li>Sort desktop/mobile navbar ✅</li>
         <li>About me page dummy data ✅</li>
         <li>Sort thumbnails/ or remove? </li>
         <li>Actually deploy - sort out prod envs ✅</li>

@@ -16,9 +16,9 @@ export default async function ExperimentalPage() {
   return (
     <main className={styles.root()}>
       <section>
-        <div className="relative w-max mx-auto px-20">
+        <div className="relative w-max mx-auto">
           <div
-            className="bg-red-900 absolute inset-x-0 top-1/2 -translate-y-[1rem] h-[2rem] md:h-[5.5rem] md:-translate-y-[2.5rem] z-[1] pointer-events-none"
+            className="bg-primary absolute inset-x-0 top-1/2 -translate-y-[1rem] h-[2rem] md:h-[6rem] md:-translate-y-[2.7rem] z-[1] pointer-events-none transform skew-x-[-16deg] scale-x-112"
             aria-hidden="true"
           />
           <h1 className="relative font-block text-white text-center z-[2] text-[4rem] md:text-[10rem]">
