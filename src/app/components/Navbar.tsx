@@ -9,7 +9,7 @@ const navbarStyles = tv({
   slots: {
     list: "flex flex-col h-screen gap-7 list-none p-2 bg-off-black",
     listItem:
-      "text-white font-block text-lg border-b border-white p-2 hover:text-primary active:text-secondary",
+      "text-white font-block text-lg border-b border-white p-2 hover:text-secondary active:text-primary",
   },
 });
 

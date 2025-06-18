@@ -6,7 +6,7 @@ import { tv } from "tailwind-variants";
 
 const landingStyles = tv({
   slots: {
-    root: "flex flex-col w-full h-screen bg-[#0f0f0f] items-center place-content-between ",
+    root: "flex flex-col w-full bg-[#0f0f0f] items-center place-content-between p-2",
   },
 });
 
@@ -30,31 +30,44 @@ export default async function ExperimentalPage() {
 
   return (
     <main className={styles.root()}>
-      <section className="relative w-full md:w-max mx-auto md:mt-3">
-        <div
-          className="
-      absolute inset-x-0 top-1/2 -translate-y-1/2 h-[3rem] 
-     bg-primary 
-      md:h-[6rem] 
-      md:skew-x-[-16deg] md:scale-x-112 
-      z-[1] pointer-events-none
-    "
-          aria-hidden="true"
-        />
-        <h1 className="relative mt-2 z-[2] font-block text-white text-center text-[6rem] md:text-[12rem]">
-          STOP!
-        </h1>
+      <section className="flex flex-col items-center h-screen">
+        <section className="relative w-full md:w-max mx-auto">
+          <div
+            className="
+        absolute inset-x-0 top-1/2 -translate-y-1/2 h-[3rem] 
+        bg-primary 
+        md:h-[6rem] 
+        md:skew-x-[-16deg] md:scale-x-112 
+        z-[1] pointer-events-none
+      "
+            aria-hidden="true"
+          />
+          <h1 className="relative mt-2 z-[2] font-block text-white text-center text-[6rem] md:text-[12rem]">
+            STOP!
+          </h1>
+        </section>
+
+        <div className="mt-auto mb-30 text-center">
+          <h2 className="text-lato text-white text-xl font-block font-medium">
+            Great. Now that I have your attention...
+          </h2>
+          <Link
+            href="/about"
+            className="border-2 border-secondary font-bold text-white rounded-2xl flex flex-row justify-center items-center gap-2 mt-4 px-6 py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black"
+          >
+            Come get to know me <ChevronRightCircle />
+          </Link>
+        </div>
       </section>
-      <section className="flex flex-col items-center justify-center gap-5 mb-30 px-3">
-        <h2 className="text-lato text-white text-xl font-block text-center font-medium ">
-          Great. Now that I have your attention...
-        </h2>
-        <Link
-          href="/about"
-          className="border-2 border-secondary font-bold text-white rounded-2xl flex flex-row p-3 gap-2 hover:text-secondary active:bg-primary  active:border-primary active:text-black"
-        >
-          Come get to know me <ChevronRightCircle />
-        </Link>
+      <section className="w-full bg-amber-300 flex items-center justify-center h-screen">
+        {/* STOP! content */}
+      </section>
+      <section className="w-full bg-blue-900 flex items-center justify-center h-screen">
+        {/* Great. Now that I have your attention... */}
+      </section>
+
+      <section className="w-full bg-red-800 flex items-center justify-center h-screen">
+        {/* Whatever comes next */}
       </section>
     </main>
   );

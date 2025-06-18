@@ -23,7 +23,7 @@ export default function NavBarDecider({
       ) : (
         <>
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-          <div className="flex-grow">{children}</div>
+          <div className="flex-1 overflow-x-hidden">{children}</div>
         </>
       )}
     </>
