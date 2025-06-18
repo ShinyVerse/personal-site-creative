@@ -6,7 +6,7 @@ import { tv } from "tailwind-variants";
 
 const landingStyles = tv({
   slots: {
-    root: "flex flex-col w-full bg-[#0f0f0f] items-center place-content-between p-2",
+    root: "flex flex-col w-full bg-[#0f0f0f] items-center place-content-between ",
   },
 });
 
