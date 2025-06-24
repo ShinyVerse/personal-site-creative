@@ -1,8 +1,12 @@
 import { ChevronRightCircle } from "lucide-react";
+
 import { Metadata } from "next";
 import Link from "next/link";
 
 import { tv } from "tailwind-variants";
+import AnimatedSquareSection from "./section";
+import { client } from "@/lib/contentfulClient";
+import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 
 const landingStyles = tv({
   slots: {
@@ -14,6 +18,12 @@ export const metadata: Metadata = {};
 
 export default async function ExperimentalPage() {
   const styles = landingStyles();
+  const res = await client.getEntries({
+    content_type: "photo",
+  });
+  const photos = res.items;
+
+  const parsedPhotos = PhotoEntriesSchema.safeParse(photos);
 
   // Move this somewhere decent:
   //     <section>
@@ -59,9 +69,10 @@ export default async function ExperimentalPage() {
           </Link>
         </div>
       </section>
-      <section className="w-full bg-amber-300 flex items-center justify-center h-screen">
-        {/* STOP! content */}
-      </section>
+      {parsedPhotos.data && (
+        <AnimatedSquareSection displayItems={parsedPhotos.data} />
+      )}
+      {/* <section className="w-full bg-amber-300 flex items-center justify-center h-screen"></section> */}
       <section className="w-full bg-blue-900 flex items-center justify-center h-screen">
         {/* Great. Now that I have your attention... */}
       </section>
