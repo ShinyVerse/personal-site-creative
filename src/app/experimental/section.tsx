@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import ImageModal from "./ImageModal";
+import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { PhotoEntries } from "@/lib/photoSchemas";
@@ -12,6 +13,10 @@ export default function AnimatedSquareSection({
   displayItems: PhotoEntries;
 }) {
   const isMobile = useIsMobile();
+  const [modalItem, setModalItem] = useState<null | (typeof displayItems)[0]>(
+    null,
+  );
+
   const ref = useRef(null);
   const controls = useAnimation();
   const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
@@ -45,7 +50,7 @@ export default function AnimatedSquareSection({
       className="w-full bg-amber-300 flex flex-col items-center justify-center h-screen overflow-hidden"
     >
       <motion.h1
-        className="relative text-md md:text-5xl"
+        className="relative text-md lg:text-3xl 2xl:text-5xl "
         initial={{ opacity: 0, y: -500 }}
         animate={
           inView
@@ -60,7 +65,20 @@ export default function AnimatedSquareSection({
       >
         Artwork!!!
       </motion.h1>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
+      {modalItem && (
+        <ImageModal
+          image={"https:" + modalItem.fields.image.fields.file.url}
+          alt={modalItem.fields.altText}
+          title={modalItem.fields.title}
+          description={
+            modalItem.fields.description.content[0].content[0].value ||
+            "No description"
+          }
+          onClose={() => setModalItem(null)}
+        />
+      )}
+
+      <div className="grid grid-cols-2 2xl:grid-cols-5 gap-5">
         {displayItems.map((item) => (
           <motion.div
             // update to while in view
@@ -68,9 +86,10 @@ export default function AnimatedSquareSection({
             key={item.fields.title}
             initial={{ opacity: 0, y: -100, scale: 0.5 }}
             animate={controls}
-            className="relative w-[150px] h-[150px] md:w-[250px] md:h-[250px] rounded-md"
+            className="relative w-[150px] h-[150px]  lg:w-[200px] lg:h-[200px]  2xl:w-[250px] 2xl:h-[250px] rounded-md"
           >
             <Image
+              onClick={() => setModalItem(item)}
               src={"https:" + item.fields.image.fields.file.url}
               alt={item.fields.altText}
               fill
