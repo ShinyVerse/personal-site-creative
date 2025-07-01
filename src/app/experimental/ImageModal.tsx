@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import { tv } from "tailwind-variants";
 
-export const imageModalStyles = tv({
+const imageModalStyles = tv({
   slots: {
     overlay: "fixed inset-0 z-50 bg-black/70 flex items-center justify-center",
     container:

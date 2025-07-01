@@ -8,7 +8,7 @@ import { tv } from "tailwind-variants";
 import { PhotoEntries } from "@/lib/photoSchemas";
 import { useIsMobile } from "../hooks/useIsMobile";
 
-export const animatedSectionStyles = tv({
+const animatedSectionStyles = tv({
   slots: {
     root: "w-full bg-off-black flex flex-col items-center justify-center h-screen overflow-hidden",
     heading:

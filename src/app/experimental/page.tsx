@@ -7,7 +7,7 @@ import AnimatedSquareSection from "./section";
 import { client } from "@/lib/contentfulClient";
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 
-export const landingStyles = tv({
+const landingStyles = tv({
   slots: {
     root: "flex flex-col w-full bg-[#0f0f0f] items-center place-content-between",
     container: "relative w-full md:w-max mx-auto",
