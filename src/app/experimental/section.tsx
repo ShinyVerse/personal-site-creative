@@ -4,8 +4,21 @@ import ImageModal from "./ImageModal";
 import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
+import { tv } from "tailwind-variants";
 import { PhotoEntries } from "@/lib/photoSchemas";
 import { useIsMobile } from "../hooks/useIsMobile";
+
+export const animatedSectionStyles = tv({
+  slots: {
+    root: "w-full bg-off-black flex flex-col items-center justify-center h-screen overflow-hidden",
+    heading:
+      "relative text-md lg:text-3xl 2xl:text-5xl font-handwriting text-secondary",
+    grid: "grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5",
+    gridItem:
+      "relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_50px] shadow-primary/80",
+    image: "object-cover rounded-md",
+  },
+});
 
 export default function AnimatedSquareSection({
   displayItems,
@@ -21,14 +34,13 @@ export default function AnimatedSquareSection({
   const controls = useAnimation();
   const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
 
-  // Animate when inView changes
-  // TODO sort this out.
+  const styles = animatedSectionStyles();
+
   useEffect(() => {
     if (inView) {
       controls.start({
         opacity: 1,
         y: 0,
-
         scale: 1,
         transition: { duration: 1 },
       });
@@ -36,28 +48,23 @@ export default function AnimatedSquareSection({
       controls.start({
         opacity: 0,
         y: -200,
-
         scale: 0.5,
         transition: { duration: 1 },
       });
     }
   }, [inView, controls]);
 
-  // TODO: fix up styling
   return (
-    <section
-      ref={ref}
-      className="w-full bg-amber-300 flex flex-col items-center justify-center h-screen overflow-hidden"
-    >
+    <section ref={ref} className={styles.root()}>
       <motion.h1
-        className="relative text-md lg:text-3xl 2xl:text-5xl "
+        className={styles.heading()}
         initial={{ opacity: 0, y: -500 }}
         animate={
           inView
             ? {
                 opacity: 1,
-                scale: 5,
-                y: isMobile ? -50 : -100,
+                scale: isMobile ? 4 : 5,
+                y: isMobile ? -70 : -100,
                 transition: { duration: 1 },
               }
             : { opacity: 0, y: -500, transition: { duration: 1 } }
@@ -65,6 +72,7 @@ export default function AnimatedSquareSection({
       >
         Artwork!!!
       </motion.h1>
+
       {modalItem && (
         <ImageModal
           image={"https:" + modalItem.fields.image.fields.file.url}
@@ -78,22 +86,28 @@ export default function AnimatedSquareSection({
         />
       )}
 
-      <div className="grid grid-cols-2 2xl:grid-cols-5 gap-5">
+      <div className={styles.grid()}>
         {displayItems.map((item) => (
           <motion.div
-            // update to while in view
-            // viewport={{ once: true }}
+            tabIndex={0}
+            role="button"
             key={item.fields.title}
             initial={{ opacity: 0, y: -100, scale: 0.5 }}
             animate={controls}
-            className="relative w-[150px] h-[150px]  lg:w-[200px] lg:h-[200px]  2xl:w-[250px] 2xl:h-[250px] rounded-md"
+            className={styles.gridItem()}
+            onClick={() => setModalItem(item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setModalItem(item);
+              }
+            }}
           >
             <Image
-              onClick={() => setModalItem(item)}
               src={"https:" + item.fields.image.fields.file.url}
               alt={item.fields.altText}
               fill
-              className="object-cover rounded-md"
+              className={styles.image()}
             />
           </motion.div>
         ))}
