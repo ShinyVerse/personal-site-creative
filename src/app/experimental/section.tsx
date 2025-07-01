@@ -7,6 +7,8 @@ import Image from "next/image";
 import { tv } from "tailwind-variants";
 import { PhotoEntries } from "@/lib/photoSchemas";
 import { useIsMobile } from "../hooks/useIsMobile";
+import Link from "next/link";
+import { ChevronRightCircle } from "lucide-react";
 
 const animatedSectionStyles = tv({
   slots: {
@@ -14,6 +16,8 @@ const animatedSectionStyles = tv({
     heading:
       "relative text-md lg:text-3xl 2xl:text-5xl font-handwriting text-secondary",
     grid: "grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5",
+    // cta to be self-end: fix
+    cta: "border-2 border-secondary font-bold text-white bg-off-black z-100 rounded-2xl flex flex-row justify-center items-center gap-2 mt-10 px-6 py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black min-w-[400px] w-[400px]",
     gridItem:
       "relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_50px] shadow-primary/80",
     image: "object-cover rounded-md",
@@ -112,6 +116,14 @@ export default function AnimatedSquareSection({
           </motion.div>
         ))}
       </div>
+      <Link
+        rel="noopener noreferrer nofollow"
+        target="_blank"
+        href="https://www.instagram.com/supershinyverse/"
+        className={styles.cta()}
+      >
+        Want to see more? <ChevronRightCircle />
+      </Link>
     </section>
   );
 }
