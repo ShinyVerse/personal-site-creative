@@ -44,14 +44,15 @@ export default function AnimatedSquareSection({
         scale: 1,
         transition: { duration: 1 },
       });
-    } else {
-      controls.start({
-        opacity: 0,
-        y: -200,
-        scale: 0.5,
-        transition: { duration: 1 },
-      });
     }
+    // else {
+    //   controls.start({
+    //     opacity: 0,
+    //     y: -200,
+    //     scale: 0.5,
+    //     transition: { duration: 1 },
+    //   });
+    // }
   }, [inView, controls]);
 
   return (
@@ -60,14 +61,13 @@ export default function AnimatedSquareSection({
         className={styles.heading()}
         initial={{ opacity: 0, y: -500 }}
         animate={
-          inView
-            ? {
-                opacity: 1,
-                scale: isMobile ? 4 : 5,
-                y: isMobile ? -70 : -100,
-                transition: { duration: 1 },
-              }
-            : { opacity: 0, y: -500, transition: { duration: 1 } }
+          inView && {
+            opacity: 1,
+            scale: isMobile ? 4 : 5,
+            y: isMobile ? -70 : -100,
+            transition: { duration: 1 },
+          }
+          // : { opacity: 0, y: -500, transition: { duration: 1 } }
         }
       >
         Artwork!!!
