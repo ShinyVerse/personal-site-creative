@@ -7,8 +7,9 @@ import Image from "next/image";
 import { tv } from "tailwind-variants";
 import { PhotoEntries } from "@/lib/photoSchemas";
 import { useIsMobile } from "../hooks/useIsMobile";
-import Link from "next/link";
+
 import { ChevronRightCircle } from "lucide-react";
+import { JazzyLink } from "@/app/components/JazzyLink";
 
 const animatedSectionStyles = tv({
   slots: {
@@ -16,8 +17,6 @@ const animatedSectionStyles = tv({
     heading:
       "relative text-md lg:text-3xl 2xl:text-5xl font-handwriting text-secondary",
     grid: "grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5",
-    // cta to be self-end: fix
-    cta: "border-2 border-secondary font-bold text-white bg-off-black rounded-2xl flex flex-row justify-center items-center gap-2  py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black w-full mx-5 max-w-[300px] xl:mb-20",
     gridItem:
       "relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_25px] shadow-primary/80",
     image: "object-cover rounded-md",
@@ -116,14 +115,13 @@ export default function AnimatedSquareSection({
           </motion.div>
         ))}
       </div>
-      <Link
-        rel="noopener noreferrer nofollow"
-        target="_blank"
+      <JazzyLink
         href="https://www.instagram.com/supershinyverse/"
-        className={styles.cta()}
-      >
-        Want to see more? <ChevronRightCircle />
-      </Link>
+        icon={<ChevronRightCircle />}
+        title="Want to see more?"
+        rel
+        target
+      />
     </section>
   );
 }
