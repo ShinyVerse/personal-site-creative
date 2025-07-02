@@ -11,10 +11,11 @@ const landingStyles = tv({
   slots: {
     root: "flex flex-col w-full bg-[#0f0f0f] items-center place-content-between",
     container: "relative w-full md:w-max mx-auto",
-    ctaWrapper: "mt-auto mb-30 justify-items-center",
+    ctaWrapper: "mt-auto mb-30 justify-items-center items-center w-full ",
     section: "flex flex-col items-center h-screen",
-    textBlock: "text-lato text-white text-xl font-block font-medium",
-    cta: "border-2 border-secondary font-bold text-white rounded-2xl flex flex-row justify-center items-center gap-2 mt-4 px-6 py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black min-w-[400px] w-[400px]",
+    textBlock:
+      "text-lato text-white text-xl font-block font-medium text-center",
+    cta: "border-2 border-secondary font-bold text-white rounded-2xl flex flex-row justify-center items-center gap-2 mt-4 px-6 py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black w-full max-w-[300px]",
     h1: "relative mt-2 z-[2] font-block text-white text-center text-[6rem] md:text-[12rem]",
     bgStripe:
       "absolute inset-x-0 top-1/2 -translate-y-1/2 h-[3rem] bg-primary md:h-[6rem] md:skew-x-[-16deg] md:scale-x-112 z-[1] pointer-events-none",

@@ -12,14 +12,14 @@ import { ChevronRightCircle } from "lucide-react";
 
 const animatedSectionStyles = tv({
   slots: {
-    root: "w-full bg-off-black flex flex-col items-center justify-center h-screen overflow-hidden",
+    root: "w-full bg-off-black flex flex-col items-center h-screen justify-around",
     heading:
       "relative text-md lg:text-3xl 2xl:text-5xl font-handwriting text-secondary",
-    grid: "grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5",
+    grid: "grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5",
     // cta to be self-end: fix
-    cta: "border-2 border-secondary font-bold text-white bg-off-black z-100 rounded-2xl flex flex-row justify-center items-center gap-2 mt-10 px-6 py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black min-w-[400px] w-[400px]",
+    cta: "border-2 border-secondary font-bold text-white bg-off-black rounded-2xl flex flex-row justify-center items-center gap-2  py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black w-full mx-5 max-w-[300px] xl:mb-20",
     gridItem:
-      "relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_50px] shadow-primary/80",
+      "relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_25px] shadow-primary/80",
     image: "object-cover rounded-md",
   },
 });
@@ -63,12 +63,12 @@ export default function AnimatedSquareSection({
     <section ref={ref} className={styles.root()}>
       <motion.h1
         className={styles.heading()}
-        initial={{ opacity: 0, y: -500 }}
+        initial={{ opacity: 0, y: -200 }}
         animate={
           inView && {
             opacity: 1,
             scale: isMobile ? 4 : 5,
-            y: isMobile ? -70 : -100,
+            y: isMobile ? 0 : 0,
             transition: { duration: 1 },
           }
           // : { opacity: 0, y: -500, transition: { duration: 1 } }
