@@ -15,7 +15,7 @@ const animatedSectionStyles = tv({
   slots: {
     root: "w-full bg-off-black flex flex-col items-center h-screen justify-around",
     heading:
-      "relative text-md lg:text-3xl 2xl:text-5xl font-handwriting text-secondary",
+      "relative text-md md:text-2xl lg:text-3xl font-handwriting text-secondary",
     grid: "grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5",
     gridItem:
       "relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_25px] shadow-primary/80",

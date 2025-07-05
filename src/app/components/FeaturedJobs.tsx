@@ -31,7 +31,7 @@ const itemVariants = {
 const animatedFeaturedJobsStyles = tv({
   slots: {
     heading:
-      "relative text-md lg:text-3xl 2xl:text-5xl font-handwriting text-secondary",
+      "text-md md:text-2xl lg:text-3xl font-handwriting text-secondary py-5",
     section: "text-white relative mb-10 flex flex-col justify-between",
     roleWrapper: "z-10 ml-10 my-5",
     roleHeading:
