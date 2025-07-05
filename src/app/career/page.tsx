@@ -6,7 +6,9 @@ import { tv } from "tailwind-variants";
 
 const careerPageStyles = tv({
   slots: {
-    root: "p-5",
+    root: "p-5 bg-off-black",
+    heading:
+      "text-[60px] md:text-[100px] font-handwriting text-secondary text-center",
   },
 });
 
@@ -27,11 +29,13 @@ export default async function CareerPage() {
   return (
     <main>
       <div className={styles.root()}>
+        <h1 className={styles.heading()}>Career Timeline:</h1>
         {parsedJobs?.data?.map((job, idx) => (
           <CareerEntry
             key={idx}
             job={job}
             isLast={idx === parsedJobs.data.length - 1}
+            isFirst={idx === 0}
           />
         ))}
       </div>

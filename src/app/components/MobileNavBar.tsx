@@ -58,7 +58,7 @@ export default function MobileNavbar({
         </li>
         <li>
           <Link className={styles.listItem()} href="/experimental">
-            Landing
+            Experimental
           </Link>
         </li>
       </ul>

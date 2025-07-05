@@ -4,24 +4,34 @@ import { tv } from "tailwind-variants";
 type CareerEntryProps = {
   job: JobEntry;
   isLast?: boolean;
+  isFirst?: boolean;
 };
 
 const careerEntryStyles = tv({
   slots: {
-    root: "relative pl-12",
-    bubbleWrapper: "absolute left-7 top-0 flex justify-center w-12",
-    bubble: "w-10 h-10 rounded-full bg-primary z-10",
-    contentWrapperBase: "flex items-start pl-7",
+    root: "relative pl-7 text-white",
+    bubbleWrapper:
+      "absolute left-5 md:left-2 top-0 flex justify-center w-6 md:w-12",
+    bubble: "w-6 h-6 md:w-10 md:h-10 rounded-full bg-primary z-10",
+    pinkBubble: "bg-secondary",
+    contentWrapperBase: "flex items-start pl-7 md:pl-10",
     contentWrapperLast: "pl-9",
-    contentWrapperBorder: "border-l-8 border-primary",
-    title: "text-lg font-semibold",
-    summary: "mt-1",
+    contentWrapperBorder: "border-l-8 md:border-l-8 border-primary",
+    contentWrapperBorderFirst:
+      "relative pl-7 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-2 before:bg-gradient-to-t before:from-primary before:to-secondary before:content-['']",
+    title: "text-lg font-semibold mb-2",
+    summary: "mt-1 my-2",
+    achievementList: "mb-5",
     achievement: "mt-1 font-semibold ml-12 list-disc",
-    techAndSkills: "",
+    techAndSkills: "my-5",
   },
 });
 
-export const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
+export const CareerEntry: React.FC<CareerEntryProps> = ({
+  job,
+  isLast,
+  isFirst,
+}) => {
   const styles = careerEntryStyles();
 
   const {
@@ -37,13 +47,23 @@ export const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
     <article className={styles.root()} aria-label={`Career entry: ${title}`}>
       {/* Bubble centered over the line */}
       <figure className={styles.bubbleWrapper()} aria-hidden="true">
-        <div className={styles.bubble()} />
+        <div
+          className={
+            isFirst
+              ? `${styles.bubble()} ${styles.pinkBubble()}`
+              : styles.bubble()
+          }
+        />
       </figure>
 
       {/* Line and content */}
       <div
         className={`${styles.contentWrapperBase()} ${
-          isLast ? styles.contentWrapperLast() : styles.contentWrapperBorder()
+          isLast
+            ? styles.contentWrapperLast()
+            : isFirst
+              ? styles.contentWrapperBorderFirst()
+              : styles.contentWrapperBorder()
         }`}
       >
         <div>
@@ -74,7 +94,7 @@ export const CareerEntry: React.FC<CareerEntryProps> = ({ job, isLast }) => {
             </time>
           </div>
           <p className={styles.summary()}>{summary}</p>
-          <ul>
+          <ul className={styles.achievementList()}>
             {achievements?.map((achievement) => (
               <li key={achievement} className={styles.achievement()}>
                 {achievement}
