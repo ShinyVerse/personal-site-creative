@@ -67,10 +67,9 @@ export default function AnimatedSquareSection({
           inView && {
             opacity: 1,
             scale: isMobile ? 4 : 5,
-            y: isMobile ? 0 : 0,
+            y: 0,
             transition: { duration: 1 },
           }
-          // : { opacity: 0, y: -500, transition: { duration: 1 } }
         }
       >
         Artwork!!!

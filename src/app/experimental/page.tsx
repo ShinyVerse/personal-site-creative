@@ -6,6 +6,8 @@ import AnimatedSquareSection from "./section";
 import { client } from "@/lib/contentfulClient";
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { JazzyLink } from "@/app/components/JazzyLink";
+import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
+import { FeaturedJobs } from "../components/FeaturedJobs";
 
 const landingStyles = tv({
   slots: {
@@ -28,6 +30,13 @@ export default async function ExperimentalPage() {
   const res = await client.getEntries({ content_type: "photo" });
   const photos = res.items;
   const parsedPhotos = PhotoEntriesSchema.safeParse(photos);
+
+  const resJob = await client.getEntries({
+    content_type: "jobEntry",
+  });
+  const jobs = resJob.items;
+
+  const parsedJobs = JobEntriesSchema.safeParse(jobs);
 
   return (
     <main className={styles.root()}>
@@ -53,7 +62,14 @@ export default async function ExperimentalPage() {
         <AnimatedSquareSection displayItems={parsedPhotos.data} />
       )}
 
-      <section className="w-full bg-blue-900 flex items-center justify-center h-screen" />
+      <section className="w-full bg-off-black flex flex-col items-center h-screen justify-around mt-4 overflow-hidden">
+        {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
+        <JazzyLink
+          href="/career"
+          icon={<ChevronRightCircle />}
+          title="Curious for more details?"
+        />
+      </section>
       <section className="w-full bg-red-800 flex items-center justify-center h-screen" />
     </main>
   );
