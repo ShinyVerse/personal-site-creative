@@ -10,8 +10,8 @@ const imageModalStyles = tv({
     container:
       "relative bg-white pb-2 m-3 w-[90%] max-w-[1000px] rounded-lg outline-none",
     closeButton: "absolute top-3 right-3 w-6 h-6 text-white z-51",
-    imageWrapper: "relative w-auto h-auto aspect-[4/3] sm:h-1/2",
-    image: "object-cover rounded-t-lg",
+    imageWrapper: "relative w-auto h-auto aspect-[4/3] sm:h-1/2 bg-black",
+    image: "object-contain rounded-t-lg",
     content: "p-6 space-y-2",
     title: "text-lg md:text-2xl font-semibold font-lato",
     description: "text-md md:text-lg text-zinc-600 font-lato",
