@@ -7,9 +7,9 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 
 const navbarStyles = tv({
   slots: {
-    container: "fixed top-0 left-0 w-full z-50 bg-[#0f0f0f] overflow-hidden ",
+    container: "fixed top-0 left-0 w-full z-50 bg-black overflow-hidden ",
     drawButton: "absolute bottom-2 left-1/2 -translate-x-1/2 text-white z-10",
-    list: "flex flex-col gap-3 list-none p-2 bg-[#0f0f0f] w-full ",
+    list: "flex flex-col gap-3 list-none p-2 bg-black w-full ",
     listItem: "text-white font-block text-sm p-2 active:text-primary",
   },
 });

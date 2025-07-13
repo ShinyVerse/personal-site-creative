@@ -11,7 +11,7 @@
   --light: #ededed;
   --link: #3d3bae;
   --grey: #c2c2c2;
-  --off-black: #0f0f0f;
+  --off-black: #100c0c;
   --primary: #2a7ad5;
   --secondary: #d52a7a;
   --tertiary: #7ad52a;
@@ -45,6 +45,7 @@
 
 html,
 body {
+  scroll-behavior: smooth;
   /* background: var(--off-black); */
   margin: 0;
   height: 100%;

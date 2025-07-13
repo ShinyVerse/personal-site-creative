@@ -7,7 +7,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 
 const navbarStyles = tv({
   slots: {
-    list: "flex flex-col h-screen gap-7 list-none p-2 bg-off-black",
+    list: "flex flex-col h-screen gap-7 list-none p-2 bg-black",
     listItem:
       "text-white font-block text-lg border-b border-white p-2 hover:text-secondary active:text-primary",
   },
@@ -25,11 +25,11 @@ export default function Navbar({
   return (
     <motion.nav
       animate={{ width: isOpen ? 250 : 50 }}
-      className="relative overflow-hidden flex-none"
+      className="relative flex-none overflow-hidden"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute top-2 right-2 text-white z-10"
+        className="absolute top-2 right-2 z-10 text-white"
       >
         {isOpen ? <ChevronLeft /> : <ChevronRight />}
       </button>

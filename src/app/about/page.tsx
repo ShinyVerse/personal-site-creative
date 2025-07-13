@@ -139,7 +139,7 @@ export default function AboutPage() {
       </section>
 
       {/* Bottom Section */}
-      <section className="grid place-items-center text-center gap-4">
+      <section className="grid place-items-center gap-4 text-center">
         <h2>Employing me feeds these mouths:</h2>
         <ul className="flex flex-wrap justify-center gap-4">
           <li>

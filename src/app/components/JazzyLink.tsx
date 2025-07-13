@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode } from "react";
 import Link from "next/link";
 import { tv } from "tailwind-variants";
@@ -14,6 +15,7 @@ interface JazzyLinkProps {
   icon?: ReactNode;
   rel?: boolean;
   target?: boolean;
+  isAnchor?: boolean;
 }
 
 export const JazzyLink = ({
@@ -22,14 +24,32 @@ export const JazzyLink = ({
   icon: Icon,
   rel = false,
   target = false,
+  isAnchor = false,
 }: JazzyLinkProps) => {
   const styles = JazzyLinkStyles();
-  return (
+
+  const handleAnchorClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (href.startsWith("#")) {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return isAnchor ? (
+    <a
+      href={href}
+      onClick={handleAnchorClick}
+      className={`${styles.cta()} scroll-smooth`}
+    >
+      {title} {Icon && Icon}
+    </a>
+  ) : (
     <Link
-      rel={rel ? "noopener noreferrer nofollow" : undefined}
-      target={target ? "_blank" : undefined}
       href={href}
       className={styles.cta()}
+      rel={rel ? "noopener noreferrer nofollow" : undefined}
+      target={target ? "_blank" : undefined}
     >
       {title} {Icon && Icon}
     </Link>

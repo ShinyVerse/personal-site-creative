@@ -6,15 +6,59 @@ import AnimatedSquareSection from "./section";
 import { client } from "@/lib/contentfulClient";
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { JazzyLink } from "@/app/components/JazzyLink";
+import { NeonImage } from "@/app/components/NeonImage";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
 import { FeaturedJobs } from "../components/FeaturedJobs";
 
+const aboutList = [
+  {
+    src: "/art-neon.mp4",
+    title: "Paint, Pixels & Possibilities",
+    description: `Often caught scribbling in a sketchpad, experimenting in Procreate,
+            or tinkering with a stubborn traditional piece. I'm on a gentle
+            quest to find my style, currently working on a deeper understanding
+            of faces and expressions. Forever chasing curious techniques, making
+            brushes of my own, and seeing where the inspiration takes me. Some
+            works evolve beyond expectation; others find completion earlier than
+            imagined.`,
+  },
+  {
+    src: "/code-neon.mp4",
+    title: "Sowing and growing",
+    description: `Tending my garden with care, growing food for the table and flowers
+            for the soul. Organically keeping pests at bay by making use of lure
+            and companion plants. Some of my favorites to grow are potatoes,
+            beans, corn, snapdragons, and sage.`,
+  },
+  {
+    src: "/code-neon.mp4",
+    title: "From Sims to Syntax",
+    description: `I didn't start out as a developer and had little interaction
+            with computers early on—except for games. Most of my career has been
+            focused on React Native, a dash of Backend, and recently I've
+            been enjoying the new challenges that Next.js brings. I see myself
+            as a product developer who cares deeply about the people using what
+            I build. I'm driven by creating thoughtful, user-friendly
+            solutions that make a real difference, blending creativity with
+            practical problem-solving.`,
+  },
+  {
+    src: "/code-neon.mp4",
+    title: "A Butter-Spattered Feeder",
+    description: `A passionate feeder who explores global cuisines with curiosity and
+            glee. Restaurants spark inspiration, guiding playful recreations and
+            original dishes at home. From hand-pulled noodles to decorated
+            cakes, what lands on the table depends entirely on the weather, what
+            the cupboards hold—and the whim.`,
+  },
+];
+
 const landingStyles = tv({
   slots: {
-    root: "flex flex-col w-full bg-[#0f0f0f] items-center place-content-between align-center",
+    root: "flex flex-col bg-black w-full items-center place-content-between align-center",
     container: "relative w-full md:w-max",
-    ctaWrapper: "justify-items-center items-center w-full",
-    section: "flex flex-col justify-evenly h-full",
+    ctaWrapper: "justify-items-center items-center w-full ",
+    section: "flex flex-col justify-around min-h-screen",
     textBlock:
       "text-lato text-white text-xl font-block font-medium text-center mb-2",
     h1: "relative mt-2 z-[2] font-block text-white text-center text-[6rem] md:text-[12rem]",
@@ -40,7 +84,7 @@ export default async function LandingPage() {
 
   return (
     <main className={styles.root()}>
-      <section className="w-full bg-off-black flex flex-col items-center h-screen justify-between mt-4 overflow-hidden">
+      <section className="flex h-screen w-full flex-col items-center justify-between overflow-hidden">
         <section className={styles.section()}>
           <section className={styles.container()}>
             <div className={styles.bgStripe()} aria-hidden="true" />
@@ -52,7 +96,8 @@ export default async function LandingPage() {
               Great. Now that I have your attention...
             </h2>
             <JazzyLink
-              href="/about"
+              href="#about"
+              isAnchor
               icon={<ChevronRightCircle />}
               title="Come get to know me"
             />
@@ -60,11 +105,33 @@ export default async function LandingPage() {
         </section>
       </section>
 
+      <section
+        id="about"
+        className="p3 bg-black- flex min-h-screen w-full flex-col justify-center justify-items-center"
+      >
+        {aboutList.map((aboutItem, index) => (
+          <div
+            key={index}
+            className={`${styles.textBlock()} font-block flex flex-col gap-6 py-2 text-left md:flex-row`}
+          >
+            <NeonImage src={aboutItem.src} />
+            <div className="flex flex-col justify-center">
+              <h2 className="py-2 text-lg font-medium md:text-2xl lg:text-2xl">
+                {aboutItem.title}
+              </h2>
+              <p className="font-handwriting text-2xl md:text-3xl lg:text-4xl">
+                {aboutItem.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </section>
+
       {parsedPhotos.data && (
         <AnimatedSquareSection displayItems={parsedPhotos.data} />
       )}
 
-      <section className=" flex flex-col not-last:w-full bg-off-black items-center h-screen justify-around mt-4 overflow-hidden justify-items-center">
+      <section className="mt-4 flex min-h-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden bg-black not-last:w-full">
         {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
         <JazzyLink
           href="/career"
@@ -72,7 +139,6 @@ export default async function LandingPage() {
           title="Curious for more details?"
         />
       </section>
-      <section className="w-full bg-red-800 flex items-center justify-center h-screen" />
     </main>
   );
 }
