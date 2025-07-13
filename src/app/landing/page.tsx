@@ -126,15 +126,15 @@ export default async function LandingPage() {
           </div>
         ))}
       </section>
-      <section className="mt-4 mb-8 flex min-h-screen min-w-full flex-col items-center justify-around justify-items-center bg-black not-last:w-full">
+
+      <section className="mt-4 mb-8 flex min-h-screen max-w-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden bg-black not-last:w-full">
         {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
         <JazzyLink
-          href="/career"
+          href="/about"
           icon={<ChevronRightCircle />}
           title="Curious for more details?"
         />
       </section>
-
       {parsedPhotos.data && (
         <AnimatedSquareSection displayItems={parsedPhotos.data} />
       )}

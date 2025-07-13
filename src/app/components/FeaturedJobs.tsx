@@ -40,7 +40,7 @@ const animatedFeaturedJobsStyles = tv({
     white: "text-white font-extrabold",
     blueBarWrapper: "absolute left-2 w-full z-1 top-[-15px]",
     blueBar:
-      "min-w-[7000px] h-full rounded-full bg-primary opacity-75 p-10 shadow-[0_0_15px] shadow-primary/80",
+      "min-w-[7000px] h-full rounded-full bg-primary opacity-75 p-10 shadow-[0_0_15px] shadow-primary/80 ",
   },
 });
 

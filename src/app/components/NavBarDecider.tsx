@@ -13,6 +13,8 @@ export default function NavBarDecider({
   const [isOpen, setIsOpen] = useState(false);
   const navHeight = isOpen ? 200 : 50;
 
+  console.log(isMobile, isOpen);
+
   return (
     <>
       {isMobile ? (
