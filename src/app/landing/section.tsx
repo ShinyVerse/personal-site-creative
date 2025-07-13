@@ -13,7 +13,7 @@ import { JazzyLink } from "@/app/components/JazzyLink";
 
 const animatedSectionStyles = tv({
   slots: {
-    root: "w-full flex flex-col items-center min-h-screen justify-around",
+    root: "w-full flex flex-col items-center min-h-screen justify-around mb-8",
     heading:
       "relative text-md md:text-2xl lg:text-3xl font-handwriting text-secondary py-5 md:py-12 lg:py-20",
     grid: "grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5 pb-5 md:pb-8",

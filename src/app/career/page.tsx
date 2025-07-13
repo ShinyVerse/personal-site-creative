@@ -6,7 +6,7 @@ import { tv } from "tailwind-variants";
 
 const careerPageStyles = tv({
   slots: {
-    root: "p-5 bg-off-black",
+    root: "p-5 bg-black",
     heading:
       "text-[60px] md:text-[100px] font-handwriting text-secondary text-center",
   },

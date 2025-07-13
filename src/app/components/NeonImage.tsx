@@ -6,9 +6,9 @@ export const NeonImage = ({ src }: { src: string }) => {
   const videoRef = useRef(null);
 
   return (
-    <div className="flex h-[100px] w-[100px] items-center self-center overflow-hidden md:h-[150px] md:min-h-[150px] md:w-[150px] md:min-w-[150px]">
+    <div className="md:self-left h-40 min-h-40 w-40 min-w-40 self-center md:h-50 md:min-h-50 md:w-50 md:min-w-50">
       <video
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "100%", objectFit: "contain" }}
         ref={videoRef}
         src={src}
         autoPlay

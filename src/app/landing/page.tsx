@@ -12,7 +12,7 @@ import { FeaturedJobs } from "../components/FeaturedJobs";
 
 const aboutList = [
   {
-    src: "/art-neon.mp4",
+    src: "/art2.mp4",
     title: "Paint, Pixels & Possibilities",
     description: `Often caught scribbling in a sketchpad, experimenting in Procreate,
             or tinkering with a stubborn traditional piece. I'm on a gentle
@@ -112,11 +112,11 @@ export default async function LandingPage() {
         {aboutList.map((aboutItem, index) => (
           <div
             key={index}
-            className={`${styles.textBlock()} font-block flex flex-col gap-6 py-2 text-left md:flex-row`}
+            className={`${styles.textBlock()} font-block mx-4 flex flex-col gap-6 py-2 text-center md:flex-row md:text-left`}
           >
             <NeonImage src={aboutItem.src} />
             <div className="flex flex-col justify-center">
-              <h2 className="py-2 text-lg font-medium md:text-2xl lg:text-2xl">
+              <h2 className="text-secondary border-primary my-3 inline-block self-center border-b-2 py-2 text-lg font-medium md:self-start md:text-2xl lg:text-2xl">
                 {aboutItem.title}
               </h2>
               <p className="font-handwriting text-2xl md:text-3xl lg:text-4xl">
@@ -126,12 +126,7 @@ export default async function LandingPage() {
           </div>
         ))}
       </section>
-
-      {parsedPhotos.data && (
-        <AnimatedSquareSection displayItems={parsedPhotos.data} />
-      )}
-
-      <section className="mt-4 flex min-h-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden bg-black not-last:w-full">
+      <section className="mt-4 mb-8 flex min-h-screen min-w-full flex-col items-center justify-around justify-items-center bg-black not-last:w-full">
         {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
         <JazzyLink
           href="/career"
@@ -139,6 +134,10 @@ export default async function LandingPage() {
           title="Curious for more details?"
         />
       </section>
+
+      {parsedPhotos.data && (
+        <AnimatedSquareSection displayItems={parsedPhotos.data} />
+      )}
     </main>
   );
 }
