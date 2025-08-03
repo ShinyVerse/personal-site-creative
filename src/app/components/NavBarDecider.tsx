@@ -21,7 +21,6 @@ export type NavItem = {
 export default function NavBarDecider({
   children,
 }: {
-  href: string;
   children: React.ReactNode;
 }) {
   const isMobile = useIsMobile();

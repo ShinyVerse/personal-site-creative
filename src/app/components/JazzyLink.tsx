@@ -36,8 +36,6 @@ export const JazzyLink = ({
     }
   };
 
-  console.log(isAnchor);
-
   return isAnchor ? (
     <a
       href={href}
