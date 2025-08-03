@@ -130,7 +130,7 @@ export default async function LandingPage() {
       <section className="mt-4 mb-8 flex min-h-screen max-w-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden bg-black not-last:w-full">
         {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
         <JazzyLink
-          href="/about"
+          href="/career"
           icon={<ChevronRightCircle />}
           title="Curious for more details?"
         />

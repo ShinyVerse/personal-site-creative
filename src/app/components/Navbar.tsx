@@ -4,6 +4,8 @@ import Link from "next/link";
 import { tv } from "tailwind-variants";
 import { motion } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { NavItem } from "./NavBarDecider";
+import { usePathname } from "next/navigation";
 
 const navbarStyles = tv({
   slots: {
@@ -11,15 +13,28 @@ const navbarStyles = tv({
     listItem:
       "text-white font-block text-lg border-b border-white p-2 hover:text-secondary active:text-primary",
   },
+  variants: {
+    active: {
+      true: {
+        listItem: "text-secondary",
+      },
+      false: {
+        listItem: "",
+      },
+    },
+  },
 });
 
 export default function Navbar({
   isOpen,
   setIsOpen,
+  navItems,
 }: {
+  navItems: NavItem[];
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const pathname = usePathname();
   const styles = navbarStyles();
 
   return (
@@ -34,32 +49,17 @@ export default function Navbar({
         {isOpen ? <ChevronLeft /> : <ChevronRight />}
       </button>
       {isOpen ? (
-        <ul className={`${styles.list()} w-full`}>
-          <li>
-            <Link href="/" className={styles.listItem()}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.listItem()} href="/artwork">
-              Artwork
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.listItem()} href="/about">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.listItem()} href="/career">
-              Career Portfolio
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.listItem()} href="/experimental">
-              Landing
-            </Link>
-          </li>
+        <ul className={styles.list()}>
+          {navItems.map(({ name, href }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className={styles.listItem({ active: pathname === href })}
+              >
+                {isOpen ? name : ""}
+              </Link>
+            </li>
+          ))}
         </ul>
       ) : (
         <ul className={styles.list()}></ul>
