@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Caveat, Orbitron, Sarpanch } from "next/font/google";
+import { Lato, Orbitron, Poppins } from "next/font/google";
 
 import "./globals.css";
 import NavBarDecider from "./components/NavBarDecider";
@@ -16,13 +16,7 @@ const block = Orbitron({
   weight: ["400", "700"],
 });
 
-const loud = Sarpanch({
-  subsets: ["latin"],
-  variable: "--font-loud",
-  weight: ["400", "700"],
-});
-
-const handwriting = Caveat({
+const handwriting = Poppins({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-handwriting",
@@ -41,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lato.variable} ${handwriting.variable} ${block.variable} ${loud.variable} antialiased`}
+      className={`${lato.variable} ${handwriting.variable} ${block.variable} antialiased`}
     >
       <body>
         <div className="flex h-screen flex-col md:flex-row">

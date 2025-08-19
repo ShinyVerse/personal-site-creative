@@ -12,7 +12,6 @@ import { FeaturedJobs } from "../components/FeaturedJobs";
 
 const aboutList = [
   {
-    src: "/art2.mp4",
     title: "Paint, Pixels & Possibilities",
     description: `Often caught scribbling in a sketchpad, experimenting in Procreate,
             or tinkering with a stubborn traditional piece. I'm on a gentle
@@ -23,7 +22,6 @@ const aboutList = [
             imagined.`,
   },
   {
-    src: "/code-neon.mp4",
     title: "Sowing and growing",
     description: `Tending my garden with care, growing food for the table and flowers
             for the soul. Organically keeping pests at bay by making use of lure
@@ -43,7 +41,6 @@ const aboutList = [
             practical problem-solving.`,
   },
   {
-    src: "/code-neon.mp4",
     title: "A Butter-Spattered Feeder",
     description: `A passionate feeder who explores global cuisines with curiosity and
             glee. Restaurants spark inspiration, guiding playful recreations and
@@ -55,7 +52,7 @@ const aboutList = [
 
 const landingStyles = tv({
   slots: {
-    root: "flex flex-col bg-black w-full items-center place-content-between align-center",
+    root: "flex flex-col bg-off-black w-full items-center place-content-between align-center",
     container: "relative w-full md:w-max",
     ctaWrapper: "justify-items-center items-center w-full ",
     section: "flex flex-col justify-around min-h-screen",
@@ -107,14 +104,14 @@ export default async function LandingPage() {
 
       <section
         id="about"
-        className="p3 bg-black- flex min-h-screen w-full flex-col justify-center justify-items-center"
+        className="p3 bg-off-black flex min-h-screen w-full flex-col justify-center justify-items-center"
       >
         {aboutList.map((aboutItem, index) => (
           <div
             key={index}
             className={`${styles.textBlock()} font-block mx-4 flex flex-col gap-6 py-2 text-center md:flex-row md:text-left`}
           >
-            <NeonImage src={aboutItem.src} />
+            {/* <NeonImage src={aboutItem.src} /> */}
             <div className="flex flex-col justify-center">
               <h2 className="text-secondary border-primary my-3 inline-block self-center border-b-2 py-2 text-lg font-medium md:self-start md:text-2xl lg:text-2xl">
                 {aboutItem.title}
@@ -127,7 +124,7 @@ export default async function LandingPage() {
         ))}
       </section>
 
-      <section className="mt-4 mb-8 flex min-h-screen max-w-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden bg-black not-last:w-full">
+      <section className="bg-off-black mt-4 mb-8 flex min-h-screen max-w-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden not-last:w-full">
         {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
         <JazzyLink
           href="/career"
