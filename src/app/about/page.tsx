@@ -28,7 +28,7 @@ export default function AboutPage() {
         <section className={styles.section()}>
           <h2 className={styles.heading()}>ME IN A NUT-SHELL</h2>
           <p className={styles.featuredText()}>
-            I'm a cat person, relaxed gamer, feeder, gardener, artistic
+            I&apos;m a cat person, relaxed gamer, feeder, gardener, artistic
             developer.
           </p>
         </section>

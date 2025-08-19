@@ -6,7 +6,7 @@ import AnimatedSquareSection from "./section";
 import { client } from "@/lib/contentfulClient";
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { JazzyLink } from "@/app/components/JazzyLink";
-import { NeonImage } from "@/app/components/NeonImage";
+// import { NeonImage } from "@/app/components/NeonImage";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
 import { FeaturedJobs } from "../components/FeaturedJobs";
 
