@@ -69,7 +69,7 @@ export default function AboutPage() {
           </div>
         </section>
         <section className={styles.section()}>
-          <h2 className={styles.heading()}>WHAT'S COOKING?</h2>
+          <h2 className={styles.heading()}>WHAT&apos;S COOKING?</h2>
           <p className={styles.featuredText()}>
             From hand-pulled noodles to decorated cakes, what lands on the table
             depends entirely on the weather, what the cupboards hold, what I can
