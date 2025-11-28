@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { tv } from "tailwind-variants";
 import Image from "next/image";
-import { MainHeader } from "../components/MainHeader";
 
 const aboutPageStyles = tv({
   slots: {

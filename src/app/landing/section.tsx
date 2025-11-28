@@ -6,7 +6,6 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { tv } from "tailwind-variants";
 import { PhotoEntries } from "@/lib/photoSchemas";
-import { useIsMobile } from "../hooks/useIsMobile";
 import { useModal } from "../hooks/useModal";
 
 import { ChevronRightCircle } from "lucide-react";
