@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { tv } from "tailwind-variants";
-import Modal from "@/app/components/Modal";
+import ModalWrapper from "./ModalWrapper";
 
 const imageModalStyles = tv({
   slots: {
-    container: "pb-2 m-3 w-[90%] max-w-[1000px]",
+    container:
+      "p-2 pb-8 md:pb-2 max-w-[90vw] md:max-w-[700px] w-full",
     closeButton: "top-3 right-3 w-6 h-6 text-white",
-    imageWrapper: "relative w-auto h-auto aspect-[4/3] sm:h-1/2 bg-black",
+    imageWrapper: "relative w-full aspect-[4/3] max-h-[60vh] bg-black overflow-hidden",
     image: "object-contain rounded-t-lg",
-    content: "p-6 space-y-2",
+    content: "p-4 space-y-2",
     title: "text-lg md:text-2xl font-semibold font-lato",
     description: "text-md md:text-lg text-zinc-600 font-lato",
   },
@@ -38,7 +39,7 @@ export default function ImageModal({
   } = imageModalStyles();
 
   return (
-    <Modal
+    <ModalWrapper
       onClose={onClose}
       containerClassName={container()}
       closeButtonClassName={closeButton()}
@@ -60,6 +61,7 @@ export default function ImageModal({
           {description}
         </p>
       </div>
-    </Modal>
+    </ModalWrapper>
   );
 }
+

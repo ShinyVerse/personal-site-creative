@@ -15,7 +15,7 @@ const modalStyles = tv({
   },
 });
 
-interface ModalProps {
+interface ModalWrapperProps {
   children: ReactNode;
   onClose: () => void;
   containerClassName?: string;
@@ -26,7 +26,7 @@ interface ModalProps {
   containerStyle?: React.CSSProperties;
 }
 
-export default function Modal({
+export default function ModalWrapper({
   children,
   onClose,
   containerClassName,
@@ -35,7 +35,7 @@ export default function Modal({
   ariaLabelledBy = "modal-title",
   ariaDescribedBy = "modal-description",
   containerStyle,
-}: ModalProps) {
+}: ModalWrapperProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const styles = modalStyles();

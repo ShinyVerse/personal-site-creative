@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { tv } from "tailwind-variants";
-import Modal from "./Modal";
+import ModalWrapper from "./ModalWrapper";
 
 const polaroidModalStyles = tv({
   slots: {
@@ -71,7 +71,7 @@ export default function PolaroidModal({
   };
 
   return (
-    <Modal
+    <ModalWrapper
       onClose={onClose}
       containerClassName={container()}
       closeButtonClassName={closeButton()}
@@ -96,7 +96,7 @@ export default function PolaroidModal({
           {description}
         </p>
       </div>
-    </Modal>
+    </ModalWrapper>
   );
 }
 

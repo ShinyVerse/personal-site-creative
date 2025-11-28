@@ -1,10 +1,11 @@
 "use client";
 
 import { tv } from "tailwind-variants";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Image from "next/image";
 import { PhotoEntries, PhotoEntry } from "@/lib/photoSchemas";
-import PolaroidModal from "@/app/components/PolaroidModal";
+import PolaroidModal from "@/app/components/Modals/PolaroidModal";
+import { useModal } from "@/app/hooks/useModal";
 
 export const carouselStyles = tv({
   slots: {
@@ -13,9 +14,9 @@ export const carouselStyles = tv({
     // Each Polaroid ~352px (320px image + 32px padding) + 24px gap
     // 3.5 * 352px + 2.5 * 24px = 1232px + 60px = ~1292px, add frame padding
     // removed: max-w-[1350px]
-    frameContainer: "p-6  w-full mx-auto",
+    frameContainer: "p-6 w-full mx-auto ",
     // Add padding to allow space for scaled/rotated Polaroids on hover
-    scrollContainer: "flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide py-4 px-2",
+    scrollContainer: "flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide py-4 px-2 justify-center",
     scrollContainerInner: "flex gap-6 min-w-max",
     polaroid: "w-[280px] md:w-[320px] flex-shrink-0 bg-white p-4 pb-6 shadow-lg transform transition-transform hover:scale-105 hover:z-10 cursor-pointer flex flex-col origin-center",
     polaroidImageWrapper: "w-full h-[240px] md:h-[300px] relative overflow-hidden bg-gray-50",
@@ -28,11 +29,11 @@ export const carouselStyles = tv({
 export const Polaroid = ({ 
   photo, 
   index, 
-  onClick 
+  onOpen 
 }: { 
   photo: PhotoEntry; 
   index: number;
-  onClick: () => void;
+  onOpen: (photo: PhotoEntry) => void;
 }) => {
   const styles = carouselStyles();
   
@@ -48,11 +49,11 @@ export const Polaroid = ({
       style={{ 
         transform: `rotate(${rotation}deg)`,
       }}
-      onClick={onClick}
+      onClick={() => onOpen(photo)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          onClick();
+          onOpen(photo);
         }
       }}
       tabIndex={0}
@@ -77,20 +78,20 @@ export const Polaroid = ({
 
 const Carousel = ({ photos }: { photos: PhotoEntries }) => {
   const styles = carouselStyles();
-  const [modalItem, setModalItem] = useState<PhotoEntry | null>(null);
+  const modal = useModal<PhotoEntry>();
 
   return (
     <>
-      {modalItem && (
+      {modal.isOpen && modal.data && (
         <PolaroidModal
-          image={"https:" + modalItem.fields.image.fields.file.url}
-          alt={modalItem.fields.altText}
-          title={modalItem.fields.title}
+          image={"https:" + modal.data.fields.image.fields.file.url}
+          alt={modal.data.fields.altText}
+          title={modal.data.fields.title}
           description={
-            modalItem.fields.description.content[0]?.content[0]?.value ||
+            modal.data.fields.description.content[0]?.content[0]?.value ||
             "No description"
           }
-          onClose={() => setModalItem(null)}
+          onClose={modal.close}
         />
       )}
       <div className={styles.frameContainer()} aria-label="Photo carousel">
@@ -102,7 +103,7 @@ const Carousel = ({ photos }: { photos: PhotoEntries }) => {
                   key={photo.sys.id || index} 
                   photo={photo} 
                   index={index}
-                  onClick={() => setModalItem(photo)}
+                  onOpen={modal.open}
                 />
               ))}
             </div>

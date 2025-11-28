@@ -1,12 +1,13 @@
 "use client";
 
-import ImageModal from "./ImageModal";
-import { useEffect, useRef, useState } from "react";
+import ImageModal from "@/app/components/Modals/ImageModal";
+import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { tv } from "tailwind-variants";
 import { PhotoEntries } from "@/lib/photoSchemas";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { useModal } from "../hooks/useModal";
 
 import { ChevronRightCircle } from "lucide-react";
 import { JazzyLink } from "@/app/components/JazzyLink";
@@ -29,9 +30,7 @@ export default function AnimatedSquareSection({
   displayItems: PhotoEntries;
 }) {
   const isMobile = useIsMobile();
-  const [modalItem, setModalItem] = useState<null | (typeof displayItems)[0]>(
-    null,
-  );
+  const modal = useModal<(typeof displayItems)[0]>();
 
   const ref = useRef(null);
   const controls = useAnimation();
@@ -75,16 +74,16 @@ export default function AnimatedSquareSection({
         Artwork!!!
       </motion.h1>
 
-      {modalItem && (
+      {modal.isOpen && modal.data && (
         <ImageModal
-          image={"https:" + modalItem.fields.image.fields.file.url}
-          alt={modalItem.fields.altText}
-          title={modalItem.fields.title}
+          image={"https:" + modal.data.fields.image.fields.file.url}
+          alt={modal.data.fields.altText}
+          title={modal.data.fields.title}
           description={
-            modalItem.fields.description.content[0].content[0].value ||
+            modal.data.fields.description.content[0].content[0].value ||
             "No description"
           }
-          onClose={() => setModalItem(null)}
+          onClose={modal.close}
         />
       )}
 
@@ -97,11 +96,11 @@ export default function AnimatedSquareSection({
             initial={{ opacity: 0, y: -100, scale: 0.5 }}
             animate={controls}
             className={styles.gridItem()}
-            onClick={() => setModalItem(item)}
+            onClick={() => modal.open(item)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                setModalItem(item);
+                modal.open(item);
               }
             }}
           >
