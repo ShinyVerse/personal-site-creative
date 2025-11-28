@@ -66,6 +66,7 @@ export const Polaroid = ({
           alt={photo.fields.altText}
           fill
           className={styles.polaroidImage()}
+          loading="lazy"
           sizes="(max-width: 768px) 280px, 320px"
         />
       </div>

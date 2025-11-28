@@ -85,6 +85,7 @@ export default function PolaroidModal({
           alt={alt}
           fill
           className={imageClass()}
+          loading="lazy"
           sizes="(max-width: 768px) 90vw, 700px"
         />
       </div>

@@ -53,6 +53,8 @@ export default function AboutPage() {
               alt="An illustration of a boy looking at jellyfish"
               fill
               className="rounded-sm object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
 
@@ -86,6 +88,8 @@ export default function AboutPage() {
                   width={300}
                   height={300}
                   className="rounded-lg"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 50vw, 300px"
                 />
               </li>
             ))}
@@ -106,6 +110,8 @@ export default function AboutPage() {
               alt="A image of plants in a greenhouse"
               fill
               className="rounded-sm object-cover"
+              loading="lazy"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
           <div className="relative aspect-square w-full">
@@ -114,6 +120,8 @@ export default function AboutPage() {
               alt="A image of plants in a greenhouse"
               fill
               className="rounded-sm object-cover"
+              loading="lazy"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
         </section>
@@ -130,6 +138,8 @@ export default function AboutPage() {
                   width={150}
                   height={150}
                   className="max-h-[150px] max-w-[150px] rounded-2xl"
+                  loading="lazy"
+                  sizes="150px"
                 />
               </li>
             ))}

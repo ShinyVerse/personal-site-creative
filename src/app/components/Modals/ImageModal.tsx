@@ -50,7 +50,8 @@ export default function ImageModal({
           alt={alt}
           fill
           className={imageClass()}
-          sizes="(max-width: 640px) 100vw, 100%"
+          loading="lazy"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 700px"
         />
       </div>
       <div className={content()}>

@@ -109,6 +109,8 @@ export default function AnimatedSquareSection({
               alt={item.fields.altText}
               fill
               className={styles.image()}
+              loading="lazy"
+              sizes="(max-width: 640px) 150px, (max-width: 1024px) 200px, (max-width: 1536px) 250px, 275px"
             />
           </motion.div>
         ))}
