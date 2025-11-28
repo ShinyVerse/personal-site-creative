@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { tv } from "tailwind-variants";
+import { MainHeader } from "./MainHeader";
 
 interface FeaturedJobsProps {
   jobs: JobEntries;
@@ -30,8 +31,6 @@ const itemVariants = {
 
 const animatedFeaturedJobsStyles = tv({
   slots: {
-    heading:
-      "text-md md:text-2xl lg:text-3xl font-handwriting text-secondary py-5 md:py-12 lg:py-20",
     section: "text-white relative mb-10 flex flex-col justify-between ",
     roleWrapper: "z-10 ml-10 my-5",
     roleHeading:
@@ -47,30 +46,17 @@ const animatedFeaturedJobsStyles = tv({
 export const FeaturedJobs = ({ jobs }: FeaturedJobsProps) => {
   const ref = useRef(null);
   const isMobile = useIsMobile();
-  const inView = useInView(ref, { margin: "-100% 0px 100% 0px" });
+  const inView = useInView(ref, { margin: "-20% 0px -20% 0px", once: true });
 
   const styles = animatedFeaturedJobsStyles();
   return (
     <>
-      <motion.h1
-        className={styles.heading()}
-        initial={{ opacity: 0, x: -500 }}
-        animate={
-          inView && {
-            opacity: 1,
-            scale: isMobile ? 4 : 5,
-            x: 0,
-            transition: { duration: 1.5 },
-          }
-        }
-      >
-        Career!!!
-      </motion.h1>
+      <MainHeader title="WORK EXP" size="medium" bgColour="bg-secondary" />
       <motion.div
         ref={ref}
         variants={containerVariants}
-        initial={isMobile ? "visible" : "hidden"}
-        animate={inView && "visible"}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
       >
         {jobs.slice(0, isMobile ? 3 : 4).map((job, idx) => {
           const { title, techAndSkills, companyName } = job.fields;

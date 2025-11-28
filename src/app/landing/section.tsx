@@ -11,12 +11,11 @@ import { useModal } from "../hooks/useModal";
 
 import { ChevronRightCircle } from "lucide-react";
 import { JazzyLink } from "@/app/components/JazzyLink";
+import { MainHeader } from "../components/MainHeader";
 
 const animatedSectionStyles = tv({
   slots: {
     root: "w-full flex flex-col items-center min-h-screen justify-around mb-8",
-    heading:
-      "relative text-md md:text-2xl lg:text-3xl font-handwriting text-secondary py-5 md:py-12 lg:py-20",
     grid: "grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5 pb-5 md:pb-8",
     gridItem:
       "relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_25px] shadow-primary/80",
@@ -29,7 +28,7 @@ export default function AnimatedSquareSection({
 }: {
   displayItems: PhotoEntries;
 }) {
-  const isMobile = useIsMobile();
+
   const modal = useModal<(typeof displayItems)[0]>();
 
   const ref = useRef(null);
@@ -47,32 +46,13 @@ export default function AnimatedSquareSection({
         transition: { duration: 1 },
       });
     }
-    // else {
-    //   controls.start({
-    //     opacity: 0,
-    //     y: -200,
-    //     scale: 0.5,
-    //     transition: { duration: 1 },
-    //   });
-    // }
+
   }, [inView, controls]);
 
   return (
     <section ref={ref} className={styles.root()}>
-      <motion.h1
-        className={styles.heading()}
-        initial={{ opacity: 0, y: -200 }}
-        animate={
-          inView && {
-            opacity: 1,
-            scale: isMobile ? 4 : 5,
-            y: 0,
-            transition: { duration: 1 },
-          }
-        }
-      >
-        Artwork!!!
-      </motion.h1>
+      <MainHeader title="ARTWORKS" size="medium" bgColour="bg-secondary" />
+
 
       {modal.isOpen && modal.data && (
         <ImageModal
