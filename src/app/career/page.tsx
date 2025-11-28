@@ -3,6 +3,7 @@ import { fetchContentfulEntries } from "@/lib/contentfulHelpers";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
 import { Metadata } from "next";
 import { tv } from "tailwind-variants";
+import { MainHeader } from "../components/MainHeader";
 
 const careerPageStyles = tv({
   slots: {
@@ -24,7 +25,12 @@ export default async function CareerPage() {
   return (
     <main>
       <div className={styles.root()}>
-        <h1 className={styles.heading()}>Career Timeline:</h1>
+        <MainHeader
+          title="CAREER HISTORY"
+          size="medium"
+          bgColour="bg-secondary"
+          containerClassName="mx-auto"
+        />
         {jobsResult.success ? (
           jobsResult.data.map((job, idx) => (
             <CareerEntry

@@ -13,7 +13,6 @@ export const carouselStyles = tv({
     // Frame container sized to show ~3.5 Polaroids: 
     // Each Polaroid ~352px (320px image + 32px padding) + 24px gap
     // 3.5 * 352px + 2.5 * 24px = 1232px + 60px = ~1292px, add frame padding
-    // removed: max-w-[1350px]
     frameContainer: "p-6 w-full mx-auto ",
     // Add padding to allow space for scaled/rotated Polaroids on hover
     scrollContainer: "flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide py-4 px-2 justify-center",
@@ -26,17 +25,17 @@ export const carouselStyles = tv({
   },
 });
 
-export const Polaroid = ({ 
-  photo, 
-  index, 
-  onOpen 
-}: { 
-  photo: PhotoEntry; 
+export const Polaroid = ({
+  photo,
+  index,
+  onOpen
+}: {
+  photo: PhotoEntry;
   index: number;
   onOpen: (photo: PhotoEntry) => void;
 }) => {
   const styles = carouselStyles();
-  
+
   // Alternate rotation angles for a natural Polaroid effect
   const rotation = useMemo(() => {
     const rotations = [-2, 1, -1.5, 2, -1, 1.5];
@@ -44,9 +43,9 @@ export const Polaroid = ({
   }, [index]);
 
   return (
-    <div 
+    <div
       className={styles.polaroid()}
-      style={{ 
+      style={{
         transform: `rotate(${rotation}deg)`,
       }}
       onClick={() => onOpen(photo)}
@@ -100,9 +99,9 @@ const Carousel = ({ photos }: { photos: PhotoEntries }) => {
           <div className={styles.scrollContainer()}>
             <div className={styles.scrollContainerInner()}>
               {photos.map((photo, index) => (
-                <Polaroid 
-                  key={photo.sys.id || index} 
-                  photo={photo} 
+                <Polaroid
+                  key={photo.sys.id || index}
+                  photo={photo}
                   index={index}
                   onOpen={modal.open}
                 />

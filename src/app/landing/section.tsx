@@ -18,7 +18,7 @@ const animatedSectionStyles = tv({
     root: "w-full flex flex-col items-center min-h-screen justify-around mb-8",
     grid: "grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5 pb-5 md:pb-8",
     gridItem:
-      "relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_25px] shadow-primary/80",
+      "relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] 2xl:w-[275px] 2xl:h-[275px] rounded-md shadow-[0_0_10px] shadow-primary/80",
     image: "object-cover rounded-md",
   },
 });
@@ -105,18 +105,3 @@ export default function AnimatedSquareSection({
     </section>
   );
 }
-
-// <section className="w-full bg-amber-300 flex items-center justify-center h-screen">
-//   <div className="flex flex-col gap-10">
-//     {[...Array(5)].map((_, i) => (
-//       <motion.div
-//         key={i}
-//         initial={{ opacity: 0, scale: 0.5, y: -100 }}
-//         whileInView={{ opacity: 1, scale: 1, y: 0 }}
-//         transition={{ duration: 0.5, delay: i * 0.15 }}
-//         viewport={{ once: true }}
-//         className="w-32 h-32 bg-blue-500"
-//       />
-//     ))}
-//   </div>
-// </section>

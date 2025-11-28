@@ -4,6 +4,7 @@ import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import Carousel from "@/app/components/ArtworkCarousel";
 import { fetchContentfulEntries } from "@/lib/contentfulHelpers";
 import { tv } from "tailwind-variants";
+import { MainHeader } from "../components/MainHeader";
 
 const artworkPageStyles = tv({
   slots: {
@@ -24,6 +25,12 @@ export default async function ArtworkPage() {
 
   return (
     <main className={styles.root()}>
+      <MainHeader
+        title="GALLERY"
+        size="medium"
+        bgColour="bg-secondary"
+        containerClassName="mx-auto"
+      />
       <section className={styles.section()}>
         {photosResult.success ? (
           <Carousel photos={photosResult.data} />

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { tv } from "tailwind-variants";
 import Image from "next/image";
+import { MainHeader } from "../components/MainHeader";
 
 const aboutPageStyles = tv({
   slots: {
@@ -38,6 +39,7 @@ export default function AboutPage() {
   return (
     <main className={styles.root()}>
       <div className={styles.inner()}>
+
         <section className={styles.section()}>
           <h2 className={styles.heading()}>ME IN A NUT-SHELL</h2>
           <p className={styles.featuredText()}>

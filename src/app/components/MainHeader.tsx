@@ -30,15 +30,28 @@ const mainHeaderStyles = tv({
 interface MainHeaderProps {
     title: string;
     size?: "large" | "medium" | "small";
-    bgColour?: string
+    bgColour?: string;
+    containerClassName?: string;
+    headerClassName?: string;
+    bgStripeClassName?: string;
 }
 
-const MainHeader = ({ title, bgColour = "bg-primary", size = "large" }: MainHeaderProps) => {
+const MainHeader = ({ 
+    title, 
+    bgColour = "bg-primary", 
+    size = "large",
+    containerClassName = "",
+    headerClassName =  "",
+    bgStripeClassName = "",
+}: MainHeaderProps) => {
     const styles = mainHeaderStyles({ size });
     return (
-        <div className={styles.container()}>
-            <div className={`${styles.bgStripe()} ${bgColour}`} aria-hidden="true" />
-            <h1 className={styles.header()}>{title}</h1>
+        <div className={`${styles.container()} ${containerClassName}`}>
+            <div 
+                className={`${styles.bgStripe()} ${bgColour} ${bgStripeClassName}`} 
+                aria-hidden="true" 
+            />
+            <h1 className={`${styles.header()} ${headerClassName}`}>{title}</h1>
         </div>
     );
 };

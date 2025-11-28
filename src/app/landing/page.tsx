@@ -18,9 +18,6 @@ const landingStyles = tv({
     section: "flex flex-col justify-around min-h-screen items-center",
     textBlock:
       "text-lato text-white text-xl font-block font-medium text-center mb-2",
-    // h1: "relative mt-2 z-[2] font-block text-white text-center text-[6rem] md:text-[12rem]",
-    // bgStripe:
-    //   "absolute inset-x-0 top-1/2 -translate-y-1/2 h-[3rem] bg-primary md:h-[6rem] md:skew-x-[-16deg] md:scale-x-112 z-[1] pointer-events-none",
     paragraph: "text-xl py-3 px-4 lg:px-0 text-white",
   },
 });
