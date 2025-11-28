@@ -1,5 +1,5 @@
 import { CareerEntry } from "@/app/components/CareerPage/CareerEntry";
-import { client } from "@/lib/contentfulClient";
+import { fetchContentfulEntries } from "@/lib/contentfulHelpers";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
 import { Metadata } from "next";
 import { tv } from "tailwind-variants";
@@ -19,25 +19,27 @@ export const metadata: Metadata = {
 
 export default async function CareerPage() {
   const styles = careerPageStyles();
-  const res = await client.getEntries({
-    content_type: "jobEntry",
-  });
-  const jobs = res.items;
-
-  const parsedJobs = JobEntriesSchema.safeParse(jobs);
+  const jobsResult = await fetchContentfulEntries("jobEntry", JobEntriesSchema);
 
   return (
     <main>
       <div className={styles.root()}>
         <h1 className={styles.heading()}>Career Timeline:</h1>
-        {parsedJobs?.data?.map((job, idx) => (
-          <CareerEntry
-            key={idx}
-            job={job}
-            isLast={idx === parsedJobs.data.length - 1}
-            isFirst={idx === 0}
-          />
-        ))}
+        {jobsResult.success ? (
+          jobsResult.data.map((job, idx) => (
+            <CareerEntry
+              key={job.sys.id}
+              job={job}
+              isLast={idx === jobsResult.data.length - 1}
+              isFirst={idx === 0}
+            />
+          ))
+        ) : (
+          <div className="text-white text-center p-8">
+            <p>Unable to load career information at this time.</p>
+            <p className="text-sm text-gray-400 mt-2">{jobsResult.error}</p>
+          </div>
+        )}
       </div>
     </main>
   );

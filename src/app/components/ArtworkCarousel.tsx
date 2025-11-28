@@ -75,7 +75,7 @@ export const Polaroid = ({
   );
 };
 
-export const Carousel = ({ photos }: { photos: PhotoEntries }) => {
+const Carousel = ({ photos }: { photos: PhotoEntries }) => {
   const styles = carouselStyles();
   const [modalItem, setModalItem] = useState<PhotoEntry | null>(null);
 
@@ -112,3 +112,6 @@ export const Carousel = ({ photos }: { photos: PhotoEntries }) => {
     </>
   );
 };
+
+export default Carousel;
+export { Carousel };

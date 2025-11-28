@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { tv } from "tailwind-variants";
 
 import AnimatedSquareSection from "./section";
-import { client } from "@/lib/contentfulClient";
+import { fetchContentfulEntries } from "@/lib/contentfulHelpers";
 import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { JazzyLink } from "@/app/components/JazzyLink";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
@@ -28,16 +28,9 @@ export const metadata: Metadata = {};
 
 export default async function LandingPage() {
   const styles = landingStyles();
-  const res = await client.getEntries({ content_type: "photo" });
-  const photos = res.items;
-  const parsedPhotos = PhotoEntriesSchema.safeParse(photos);
-
-  const resJob = await client.getEntries({
-    content_type: "jobEntry",
-  });
-  const jobs = resJob.items;
-
-  const parsedJobs = JobEntriesSchema.safeParse(jobs);
+  
+  const photosResult = await fetchContentfulEntries("photo", PhotoEntriesSchema);
+  const jobsResult = await fetchContentfulEntries("jobEntry", JobEntriesSchema);
 
   return (
     <main className={styles.root()}>
@@ -64,15 +57,15 @@ export default async function LandingPage() {
       </section>
 
       <section className="bg-off-black mt-4 mb-8 flex min-h-screen max-w-screen min-w-full flex-col items-center justify-around justify-items-center overflow-hidden not-last:w-full">
-        {parsedJobs?.data && <FeaturedJobs jobs={parsedJobs.data} />}
+        {jobsResult.success && <FeaturedJobs jobs={jobsResult.data} />}
         <JazzyLink
           href="/career"
           icon={<ChevronRightCircle />}
           title="Curious for more details?"
         />
       </section>
-      {parsedPhotos.data && (
-        <AnimatedSquareSection displayItems={parsedPhotos.data} />
+      {photosResult.success && (
+        <AnimatedSquareSection displayItems={photosResult.data} />
       )}
     </main>
   );

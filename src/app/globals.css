@@ -12,7 +12,8 @@
   --link: #3d3bae;
   --grey: #c2c2c2;
   --off-black: #1f1f1f;
-  --primary: #2a7ad5;
+  /* 2a7ad5 */
+  --primary: #3f5ab9;
   --secondary: #d52a7a;
   --tertiary: #7ad52a;
 
@@ -101,6 +102,8 @@ a {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
