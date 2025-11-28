@@ -5,10 +5,10 @@ import Image from "next/image";
 const aboutPageStyles = tv({
   slots: {
     root: "bg-off-black text-white h-full w-full font-handwriting",
-    inner: "max-w-6xl mx-auto grid gap-16 justify-center align-center pb-6",
+    inner: "mx-auto grid gap-16 justify-center align-center pb-6",
     section: "flex flex-col w-full max-w-2xl mx-auto",
     sectionGrid:
-      "w-full grid grid-cols-1 lg:grid-cols-2 items-center justify-around gap-8",
+      "w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-2",
     heading: "text-primary font-bold font-lato text-sm py-4 px-4 lg:px-0 ",
     featuredText: "text-3xl font-lato px-4 lg:px-0",
     paragraph: "text-xl py-3 px-4 lg:px-0",
@@ -47,14 +47,13 @@ export default function AboutPage() {
         </section>
         {/* Featured Section */}
         <section className={styles.sectionGrid()}>
-          <div className="relative aspect-square w-full">
+          <div className="relative aspect-square w-full max-w-3xl mx-auto">
             <Image
               src="/boy-digital.jpeg"
               alt="An illustration of a boy looking at jellyfish"
               fill
               className="rounded-sm object-cover"
               priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
 

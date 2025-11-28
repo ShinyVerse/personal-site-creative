@@ -54,7 +54,6 @@ export default function Navbar({
             <li key={href}>
               <Link
                 href={href}
-                onClick={() => setIsOpen(!isOpen)}
                 className={styles.listItem({ active: pathname === href })}
               >
                 {isOpen ? name : ""}

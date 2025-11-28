@@ -54,6 +54,7 @@ export default function MobileNavbar({
           <li key={href}>
             <Link
               href={href}
+              onClick={() => setIsOpen(false)}
               className={styles.listItem({ active: pathname === href })}
             >
               {isOpen ? name : ""}
