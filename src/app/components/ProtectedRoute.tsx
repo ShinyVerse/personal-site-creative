@@ -17,8 +17,6 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     if (!loading && !user) {
       // Redirect to login with return query parameter
       const returnUrl = encodeURIComponent(pathname)
-      console.log(pathname, returnUrl);
-
       router.push(`/auth/login?return=${returnUrl}`)
     }
   }, [user, loading, router, pathname])

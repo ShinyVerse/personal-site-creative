@@ -12,6 +12,71 @@ interface UseAuthOptions {
   returnUrl: string | null
 }
 
+/**
+ * Sanitizes error messages to prevent information leakage.
+ * Logs detailed errors for debugging while showing generic user-friendly messages.
+ * 
+ * @param error - The error object or message to sanitize
+ * @param context - Context about where the error occurred (for logging)
+ * @returns A user-friendly error message
+ */
+function sanitizeErrorMessage(error: unknown, context: 'signup' | 'login'): string {
+  // Log the detailed error for debugging (in production, this should go to a logging service)
+  console.error(`[${context.toUpperCase()}] Detailed error:`, error)
+  
+  // Extract error message
+  let errorMessage = ''
+  if (error instanceof Error) {
+    errorMessage = error.message
+  } else if (typeof error === 'string') {
+    errorMessage = error
+  } else if (error && typeof error === 'object' && 'message' in error) {
+    errorMessage = String(error.message)
+  } else {
+    errorMessage = String(error)
+  }
+  
+  const lowerMessage = errorMessage.toLowerCase()
+  
+  // Map known Supabase/auth errors to user-friendly messages
+  if (lowerMessage.includes('invalid login credentials') || 
+      lowerMessage.includes('invalid credentials') ||
+      lowerMessage.includes('invalid email or password')) {
+    return 'Invalid email or password. Please check your credentials and try again.'
+  }
+  
+  if (lowerMessage.includes('email not confirmed') ||
+      lowerMessage.includes('email confirmation') ||
+      lowerMessage.includes('confirm your email')) {
+    return 'Please check your email and confirm your account before signing in.'
+  }
+  
+  if (lowerMessage.includes('user already registered') ||
+      lowerMessage.includes('already registered') ||
+      lowerMessage.includes('user exists')) {
+    return 'An account with this email already exists. Please sign in instead.'
+  }
+  
+  if (lowerMessage.includes('password') && lowerMessage.includes('weak')) {
+    return 'Password is too weak. Please choose a stronger password.'
+  }
+  
+  if (lowerMessage.includes('rate limit') ||
+      lowerMessage.includes('too many requests')) {
+    return 'Too many attempts. Please wait a moment and try again.'
+  }
+  
+  if (lowerMessage.includes('network') ||
+      lowerMessage.includes('fetch') ||
+      lowerMessage.includes('connection')) {
+    return 'Network error. Please check your connection and try again.'
+  }
+  
+  // For any unknown errors, return a generic message
+  // This prevents leaking implementation details, API structure, or internal error codes
+  return `An error occurred during ${context}. Please try again. If the problem persists, contact support.`
+}
+
 interface UseAuthReturn {
   email: string
   setEmail: (email: string) => void
@@ -75,7 +140,12 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
           password: validatedData.password,
         })
 
-        if (signUpError) throw signUpError
+        if (signUpError) {
+          const sanitizedError = sanitizeErrorMessage(signUpError, 'signup')
+          setError(sanitizedError)
+          setLoading(false)
+          return
+        }
 
         // If there's a session, user is automatically logged in (email confirmation disabled)
         // If no session, user needs to confirm email first
@@ -122,20 +192,10 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
         })
 
         if (signInError) {
-          // Extract error message if there is one
-          const errorMessage = signInError.message || signInError.toString() || 'An error occurred during login'
-          
-          // Provide more helpful error messages
-          if (errorMessage.toLowerCase().includes('invalid login credentials') || 
-              errorMessage.toLowerCase().includes('invalid credentials')) {
-            throw new Error('Invalid email or password. Please check your credentials and try again.')
-          } else if (errorMessage.toLowerCase().includes('email not confirmed') ||
-                     errorMessage.toLowerCase().includes('email confirmation')) {
-            throw new Error('Please check your email and confirm your account before signing in.')
-          } else {
-            // Use the actual error message from Supabase, or a generic one
-            throw new Error(errorMessage)
-          }
+          const sanitizedError = sanitizeErrorMessage(signInError, 'login')
+          setError(sanitizedError)
+          setLoading(false)
+          return
         }
 
         if (data.session) {
@@ -143,15 +203,13 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
           router.push(redirectUrl)
           router.refresh()
         } else {
-          throw new Error('No session created. Please try again.')
+          setError('No session created. Please try again.')
         }
       }
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : `An error occurred during ${isSignup ? 'sign up' : 'login'}`
-      )
+      // Sanitize all errors before showing to users
+      const sanitizedError = sanitizeErrorMessage(err, isSignup ? 'signup' : 'login')
+      setError(sanitizedError)
     } finally {
       setLoading(false)
     }
