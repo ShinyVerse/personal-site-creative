@@ -86,41 +86,42 @@ export default function LoginPage() {
             />
           </div>
 
+  
+
           {isSignup && (
-            <>
-              <div className={styles.inputGroup()}>
-                <label htmlFor="confirmPassword" className={styles.label()}>
-                  Confirm Password
-                </label>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  value={auth.confirmPassword}
-                  onChange={(e) => auth.setConfirmPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                  minLength={6}
-                  className={styles.input()}
-                  disabled={auth.loading || auth.success}
-                />
-              </div>
-              <div className={styles.inputGroup()}>
-                <label htmlFor="accessPassword" className={styles.label()}>
-                  Access Password
-                </label>
-                <input
-                  id="accessPassword"
-                  type="password"
-                  value={auth.accessPassword}
-                  onChange={(e) => auth.setAccessPassword(e.target.value)}
-                  placeholder="Enter access password"
-                  required
-                  className={styles.input()}
-                  disabled={auth.loading || auth.success}
-                />
-              </div>
-            </>
+            <div className={styles.inputGroup()}>
+              <label htmlFor="confirmPassword" className={styles.label()}>
+                Confirm Password
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                value={auth.confirmPassword}
+                onChange={(e) => auth.setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                minLength={6}
+                className={styles.input()}
+                disabled={auth.loading || auth.success}
+              />
+            </div>
           )}
+
+          <div className={styles.inputGroup()}>
+            <label htmlFor="accessPassword" className={styles.label()}>
+              Access Password
+            </label>
+            <input
+              id="accessPassword"
+              type="password"
+              value={auth.accessPassword}
+              onChange={(e) => auth.setAccessPassword(e.target.value)}
+              placeholder="Enter access password"
+              required
+              className={styles.input()}
+              disabled={auth.loading || auth.success}
+            />
+          </div>
 
           <button
             type="submit"

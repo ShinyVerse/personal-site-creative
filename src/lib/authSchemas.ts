@@ -10,10 +10,11 @@ const emailSchema = z
   .string()
   .email('Please enter a valid email address')
 
-// Login schema - just email and password
+// Login schema - includes access password to prevent rate limiting
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, 'Password is required'),
+  accessPassword: z.string().min(1, 'Access password is required'),
 })
 
 // Signup schema - includes password confirmation with refinement

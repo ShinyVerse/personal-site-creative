@@ -51,7 +51,7 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
     const schema = isSignup ? signupSchema : loginSchema
     const formData = isSignup
       ? { email, password, confirmPassword, accessPassword }
-      : { email, password }
+      : { email, password, accessPassword }
 
     const validationResult = schema.safeParse(formData)
 
@@ -100,8 +100,19 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
           }
         }
       } else {
-        // For login, we know the validated data has email and password only
-        const validatedLoginData = validationResult.data as { email: string; password: string }
+        // For login, validate access password first to prevent unnecessary API calls
+        const validatedLoginData = validationResult.data as { email: string; password: string; accessPassword: string }
+        
+        // Validate access password 
+        const accessPasswordValidation = await validateAccessPassword(validatedLoginData.accessPassword)
+        
+        if (!accessPasswordValidation.isValid) {
+          setError(accessPasswordValidation.error || 'Invalid access password.')
+          setLoading(false)
+          return
+        }
+        
+        // Only proceed with API login if access password is valid
         const { data, error: signInError } = await supabase.auth.signInWithPassword({
           email: validatedLoginData.email,
           password: validatedLoginData.password,
