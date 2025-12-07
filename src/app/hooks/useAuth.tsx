@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import { loginSchema, signupSchema } from '@/lib/authSchemas'
+import type { LoginFormData, SignupFormData } from '@/lib/authSchemas'
 import { validateAccessPassword } from '@/lib/validateAccessPassword'
 
 interface UseAuthOptions {
@@ -44,26 +45,22 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
     setLoading(true)
     setError(null)
 
-    // Validate form data with Zod schema
-    const schema = isSignup ? signupSchema : loginSchema
-    const formData = isSignup
-      ? { email, password, confirmPassword, accessPassword }
-      : { email, password, accessPassword }
-
-    const validationResult = schema.safeParse(formData)
-
-    if (!validationResult.success) {
-      // Get the first error message from Zod
-      const firstError = validationResult.error.errors[0]
-      setError(firstError.message)
-      setLoading(false)
-      return
-    }
-
     try {
       if (isSignup) {
+        // Validate signup form data with Zod schema
+        const formData = { email, password, confirmPassword, accessPassword }
+        const validationResult = signupSchema.safeParse(formData)
+
+        if (!validationResult.success) {
+          // Get the first error message from Zod
+          const firstError = validationResult.error.errors[0]
+          setError(firstError.message)
+          setLoading(false)
+          return
+        }
+
         // At this point, validation passed, so we can safely use the validated data
-        const validatedData = validationResult.data as { email: string; password: string; confirmPassword: string; accessPassword: string }
+        const validatedData: SignupFormData = validationResult.data
         
         // Validate access password against environment variable
         const accessPasswordValidation = await validateAccessPassword(validatedData.accessPassword)
@@ -94,8 +91,20 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
           }
         }
       } else {
+        // Validate login form data with Zod schema
+        const formData = { email, password, accessPassword }
+        const validationResult = loginSchema.safeParse(formData)
+
+        if (!validationResult.success) {
+          // Get the first error message from Zod
+          const firstError = validationResult.error.errors[0]
+          setError(firstError.message)
+          setLoading(false)
+          return
+        }
+
         // For login, validate access password first to prevent unnecessary API calls
-        const validatedLoginData = validationResult.data as { email: string; password: string; accessPassword: string }
+        const validatedLoginData: LoginFormData = validationResult.data
         
         // Validate access password 
         const accessPasswordValidation = await validateAccessPassword(validatedLoginData.accessPassword)
