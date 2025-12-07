@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { tv } from 'tailwind-variants'
 import Link from 'next/link'
-import { useAuth } from '@/app/hooks/useAuth'
+import { useLoginForm } from '@/app/hooks/useLoginForm'
 import { login, signup } from './login.constants'
 
 const authStyles = tv({
@@ -32,15 +32,19 @@ export default function LoginPage() {
   const returnUrl = searchParams.get('return')
   const isSignup = searchParams.get('mode') === 'signup'
 
-  const auth = useAuth({ isSignup, returnUrl })
+  const auth = useLoginForm({ isSignup, returnUrl })
   const styles = authStyles()
 
   const constants = useMemo(() => (isSignup ? signup : login), [isSignup])
 
   const buttonText = auth.loading ? constants.loadingButtonText : constants.buttonText
-  const alternateHref = isSignup
-    ? `/auth/login${returnUrl ? `?return=${encodeURIComponent(returnUrl)}` : ''}`
-    : `/auth/login?mode=signup${returnUrl ? `&return=${encodeURIComponent(returnUrl)}` : ''}`
+  const alternateHref = useMemo(() => {
+    const params = new URLSearchParams()
+    if (!isSignup) params.set('mode', 'signup')
+    if (returnUrl) params.set('return', returnUrl)
+    const queryString = params.toString()
+    return `/auth/login${queryString ? `?${queryString}` : ''}`
+  }, [isSignup, returnUrl])
 
   return (
     <div className={styles.container()}>
@@ -61,7 +65,6 @@ export default function LoginPage() {
               value={auth.email}
               onChange={(e) => auth.setEmail(e.target.value)}
               placeholder="you@example.com"
-              required
               className={styles.input()}
               disabled={auth.loading}
             />
@@ -77,8 +80,6 @@ export default function LoginPage() {
               value={auth.password}
               onChange={(e) => auth.setPassword(e.target.value)}
               placeholder="••••••••"
-              required
-              minLength={isSignup ? 6 : undefined}
               className={styles.input()}
               disabled={auth.loading}
             />
@@ -97,8 +98,6 @@ export default function LoginPage() {
                 value={auth.confirmPassword}
                 onChange={(e) => auth.setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                required
-                minLength={6}
                 className={styles.input()}
                 disabled={auth.loading}
               />
@@ -115,7 +114,6 @@ export default function LoginPage() {
               value={auth.accessPassword}
               onChange={(e) => auth.setAccessPassword(e.target.value)}
               placeholder="Enter access password"
-              required
               className={styles.input()}
               disabled={auth.loading}
             />
