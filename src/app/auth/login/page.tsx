@@ -22,7 +22,6 @@ const authStyles = tv({
       'w-full rounded-lg bg-white/10 px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary',
     button:
       'w-full rounded-lg bg-secondary px-4 py-3 font-semibold text-off-black transition-colors hover:bg-secondary/80 disabled:bg-gray-500 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-gray-500 disabled:active:bg-gray-500',
-    success: 'rounded-lg bg-green-500/20 p-3 text-sm text-green-300',
     link: 'mt-4 text-center text-sm text-gray-400',
     linkText: 'text-secondary hover:underline',
   },
@@ -51,7 +50,6 @@ export default function LoginPage() {
         {auth.error && <div className={styles.error()}>{auth.error}</div>}
 
         <form onSubmit={auth.handleSubmit} className={styles.form()}>
-          {auth.success && <div className={styles.success()}>{constants.successMessage}</div>}
 
           <div className={styles.inputGroup()}>
             <label htmlFor="email" className={styles.label()}>
@@ -65,7 +63,7 @@ export default function LoginPage() {
               placeholder="you@example.com"
               required
               className={styles.input()}
-              disabled={auth.loading || auth.success}
+              disabled={auth.loading}
             />
           </div>
 
@@ -82,7 +80,7 @@ export default function LoginPage() {
               required
               minLength={isSignup ? 6 : undefined}
               className={styles.input()}
-              disabled={auth.loading || auth.success}
+              disabled={auth.loading}
             />
           </div>
 
@@ -102,7 +100,7 @@ export default function LoginPage() {
                 required
                 minLength={6}
                 className={styles.input()}
-                disabled={auth.loading || auth.success}
+                disabled={auth.loading}
               />
             </div>
           )}
@@ -119,14 +117,14 @@ export default function LoginPage() {
               placeholder="Enter access password"
               required
               className={styles.input()}
-              disabled={auth.loading || auth.success}
+              disabled={auth.loading}
             />
           </div>
 
           <button
             type="submit"
             className={styles.button()}
-            disabled={auth.loading || auth.success}
+            disabled={auth.loading}
           >
             {buttonText}
           </button>
@@ -139,8 +137,8 @@ export default function LoginPage() {
             className={styles.linkText()}
             onClick={() => auth.clearErrors()}
             style={{
-              pointerEvents: auth.loading || auth.success ? 'none' : 'auto',
-              opacity: auth.loading || auth.success ? 0.5 : 1,
+              pointerEvents: auth.loading ? 'none' : 'auto',
+              opacity: auth.loading ? 0.5 : 1,
             }}
           >
             {constants.alternateLinkText}

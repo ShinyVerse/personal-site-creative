@@ -22,7 +22,6 @@ interface UseAuthReturn {
   setAccessPassword: (password: string) => void
   loading: boolean
   error: string | null
-  success: boolean
   handleSubmit: (e: React.FormEvent) => Promise<void>
   clearErrors: () => void
 }
@@ -34,7 +33,6 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
   const [accessPassword, setAccessPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
   const router = useRouter()
 
   const clearErrors = () => {
@@ -45,7 +43,6 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
     e.preventDefault()
     setLoading(true)
     setError(null)
-    setSuccess(false)
 
     // Validate form data with Zod schema
     const schema = isSignup ? signupSchema : loginSchema
@@ -88,12 +85,9 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
         if (data.user) {
           if (data.session) {
             // Auto-logged in
-            setSuccess(true)
-            setTimeout(() => {
-              const redirectUrl = returnUrl ? decodeURIComponent(returnUrl) : '/mood-tracker'
-              router.push(redirectUrl)
-              router.refresh()
-            }, 1000)
+            const redirectUrl = returnUrl ? decodeURIComponent(returnUrl) : '/mood-tracker'
+            router.push(redirectUrl)
+            router.refresh()
           } else {
             // Email confirmation required
             setError('Please check your email to confirm your account or sign in if you already have an account.')
@@ -136,12 +130,9 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
         }
 
         if (data.session) {
-          setSuccess(true)
-          setTimeout(() => {
-            const redirectUrl = returnUrl ? decodeURIComponent(returnUrl) : '/mood-tracker'
-            router.push(redirectUrl)
-            router.refresh()
-          }, 1000)
+          const redirectUrl = returnUrl ? decodeURIComponent(returnUrl) : '/mood-tracker'
+          router.push(redirectUrl)
+          router.refresh()
         } else {
           throw new Error('No session created. Please try again.')
         }
@@ -168,7 +159,6 @@ export function useAuth({ isSignup, returnUrl }: UseAuthOptions): UseAuthReturn 
     setAccessPassword,
     loading,
     error,
-    success,
     handleSubmit,
     clearErrors
   }
