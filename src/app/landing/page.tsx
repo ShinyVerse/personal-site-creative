@@ -2,13 +2,13 @@ import { ChevronRightCircle } from "lucide-react";
 import { Metadata } from "next";
 import { tv } from "tailwind-variants";
 
-import AnimatedSquareSection from "./section";
-import { fetchContentfulEntries } from "@/lib/contentfulHelpers";
-import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { JazzyLink } from "@/app/components/JazzyLink";
+import { fetchContentfulEntries } from "@/lib/contentfulHelpers";
 import { JobEntriesSchema } from "@/lib/jobEntrySchemas";
+import { PhotoEntriesSchema } from "@/lib/photoSchemas";
 import { FeaturedJobs } from "../components/FeaturedJobs";
 import { MainHeader } from "../components/MainHeader";
+import AnimatedSquareSection from "./section";
 
 const landingStyles = tv({
   slots: {

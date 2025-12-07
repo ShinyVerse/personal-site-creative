@@ -42,4 +42,5 @@ next-env.d.ts
 
 # other 
 CODE_REVIEW.md
+CODE_REVIEW_*.md
 setup.md

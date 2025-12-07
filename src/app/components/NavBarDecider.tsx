@@ -1,16 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 import MobileNavbar from "./MobileNavBar";
 import Navbar from "./Navbar";
-import { useState } from "react";
 
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Artwork", href: "/artwork" },
   { name: "About", href: "/about" },
   { name: "Career", href: "/career" },
-  { name: "Experimental", href: "/experimental" },
+  // { name: "Experimental", href: "/experimental" },
+  { name: "Tracker", href: "/mood-tracker" },
 ];
 
 export type NavItem = {

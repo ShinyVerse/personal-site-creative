@@ -1,15 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { tv } from "tailwind-variants";
 import { motion } from "framer-motion";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { tv } from "tailwind-variants";
 import { NavItem } from "./NavBarDecider";
 
 const navbarStyles = tv({
   slots: {
-    container: "fixed top-0 left-0 w-full z-50 bg-off-black overflow-hidden",
+    container: "fixed top-0 left-0 w-full z-50 bg-off-black overflow-hidden border-white border-3",
     drawButton: "absolute bottom-2 left-1/2 -translate-x-1/2 text-white z-10",
     list: "flex flex-col gap-3 list-none p-2 bg-off-black w-full",
     listItem: "text-white font-block text-sm p-2",
@@ -40,7 +40,7 @@ export default function MobileNavbar({
 
   return (
     <motion.nav
-      animate={{ height: isOpen ? 210 : 50 }}
+      animate={{ height: isOpen ? navItems.length * 45 : 50 }}
       className={styles.container()}
     >
       <button

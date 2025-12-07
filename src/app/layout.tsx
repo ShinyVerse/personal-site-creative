@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Lato, Orbitron, Poppins } from "next/font/google";
 
-import "./globals.css";
+import AuthHandler from "./components/AuthHandler";
 import NavBarDecider from "./components/NavBarDecider";
+import { AuthProvider } from "./contexts/AuthContext";
+import "./globals.css";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -38,9 +40,12 @@ export default function RootLayout({
       className={`${lato.variable} ${handwriting.variable} ${block.variable} antialiased`}
     >
       <body>
-        <div className="flex h-screen flex-col md:flex-row">
-          <NavBarDecider>{children}</NavBarDecider>
-        </div>
+        <AuthProvider>
+          <AuthHandler />
+          <div className="flex h-screen flex-col md:flex-row">
+            <NavBarDecider>{children}</NavBarDecider>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

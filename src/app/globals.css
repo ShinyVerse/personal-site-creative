@@ -50,10 +50,17 @@ body {
   scroll-behavior: smooth;
   background: var(--off-black);
   margin: 0;
+  padding: 0;
   height: 100%;
   /* background: var(--background); */
   /* color: var(--foreground); */
   /* font-family: var(--font-lato); */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 h1 {
