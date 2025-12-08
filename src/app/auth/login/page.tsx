@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { tv } from 'tailwind-variants'
 import Link from 'next/link'
@@ -27,7 +27,7 @@ const authStyles = tv({
   },
 })
 
-export default function LoginPage() {
+function LoginForm() {
   const searchParams = useSearchParams()
   const returnUrl = searchParams.get('return')
   const isSignup = searchParams.get('mode') === 'signup'
@@ -47,102 +47,119 @@ export default function LoginPage() {
   }, [isSignup, returnUrl])
 
   return (
-    <div className={styles.container()}>
-      <div className={styles.card()}>
-        <h1 className={styles.title()}>{constants.title}</h1>
-        <p className={styles.subtitle()}>{constants.subtitle}</p>
-        {auth.error && <div className={styles.error()}>{auth.error}</div>}
+    <div className={styles.card()}>
+      <h1 className={styles.title()}>{constants.title}</h1>
+      <p className={styles.subtitle()}>{constants.subtitle}</p>
+      {auth.error && <div className={styles.error()}>{auth.error}</div>}
 
-        <form onSubmit={auth.handleSubmit} className={styles.form()}>
+      <form onSubmit={auth.handleSubmit} className={styles.form()}>
 
+        <div className={styles.inputGroup()}>
+          <label htmlFor="email" className={styles.label()}>
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={auth.email}
+            onChange={(e) => auth.setEmail(e.target.value)}
+            placeholder="you@example.com"
+            className={styles.input()}
+            disabled={auth.loading}
+          />
+        </div>
+
+        <div className={styles.inputGroup()}>
+          <label htmlFor="password" className={styles.label()}>
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            value={auth.password}
+            onChange={(e) => auth.setPassword(e.target.value)}
+            placeholder="••••••••"
+            className={styles.input()}
+            disabled={auth.loading}
+          />
+        </div>
+
+  
+
+        {isSignup && (
           <div className={styles.inputGroup()}>
-            <label htmlFor="email" className={styles.label()}>
-              Email
+            <label htmlFor="confirmPassword" className={styles.label()}>
+              Confirm Password
             </label>
             <input
-              id="email"
-              type="email"
-              value={auth.email}
-              onChange={(e) => auth.setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className={styles.input()}
-              disabled={auth.loading}
-            />
-          </div>
-
-          <div className={styles.inputGroup()}>
-            <label htmlFor="password" className={styles.label()}>
-              Password
-            </label>
-            <input
-              id="password"
+              id="confirmPassword"
               type="password"
-              value={auth.password}
-              onChange={(e) => auth.setPassword(e.target.value)}
+              value={auth.confirmPassword}
+              onChange={(e) => auth.setConfirmPassword(e.target.value)}
               placeholder="••••••••"
               className={styles.input()}
               disabled={auth.loading}
             />
           </div>
+        )}
 
-  
-
-          {isSignup && (
-            <div className={styles.inputGroup()}>
-              <label htmlFor="confirmPassword" className={styles.label()}>
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                type="password"
-                value={auth.confirmPassword}
-                onChange={(e) => auth.setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
-                className={styles.input()}
-                disabled={auth.loading}
-              />
-            </div>
-          )}
-
-          <div className={styles.inputGroup()}>
-            <label htmlFor="accessPassword" className={styles.label()}>
-              Access Password
-            </label>
-            <input
-              id="accessPassword"
-              type="password"
-              value={auth.accessPassword}
-              onChange={(e) => auth.setAccessPassword(e.target.value)}
-              placeholder="Enter access password"
-              className={styles.input()}
-              disabled={auth.loading}
-            />
-          </div>
-
-          <button
-            type="submit"
-            className={styles.button()}
+        <div className={styles.inputGroup()}>
+          <label htmlFor="accessPassword" className={styles.label()}>
+            Access Password
+          </label>
+          <input
+            id="accessPassword"
+            type="password"
+            value={auth.accessPassword}
+            onChange={(e) => auth.setAccessPassword(e.target.value)}
+            placeholder="Enter access password"
+            className={styles.input()}
             disabled={auth.loading}
-          >
-            {buttonText}
-          </button>
-        </form>
-
-        <div className={styles.link()}>
-          {constants.alternateText}{' '}
-          <Link
-            href={alternateHref}
-            className={styles.linkText()}
-            onClick={() => auth.clearErrors()}
-            style={{
-              pointerEvents: auth.loading ? 'none' : 'auto',
-              opacity: auth.loading ? 0.5 : 1,
-            }}
-          >
-            {constants.alternateLinkText}
-          </Link>
+          />
         </div>
+
+        <button
+          type="submit"
+          className={styles.button()}
+          disabled={auth.loading}
+        >
+          {buttonText}
+        </button>
+      </form>
+
+      <div className={styles.link()}>
+        {constants.alternateText}{' '}
+        <Link
+          href={alternateHref}
+          className={styles.linkText()}
+          onClick={() => auth.clearErrors()}
+          style={{
+            pointerEvents: auth.loading ? 'none' : 'auto',
+            opacity: auth.loading ? 0.5 : 1,
+          }}
+        >
+          {constants.alternateLinkText}
+        </Link>
       </div>
+    </div>
+  )
+}
+
+export default function LoginPage() {
+  const styles = authStyles()
+
+  return (
+    <div className={styles.container()}>
+      <Suspense
+        fallback={
+          <div className={styles.card()}>
+            <h1 className={styles.title()}>Login</h1>
+            <p className={styles.subtitle()}>Loading...</p>
+          </div>
+        }
+      >
+        <LoginForm />
+      </Suspense>
     </div>
   )
 }
