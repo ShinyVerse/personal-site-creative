@@ -14,8 +14,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const SUPABASE_URL = supabaseUrl
 const SUPABASE_ANON_KEY = supabaseAnonKey
 
-export function createServerClient() {
-  const cookieStore = cookies()
+export async function createServerClient() {
+  const cookieStore = await cookies()
   
   return createSupabaseServerClient(
     SUPABASE_URL,
@@ -49,7 +49,7 @@ export function createServerClient() {
 }
 
 export async function getServerSession() {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   const {
     data: { session },
   } = await supabase.auth.getSession()

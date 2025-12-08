@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const next = requestUrl.searchParams.get('next') || '/mood-tracker'
 
   if (code) {
-    const supabase = createServerClient()
+    const supabase = await createServerClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     
     if (!error) {
