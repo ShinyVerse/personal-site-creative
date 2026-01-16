@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Lato, Orbitron, Poppins } from "next/font/google";
+import {  Orbitron, Poppins, Lexend_Deca } from "next/font/google";
 
 import AuthHandler from "./components/AuthHandler";
 import NavBarDecider from "./components/NavBarDecider";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./globals.css";
 
-const lato = Lato({
+
+const normal = Lexend_Deca({
   subsets: ["latin"],
-  variable: "--font-lato",
+  variable: "--font-normal",
   weight: ["400", "700"],
 });
 
 const block = Orbitron({
   subsets: ["latin"],
   variable: "--font-block",
-  weight: ["400", "700"],
+  weight: [ "400", "500", "600", "700", ],
 });
 
 const handwriting = Poppins({
@@ -37,12 +38,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lato.variable} ${handwriting.variable} ${block.variable} antialiased`}
+      className={`${handwriting.variable} ${block.variable} ${normal.variable} antialiased`}
     >
       <body>
         <AuthProvider>
           <AuthHandler />
-          <div className="flex h-screen flex-col md:flex-row">
+          <div className="flex h-screen flex-col">
             <NavBarDecider>{children}</NavBarDecider>
           </div>
         </AuthProvider>

@@ -10,8 +10,8 @@ const imageModalStyles = tv({
     imageWrapper: "relative w-full aspect-[4/3] max-h-[60vh] bg-black overflow-hidden",
     image: "object-contain rounded-t-lg",
     content: "p-4 space-y-2",
-    title: "text-lg md:text-2xl font-semibold font-lato",
-    description: "text-md md:text-lg text-zinc-600 font-lato",
+    title: "text-lg md:text-2xl font-semibold font-normal",
+    description: "text-md md:text-lg text-zinc-600 font-normal",
   },
 });
 

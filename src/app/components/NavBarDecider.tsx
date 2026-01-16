@@ -7,16 +7,15 @@ import Navbar from "./Navbar";
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "Artwork", href: "/artwork" },
-  { name: "About", href: "/about" },
+  { name: "What I'm up to", href: "/artwork" },
   { name: "Career", href: "/career" },
-  // { name: "Experimental", href: "/experimental" },
-  { name: "Tracker", href: "/mood-tracker" },
+  { name: "Connect", href: "/about", isButton: true },
 ];
 
 export type NavItem = {
   name: string;
   href: string;
+  isButton?: boolean;
 };
 
 export default function NavBarDecider({
@@ -42,8 +41,8 @@ export default function NavBarDecider({
         </>
       ) : (
         <>
-          <Navbar navItems={navItems} isOpen={isOpen} setIsOpen={setIsOpen} />
-          <div className="flex-1 overflow-x-hidden">{children}</div>
+          <Navbar navItems={navItems} />
+          <div className="flex-1 overflow-x-hidden bg-white">{children}</div>
         </>
       )}
     </>

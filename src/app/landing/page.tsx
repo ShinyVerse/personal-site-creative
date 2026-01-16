@@ -17,7 +17,7 @@ const landingStyles = tv({
     ctaWrapper: "justify-items-center items-center w-full ",
     section: "flex flex-col justify-around min-h-screen items-center",
     textBlock:
-      "text-lato text-white text-xl font-block font-medium text-center mb-2",
+      "text-lato text-white text-xl font-normal font-medium text-center mb-2",
     paragraph: "text-xl py-3 px-4 lg:px-0 text-white",
   },
 });

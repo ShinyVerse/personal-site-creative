@@ -16,14 +16,30 @@
   --primary: #3f5ab9;
   --secondary: #d52a7a;
   --tertiary: #7ad52a;
+  --brand-pink: #f62fca;
+  --brand-purple: #8c52ff;
+  --brand-orange: #fec750;
+  --brand-yellow: #f9f871;
+  --green: #7ad52a;
 
-  --font-lato: "Lato", sans-serif;
+  --font-normal: "Lexend Deca", sans-serif;
   --font-handwriting: "Poppins", sans-serif;
   --font-block: "Orbitron", sans-serif;
 
-  /* --font-lato: "Lato", sans-serif;
+  /* --font-normal: "Lato", sans-serif;
   --font-handwriting: "Caveat", "cursive"; */
 }
+/* 
+font-thin - 100
+font-extralight - 200
+font-light - 300
+font-normal - 400 (default)
+font-medium - 500
+font-semibold - 600
+font-bold - 700
+font-extrabold - 800
+font-black - 900 */
+
 
 @theme inline {
   --color-off-black: var(--off-black);
@@ -39,10 +55,14 @@
   --color-link: var(--link);
   --color-main-red: var(--main-red);
   --color-main-blue: var(--main-blue);
-  --font-lato: var(--font-lato);
-  --font-block: var(--font-block);
+  --font-normal: var(--font-normal);
+  --font-block: var(--font-normal);
   --font-handwriting: var(--font-handwriting);
   --font-loud: var(--font-loud);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-yellow: var(--brand-yellow);
 }
 
 html,
@@ -54,7 +74,7 @@ body {
   height: 100%;
   /* background: var(--background); */
   /* color: var(--foreground); */
-  /* font-family: var(--font-lato); */
+  /* font-family: var(--font-normal); */
 }
 
 *,
@@ -113,4 +133,25 @@ a {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+/* Slow rotation animation for flower */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spin-slow 16s linear infinite;
+}
+.animate-spin-slowest {
+  animation: spin-slow 24s linear infinite;
 }
