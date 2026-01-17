@@ -9,17 +9,17 @@ type CareerEntryProps = {
 
 const careerEntryStyles = tv({
   slots: {
-    root: "relative pl-7 text-white",
+    root: "relative pl-7 text-off-black",
     bubbleWrapper:
       "absolute left-5 md:left-2 top-0 flex justify-center w-6 md:w-12",
-    bubble: "w-6 h-6 md:w-10 md:h-10 rounded-full bg-primary z-10",
-    pinkBubble: "bg-secondary",
+    bubble: "w-6 h-6 md:w-10 md:h-10 rounded-full bg-brand-purple z-10",
+    pinkBubble: "!bg-brand-pink",
     contentWrapperBase: "flex items-start pl-7 md:pl-10",
     contentWrapperLast: "pl-9",
-    contentWrapperBorder: "border-l-8 md:border-l-8 border-primary",
+    contentWrapperBorder: "border-l-8 md:border-l-8 border-brand-purple",
     contentWrapperBorderFirst:
-      "relative pl-7 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-2 before:bg-gradient-to-t before:from-primary before:to-secondary before:content-['']",
-    title: "text-lg font-semibold mb-2 text-secondary",
+      "relative pl-7 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-2 before:bg-gradient-to-t before:from-brand-purple before:to-brand-pink before:content-['']",
+    title: "text-lg font-semibold mb-2 text-brand-pink",
     summary: "mt-1 my-2",
     achievementList: "mb-5",
     achievement: "mt-1 font-semibold ml-12 list-disc",

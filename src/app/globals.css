@@ -68,7 +68,7 @@ font-black - 900 */
 html,
 body {
   scroll-behavior: smooth;
-  background: var(--off-black);
+  background: var(--white);
   margin: 0;
   padding: 0;
   height: 100%;

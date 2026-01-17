@@ -8,7 +8,7 @@ import Flower from "../components/Flower";
 const homePageStyles = tv({
   slots: {
     container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
-    content: "grid grid-cols-1 lg:grid-cols-2  md:gap-0 px-0 py-16 mx-auto text-center items-center",
+    content: "grid grid-cols-1 lg:grid-cols-2  md:gap-0 px-0 mx-auto text-center items-center",
     textSection: "flex flex-col gap-0.5 md:gap-2 font-normal",
     textLine: "text-black font-normal text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-tight font-bold",
     thin: "!font-thin",

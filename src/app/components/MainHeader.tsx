@@ -3,8 +3,8 @@ import { tv } from "tailwind-variants";
 const mainHeaderStyles = tv({
     slots: {
         container: "relative w-full md:w-max",
-        header: "relative mt-2 z-[2] font-block text-white text-center",
-        bgStripe: "absolute top-1/2 -translate-y-1/2 bg-primary z-[1] pointer-events-none left-1/2 -translate-x-1/2",
+        header: "relative mt-2 z-[2] font-normal text-off-black text-center",
+        bgStripe: "absolute top-[55%] -translate-y-1/2 z-[1] pointer-events-none left-1/2 -translate-x-1/2",
     },
     variants: {
         size: {
@@ -14,10 +14,10 @@ const mainHeaderStyles = tv({
             },
             medium: {
                 header: "text-[4rem] md:text-[6rem]",
-                bgStripe: "h-[2rem] md:h-[3rem] w-[90%] md:w-full skew-x-[-16deg] md:scale-x-112 md:inset-x-0 md:left-auto md:translate-x-0",
+                bgStripe: "h-[3rem] md:h-[2.5rem] w-[90%] md:w-full skew-x-[-16deg] md:scale-x-112 md:inset-x-0 md:left-auto md:translate-x-0",
             },
             large: {
-                header: "text-[6rem] md:text-[12rem]",
+                header: "text-[4rem] md:text-[12rem]",
                 bgStripe: "h-[3rem] md:h-[6rem] w-full skew-x-[-16deg] md:scale-x-112",
             },
         },
