@@ -6,8 +6,8 @@ import MobileNavbar from "./MobileNavBar";
 import Navbar from "./Navbar";
 
 const navItems = [
-  { name: "Home", href: "/" },
-  { name: "What I'm up to", href: "/artwork" },
+  { name: "Home", href: "/home" },
+  { name: "What I'm up to", href: "/current" },
   { name: "Career", href: "/career" },
   { name: "Connect", href: "/about", isButton: true },
 ];
