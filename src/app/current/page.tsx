@@ -9,18 +9,18 @@ import Flower from "../components/Flower";
 const homePageStyles = tv({
   slots: {
     container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
-    content: "grid grid-cols-1 lg:grid-cols-2 md:gap-14 mx-auto text-center items-center",
-    bubblesSection: "grid grid-cols-1 lg:grid-cols-2 gap-2 font-normal text-white mx-auto items-stretch justify-items-center md:justify-items-stretch m-6",
-    titleText: " font-normal text-3xl leading-tight font-bold",
+    content: "grid grid-cols-1 lg:grid-cols-2  mx-auto text-center items-center",
+    titleText: "font-normal text-3xl leading-tight font-bold",
     bodyText: "text-wrap max-w-100 text-start",
     thin: "!font-thin",
-    illustrationSection: "w-full flex items-center justify-center relative overflow-hidden",
-    illustrationContainer: "relative w-full aspect-square max-w-[500px] md:max-w-[550px] lg:max-w-[650px] xl:max-w-[750px]",
+    illustrationSection: "flex items-center justify-center relative",
+    illustrationContainer: "relative w-full aspect-square max-w-[500px] md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]",
     flowerOverlay: "absolute top-[11%] right-[40%] w-16 h-16  md:w-20 md:h-26 animate-spin-slower text-brand-pink",
     flowerOverlay2: "absolute bottom-[10%] left-[10%] w-8 h-8 md:w-12 md:h-12 animate-spin-slow text-brand-purple",
     flowerOverlay3: "absolute bottom-[10%] right-[10%] w-10 h-10 md:w-18 md:h-18 animate-spin-slowest text-brand-orange",
-
-    infoSquare:"bg-primary rounded-md flex-col flex items-start justify-start relative aspect-square shadow-xl/20 w-3/4 md:w-full gap-4",
+    
+    bubblesSection: "mt-[-3%] lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-2 font-normal text-white mx-auto items-stretch justify-items-center md:justify-items-stretch mx-auto",
+    infoSquare:"bg-primary rounded-md flex-col flex items-start justify-start relative aspect-square shadow-xl/20 min-w-80 lg:min-w-auto max-w-300 lg:max-w-100 w-3/4 md:w-full gap-4",
     infoSquareContent:"flex flex-col items-start gap-4 px-4 pb-8 pt-[35%]"
 
   },
