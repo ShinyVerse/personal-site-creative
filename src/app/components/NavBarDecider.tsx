@@ -6,10 +6,10 @@ import MobileNavbar from "./MobileNavBar";
 import Navbar from "./Navbar";
 
 const navItems = [
-  { name: "Home", href: "/home" },
+  { name: "Home", href: "/" },
   { name: "What I'm up to", href: "/current" },
   { name: "Career", href: "/career" },
-  { name: "Connect", href: "/about", isButton: true },
+  // { name: "Connect", href: "/about", isButton: true },
 ];
 
 export type NavItem = {

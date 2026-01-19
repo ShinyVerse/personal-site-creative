@@ -1,5 +1,5 @@
-import LandingPage from "./landing/page";
+import HomePage from "./home/page";
 
 export default async function Page() {
-  return <LandingPage />;
+  return <HomePage />;
 }

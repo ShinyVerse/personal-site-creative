@@ -3,7 +3,7 @@
 import { tv } from "tailwind-variants";
 import Image from "next/image";
 import SeparatorPill from "../components/SeparatorPill";
-import Flower from "../components/Flower";
+import FlowerOverlay from "../components/FlowerOverlay";
 import PageSection from "../components/PageSection";
 
 const homePageStyles = tv({
@@ -15,9 +15,6 @@ const homePageStyles = tv({
     thin: "!font-thin",
     illustrationSection: "flex items-center justify-center relative",
     illustrationContainer: "relative w-full aspect-square max-w-[500px] md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px] md:ml-11",
-    flowerOverlay: "absolute top-[12%] right-[23%] w-16 h-16 md:right-[19%] md:w-26 md:h-26 animate-spin-slower text-brand-pink",
-    flowerOverlay2: "absolute bottom-[20%] left-[10%] w-8 h-8 md:w-12 md:h-12 animate-spin-slow text-brand-purple",
-    flowerOverlay3: "absolute bottom-[30%] right-[10%] w-10 h-10 md:w-18 md:h-18 animate-spin-slowest text-brand-orange",
   },
 });
 
@@ -53,15 +50,9 @@ export default function HomePage() {
               priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
             />
-            <div className={styles.flowerOverlay()}>
-              <Flower />
-            </div>
-            <div className={styles.flowerOverlay2()}>
-              <Flower />
-            </div>
-            <div className={styles.flowerOverlay3()}>
-              <Flower />
-            </div>
+            <FlowerOverlay top="12%" right="23%" size="large" color="pink" />
+            <FlowerOverlay bottom="20%" left="10%" size="small" color="purple" />
+            <FlowerOverlay bottom="30%" right="10%" size="medium" color="orange" />
           </div>
         </div>
         
