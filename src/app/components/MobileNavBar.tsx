@@ -13,12 +13,12 @@ const navbarStyles = tv({
     drawButton: "absolute bottom-2 left-1/2 -translate-x-1/2 text-black z-10",
     list: "flex flex-col gap-3 list-none p-2 bg-white w-full",
     listItem: "text-black font-normal text-sm p-2",
-    buttonItem: "bg-[#FFC857] text-black font-normal text-sm p-2 rounded-lg text-center",
+    buttonItem: "bg-brand-yellow text-black font-normal text-sm p-2 rounded-lg text-center",
   },
   variants: {
     active: {
       true: {
-        listItem: "text-[#d52a7a]",
+        listItem: "text-brand-pink",
       },
       false: {
         listItem: "",

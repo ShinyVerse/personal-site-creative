@@ -42,19 +42,18 @@ export default function FlowerOverlay({
   const defaultAnimationSpeed = animationSpeed || 
     (size === 'large' ? 'slower' : size === 'medium' ? 'slowest' : 'slow');
 
-  const positionClasses = [
-    'absolute',
-    top && `top-[${top}]`,
-    bottom && `bottom-[${bottom}]`,
-    left && `left-[${left}]`,
-    right && `right-[${right}]`,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const positionStyle: React.CSSProperties = {
+    position: 'absolute',
+    ...(top && { top }),
+    ...(bottom && { bottom }),
+    ...(left && { left }),
+    ...(right && { right }),
+  };
 
   return (
     <div
-      className={`${positionClasses} ${sizeClasses[size]} ${colorClasses[color]} ${animationClasses[defaultAnimationSpeed]}`}
+      className={`${sizeClasses[size]} ${colorClasses[color]} ${animationClasses[defaultAnimationSpeed]}`}
+      style={positionStyle}
     >
       <Flower />
     </div>

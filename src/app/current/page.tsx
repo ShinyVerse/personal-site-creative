@@ -22,10 +22,10 @@ const nowPageStyles = tv({
 
 
 const nowEntryColors = [
-  "bg-brand-purple",  
+  "bg-primary",
+  "bg-primary",
+  "bg-primary",   
   "bg-primary",      
-  "bg-primary",  
-  "bg-brand-purple",  
 ];
 
 const nowEntries = [

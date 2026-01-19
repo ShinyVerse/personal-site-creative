@@ -28,6 +28,13 @@ const handwriting = Poppins({
 export const metadata: Metadata = {
   title: "Laura Jackson Personal Site",
   description: "A place for exploration and showcasing bits and bobs",
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
