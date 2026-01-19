@@ -1,4 +1,5 @@
 import React from 'react';
+import { tv } from 'tailwind-variants';
 import Flower from './Flower';
 
 interface FlowerOverlayProps {
@@ -11,23 +12,26 @@ interface FlowerOverlayProps {
   animationSpeed?: 'slow' | 'slowest' | 'slower';
 }
 
-const sizeClasses = {
-  small: 'w-8 h-8 md:w-12 md:h-12',
-  medium: 'w-10 h-10 md:w-16 md:h-16',
-  large: 'w-16 h-16 md:w-20 md:h-20',
-};
-
-const colorClasses = {
-  pink: 'text-brand-pink',
-  purple: 'text-brand-purple',
-  orange: 'text-brand-orange',
-};
-
-const animationClasses = {
-  slow: 'animate-spin-slow',
-  slowest: 'animate-spin-slowest',
-  slower: 'animate-spin-slower',
-};
+const flowerOverlayStyles = tv({
+  base: "absolute",
+  variants: {
+    size: {
+      small: 'w-8 h-8 md:w-12 md:h-12',
+      medium: 'w-10 h-10 md:w-16 md:h-16',
+      large: 'w-16 h-16 md:w-20 md:h-20',
+    },
+    color: {
+      pink: 'text-brand-pink',
+      purple: 'text-brand-purple',
+      orange: 'text-brand-orange',
+    },
+    animationSpeed: {
+      slow: 'animate-spin-slow',
+      slowest: 'animate-spin-slowest',
+      slower: 'animate-spin-slower',
+    },
+  },
+});
 
 export default function FlowerOverlay({
   top,
@@ -43,7 +47,6 @@ export default function FlowerOverlay({
     (size === 'large' ? 'slower' : size === 'medium' ? 'slowest' : 'slow');
 
   const positionStyle: React.CSSProperties = {
-    position: 'absolute',
     ...(top && { top }),
     ...(bottom && { bottom }),
     ...(left && { left }),
@@ -52,7 +55,11 @@ export default function FlowerOverlay({
 
   return (
     <div
-      className={`${sizeClasses[size]} ${colorClasses[color]} ${animationClasses[defaultAnimationSpeed]}`}
+      className={flowerOverlayStyles({
+        size,
+        color,
+        animationSpeed: defaultAnimationSpeed,
+      })}
       style={positionStyle}
     >
       <Flower />

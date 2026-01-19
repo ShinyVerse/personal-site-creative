@@ -10,7 +10,7 @@ const homePageStyles = tv({
   slots: {
     container: "h-full bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
     content: "grid grid-cols-1 lg:grid-cols-2  md:gap-0 px-0 mx-auto text-center items-center h-full",
-    textSection: "flex flex-col gap-0.5 md:gap-2 font-normal",
+    textSection: "flex flex-col gap-0.5 md:gap-1 font-normal md:mt-[-10px] lg:mt-[-50px]",
     textLine: "text-black font-normal text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-tight font-bold",
     thin: "!font-thin",
     illustrationSection: "flex items-center justify-center relative",

@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants";
 
 const JazzyLinkStyles = tv({
   slots: {
-    cta: "border-2 border-secondary font-bold text-white bg-off-black rounded-2xl flex flex-row justify-center items-center gap-2  py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black w-full mx-5 max-w-[300px] xl:mb-20 z-10",
+    cta: "border-2 border-secondary font-bold text-white bg-off-black rounded-2xl flex flex-row justify-center items-center gap-2 py-3 hover:text-secondary active:bg-primary active:border-primary active:text-black w-full mx-5 max-w-[300px] xl:mb-20 z-10",
   },
 });
 

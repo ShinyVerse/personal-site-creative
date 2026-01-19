@@ -23,7 +23,17 @@ const authStyles = tv({
     button:
       'w-full rounded-lg bg-secondary px-4 py-3 font-semibold text-off-black transition-colors hover:bg-secondary/80 disabled:bg-gray-500 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-gray-500 disabled:active:bg-gray-500',
     link: 'mt-4 text-center text-sm text-gray-400',
-    linkText: 'text-secondary hover:underline',
+    linkText: '',
+  },
+  variants: {
+    disabled: {
+      true: {
+        linkText: 'text-secondary/50 hover:underline pointer-events-none',
+      },
+      false: {
+        linkText: 'text-secondary hover:underline',
+      },
+    },
   },
 })
 
@@ -131,12 +141,8 @@ function LoginForm() {
         {constants.alternateText}{' '}
         <Link
           href={alternateHref}
-          className={styles.linkText()}
+          className={authStyles({ disabled: auth.loading }).linkText()}
           onClick={() => auth.clearErrors()}
-          style={{
-            pointerEvents: auth.loading ? 'none' : 'auto',
-            opacity: auth.loading ? 0.5 : 1,
-          }}
         >
           {constants.alternateLinkText}
         </Link>

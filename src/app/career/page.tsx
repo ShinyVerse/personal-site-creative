@@ -12,7 +12,7 @@ const careerPageStyles = tv({
     "text-[60px] md:text-[100px] font-handwriting text-secondary text-start",
     horizontalSection: "p-5",
     container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
-    content: "grid grid-cols-1 lg:grid-cols-2  md:gap-0 px-0 py-16 mx-auto text-left ",
+    content: "grid grid-cols-1 lg:grid-cols-2 md:gap-0 px-0 py-16 mx-auto text-left",
   },
 });
 
@@ -75,7 +75,7 @@ export default async function CareerPage() {
           <MainHeader
             title="Tech"
             size="medium"
-            bgColour="bg-brand-orange" 
+            bgColour="bg-brand-orange"
             containerClassName="mx-auto"
           />
           {jobsResult.success ? (
@@ -98,7 +98,7 @@ export default async function CareerPage() {
           <MainHeader
             title="Product"
             size="medium"
-            bgColour="bg-brand-pink" 
+            bgColour="bg-brand-pink"
             containerClassName="mx-auto"
           />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -106,7 +106,7 @@ export default async function CareerPage() {
                 const IconComponent = entry.icon;
                 const color = productEntryColors[idx % productEntryColors.length];
                 return (
-                  <div key={entry.title} className="flex flex-col items-start justify-start gap-1" >
+                  <div key={entry.title} className="flex flex-col items-start justify-start gap-1">
                     <IconComponent size={45} className={color} />
                     <p className="text-2xl font-bold">{entry.title}</p>
                     <p className="text-lg mb-6">{entry.description}</p>

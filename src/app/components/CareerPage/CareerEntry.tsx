@@ -20,7 +20,7 @@ const careerEntryStyles = tv({
     contentWrapperBorderFirst:
       "relative pl-7 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-2 before:bg-gradient-to-t before:from-brand-purple before:to-brand-pink before:content-['']",
     title: "text-lg font-semibold mb-2 text-brand-pink",
-    summary: "mt-1 my-2",
+    summary: "my-2",
     achievementList: "mb-5",
     achievement: "mt-1 font-semibold ml-12 list-disc",
     techAndSkills: "my-5",

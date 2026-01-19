@@ -12,8 +12,8 @@ const navbarStyles = tv({
     nav: "flex items-center justify-between px-6 py-4 max-w-[1800px] mx-auto",
     logoContainer: "flex items-center gap-3",
     logo: "flex items-center",
-    navList: "flex items-center gap-8 list-none ",
-    navLink: "text-black font-normal text-base hover:text-brand-pink transition-opacity relative pb-1 text-xl ",
+    navList: "flex items-center gap-8 list-none mx-20",
+    navLink: "text-black font-normal text-base hover:text-brand-pink transition-opacity relative pb-1 text-xl",
     connectButton: "bg-brand-yellow text-black font-normal text-base px-4 py-2 rounded-lg hover:opacity-90 transition-opacity",
   },
   variants: {

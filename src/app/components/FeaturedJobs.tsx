@@ -31,7 +31,7 @@ const itemVariants = {
 
 const animatedFeaturedJobsStyles = tv({
   slots: {
-    section: "text-white relative mb-10 flex flex-col justify-between ",
+    section: "text-white relative mb-10 flex flex-col justify-between",
     roleWrapper: "z-10 ml-10 my-5",
     roleHeading:
       "text-md md:text-lg font-semibold mb-2 ml-2 flex flex-row text-secondary gap-1 md:gap-2",
@@ -39,7 +39,7 @@ const animatedFeaturedJobsStyles = tv({
     white: "text-white font-extrabold",
     blueBarWrapper: "absolute left-2 w-full z-1 top-[-15px]",
     blueBar:
-      "min-w-[7000px] h-full rounded-full bg-primary opacity-75 p-10 shadow-[0_0_15px] shadow-primary/80 ",
+      "min-w-[7000px] h-full rounded-full bg-primary opacity-75 p-10 shadow-[0_0_15px] shadow-primary/80",
   },
 });
 
@@ -74,8 +74,7 @@ export const FeaturedJobs = ({ jobs }: FeaturedJobsProps) => {
                 <p className={styles.skills()}>{techAndSkills}</p>
               </div>
               <motion.div
-                className={styles.blueBarWrapper()}
-                style={{ height: `calc(100% + 30px)` }}
+                className={`${styles.blueBarWrapper()} h-[calc(100%+30px)]`}
                 role="figure"
                 aria-hidden="true"
               >

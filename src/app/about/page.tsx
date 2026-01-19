@@ -7,7 +7,7 @@ const aboutPageStyles = tv({
   slots: {
     root: "bg-off-black text-white h-full w-full font-handwriting overflow-y-auto",
     inner: "mx-auto grid gap-16 justify-center align-center pb-6",
-    heading: "text-primary font-bold font-normal text-sm py-4 px-4 lg:px-0 ",
+    heading: "text-primary font-bold font-normal text-sm py-4 px-4 lg:px-0",
     featuredText: "text-3xl font-normal px-4 lg:px-0",
     paragraph: "text-xl py-3 px-4 lg:px-0",
   },

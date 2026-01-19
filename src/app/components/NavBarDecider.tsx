@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { tv } from "tailwind-variants";
 import { useIsMobile } from "../hooks/useIsMobile";
 import MobileNavbar from "./MobileNavBar";
 import Navbar from "./Navbar";
@@ -18,6 +19,23 @@ export type NavItem = {
   isButton?: boolean;
 };
 
+const navBarDeciderStyles = tv({
+  slots: {
+    main: "",
+    desktopContainer: "flex-1 overflow-x-hidden bg-white",
+  },
+  variants: {
+    navOpen: {
+      true: {
+        main: "pt-[200px]",
+      },
+      false: {
+        main: "pt-[50px]",
+      },
+    },
+  },
+});
+
 export default function NavBarDecider({
   children,
 }: {
@@ -25,8 +43,7 @@ export default function NavBarDecider({
 }) {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
-
-  const navHeight = isOpen ? 200 : 50;
+  const styles = navBarDeciderStyles({ navOpen: isOpen });
 
   return (
     <>
@@ -37,12 +54,12 @@ export default function NavBarDecider({
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
-          <main style={{ paddingTop: navHeight }}>{children}</main>
+          <main className={styles.main()}>{children}</main>
         </>
       ) : (
         <>
           <Navbar navItems={navItems} />
-          <div className="flex-1 overflow-x-hidden bg-white">{children}</div>
+          <div className={styles.desktopContainer()}>{children}</div>
         </>
       )}
     </>

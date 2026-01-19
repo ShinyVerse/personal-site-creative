@@ -7,17 +7,26 @@ import { PhotoEntries, PhotoEntry } from "@/lib/photoSchemas";
 import PolaroidModal from "@/app/components/Modals/PolaroidModal";
 import { useModal } from "@/app/hooks/useModal";
 
+const rotationClasses = {
+  "-2": "rotate-[-2deg]",
+  "1": "rotate-[1deg]",
+  "-1.5": "rotate-[-1.5deg]",
+  "2": "rotate-[2deg]",
+  "-1": "rotate-[-1deg]",
+  "1.5": "rotate-[1.5deg]",
+} as const;
+
 export const carouselStyles = tv({
   slots: {
     frame: "w-full",
     // Frame container sized to show ~3.5 Polaroids: 
     // Each Polaroid ~352px (320px image + 32px padding) + 24px gap
     // 3.5 * 352px + 2.5 * 24px = 1232px + 60px = ~1292px, add frame padding
-    frameContainer: "p-6 w-full mx-auto ",
+    frameContainer: "p-6 w-full mx-auto",
     // Add padding to allow space for scaled/rotated Polaroids on hover
     scrollContainer: "flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide py-4 px-2 justify-center",
     scrollContainerInner: "flex gap-6 min-w-max",
-    polaroid: "w-[280px] md:w-[320px] flex-shrink-0 bg-white p-4 pb-6 shadow-lg transform transition-transform hover:scale-105 hover:z-10 cursor-pointer flex flex-col origin-center",
+    polaroid: "w-[280px] md:w-[320px] flex-shrink-0 bg-white p-4 pb-6 shadow-lg transition-transform hover:scale-105 hover:z-10 cursor-pointer flex flex-col origin-center",
     polaroidImageWrapper: "w-full h-[240px] md:h-[300px] relative overflow-hidden bg-gray-50",
     polaroidImage: "w-full h-full object-cover",
     content: "mt-4 text-center px-2",
@@ -38,16 +47,13 @@ export const Polaroid = ({
 
   // Alternate rotation angles for a natural Polaroid effect
   const rotation = useMemo(() => {
-    const rotations = [-2, 1, -1.5, 2, -1, 1.5];
+    const rotations = ["-2", "1", "-1.5", "2", "-1", "1.5"] as const;
     return rotations[index % rotations.length];
   }, [index]);
 
   return (
     <div
-      className={styles.polaroid()}
-      style={{
-        transform: `rotate(${rotation}deg)`,
-      }}
+      className={`${styles.polaroid()} ${rotationClasses[rotation]}`}
       onClick={() => onOpen(photo)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
