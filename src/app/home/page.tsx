@@ -4,11 +4,12 @@ import { tv } from "tailwind-variants";
 import Image from "next/image";
 import SeparatorPill from "../components/SeparatorPill";
 import Flower from "../components/Flower";
+import PageSection from "../components/PageSection";
 
 const homePageStyles = tv({
   slots: {
-    container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
-    content: "grid grid-cols-1 lg:grid-cols-2  md:gap-0 px-0 mx-auto text-center items-center",
+    container: "h-full bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
+    content: "grid grid-cols-1 lg:grid-cols-2  md:gap-0 px-0 mx-auto text-center items-center h-full",
     textSection: "flex flex-col gap-0.5 md:gap-2 font-normal",
     textLine: "text-black font-normal text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-tight font-bold",
     thin: "!font-thin",
@@ -25,7 +26,7 @@ export default function HomePage() {
 
   return (
     <main className={styles.container()}>
-      <div className={styles.content()}>
+      <PageSection variant="grid" fullHeight className={styles.content()}>
         {/* Left Section - Text */}
         <div className={styles.textSection()}>
           <h1 className={`${styles.textLine()}`}>
@@ -45,7 +46,7 @@ export default function HomePage() {
         <div className={styles.illustrationSection()}>
           <div className={styles.illustrationContainer()}>
             <Image
-              src="/hero-without.png"
+              src="/more-real.png"
               alt="3D illustration of a woman with abstract background elements"
               fill
               className="object-contain"
@@ -64,7 +65,7 @@ export default function HomePage() {
           </div>
         </div>
         
-      </div>
+      </PageSection>
     </main>
   );
 }

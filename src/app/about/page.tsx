@@ -1,14 +1,12 @@
 import { Metadata } from "next";
 import { tv } from "tailwind-variants";
 import Image from "next/image";
+import PageSection from "../components/PageSection";
 
 const aboutPageStyles = tv({
   slots: {
-    root: "bg-off-black text-white h-full w-full font-handwriting",
+    root: "bg-off-black text-white h-full w-full font-handwriting overflow-y-auto",
     inner: "mx-auto grid gap-16 justify-center align-center pb-6",
-    section: "flex flex-col w-full max-w-2xl mx-auto",
-    sectionGrid:
-      "w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-2",
     heading: "text-primary font-bold font-normal text-sm py-4 px-4 lg:px-0 ",
     featuredText: "text-3xl font-normal px-4 lg:px-0",
     paragraph: "text-xl py-3 px-4 lg:px-0",
@@ -39,15 +37,15 @@ export default function AboutPage() {
     <main className={styles.root()}>
       <div className={styles.inner()}>
 
-        <section className={styles.section()}>
+        <PageSection>
           <h2 className={styles.heading()}>ME IN A NUT-SHELL</h2>
           <p className={styles.featuredText()}>
             I&apos;m a cat person, relaxed gamer, feeder, gardener, artistic
             developer.
           </p>
-        </section>
+        </PageSection>
         {/* Featured Section */}
-        <section className={styles.sectionGrid()}>
+        <PageSection variant="grid">
           <div className="relative aspect-square w-full max-w-3xl mx-auto">
             <Image
               src="/boy-digital.jpeg"
@@ -69,16 +67,16 @@ export default function AboutPage() {
               own, and seeing where the inspiration takes me.
             </p>
           </div>
-        </section>
-        <section className={styles.section()}>
+        </PageSection>
+        <PageSection>
           <h2 className={styles.heading()}>WHAT&apos;S COOKING?</h2>
           <p className={styles.featuredText()}>
             From hand-pulled noodles to decorated cakes, what lands on the table
             depends entirely on the weather, what the cupboards hold, what I can
             fetch from the garden and, of course the whim of the day.
           </p>
-        </section>
-        <section className={styles.section()}>
+        </PageSection>
+        <PageSection>
           <ul className="flex flex-wrap justify-center gap-1">
             {FOOD_IMAGE_SET.map((image) => (
               <li key={image.alt}>
@@ -94,16 +92,16 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </section>
-        <section className={styles.section()}>
+        </PageSection>
+        <PageSection>
           <h2 className={styles.heading()}>SOWING AND GROWING</h2>
           <p className={styles.featuredText()}>
             Spending time growing food for the table and flowers for the soul.
             Organically keeping pests at bay by making use of lure and companion
             plants.
           </p>
-        </section>
-        <section className={styles.sectionGrid()}>
+        </PageSection>
+        <PageSection variant="grid">
           <div className="relative aspect-square w-full">
             <Image
               src="/garden.jpg"
@@ -124,10 +122,10 @@ export default function AboutPage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
-        </section>
+        </PageSection>
 
         {/* Bottom Section */}
-        <section className={styles.section()}>
+        <PageSection>
           <h2 className={styles.heading()}>EMPLOYING ME FEEDS THESE MOUTHS</h2>
           <ul className="flex flex-wrap justify-evenly gap-4">
             {PET_IMAGE_SET.map((image) => (
@@ -144,7 +142,7 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </section>
+        </PageSection>
       </div>
     </main>
   );

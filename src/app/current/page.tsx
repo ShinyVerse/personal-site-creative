@@ -4,22 +4,23 @@ import { tv } from "tailwind-variants";
 import Image from "next/image";
 import { BookOpenText, PaletteIcon, Microscope, BrainCog} from "lucide-react";
 import Flower from "../components/Flower";
+import PageSection from "../components/PageSection";
 
 const homePageStyles = tv({
   slots: {
-    container: "h-screen bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
+    container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
     content: "grid grid-cols-1 lg:grid-cols-2 text-center items-center",
     titleText: "font-bold text-3xl leading-tight",
     bodyText: "text-wrap text-start",
     thin: "!font-thin",
-    illustrationSection: "flex items-center justify-center relative",
-    illustrationContainer: "relative w-full aspect-square max-w-[500px] md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]",
+    illustrationSection: "flex  justify-center relative",
+    illustrationContainer: "relative w-full aspect-square m-4 lg:m-0",
     flowerOverlay: "absolute top-[11%] right-[40%] w-16 h-16 md:w-20 md:h-20 animate-spin-slower text-brand-pink",
     flowerOverlay2: "absolute bottom-[10%] left-[10%] w-8 h-8 md:w-12 md:h-12 animate-spin-slow text-brand-purple",
     flowerOverlay3: "absolute bottom-[10%] right-[10%] w-10 h-10 md:w-16 md:h-16 animate-spin-slowest text-brand-orange",
-    bubblesSection: "mt-[-3%] lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-2 font-normal text-white items-stretch justify-items-center md:justify-items-stretch mx-auto",
-    infoSquare: "bg-primary rounded-md flex flex-col items-start justify-start relative aspect-square shadow-xl/20 w-3/4 min-w-[300px] max-w-[350px] md:w-full gap-4",
-    infoSquareContent: "flex flex-col items-start gap-4 px-4 pb-8 pt-[35%]",
+    bubblesSection: "mt-[-3%] lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-2 font-normal text-white mx-auto  ",
+    infoSquare: "bg-primary rounded-md flex flex-col items-start justify-start relative aspect-square shadow-xl/20  min-h-[250px] max-w-[350px] md:w-auto gap-4",
+    infoSquareContent: "flex flex-col items-start gap-4 px-4 pb-2 pt-[35%]",
   },
 });
 
@@ -28,7 +29,7 @@ export default function HomePage() {
 
   return (
     <main className={styles.container()}>
-      <div className={styles.content()}>
+      <PageSection variant="grid" fullHeight className={styles.content()}>
         {/* Left Section - Illustration */}
 
         <div className={styles.illustrationSection()}>
@@ -84,20 +85,9 @@ export default function HomePage() {
               <p className={styles.bodyText()}>Exploring digital design and abstract positioning</p>
             </div>
           </div>
-          {/* <h1 className={`${styles.textLine()}`}>
-            Creative
-          </h1>
-          <SeparatorPill color="pink" />
-          <h1 className={`${styles.textLine()} ${styles.thin()}`}>
-            Analytical
-          </h1>
-          <SeparatorPill color="purple" />
-          <h1 className={styles.textLine()}>
-            Strategic
-          </h1> */}
         </div>
         
-      </div>
+      </PageSection>
     </main>
   );
 }
