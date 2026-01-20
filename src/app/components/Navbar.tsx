@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useMemo } from "react";
 import { tv } from "tailwind-variants";
 import { NavItem } from "./NavBarDecider";
 import { usePathname } from "next/navigation";
@@ -14,17 +15,8 @@ const navbarStyles = tv({
     logo: "flex items-center",
     navList: "flex items-center gap-8 list-none mx-20",
     navLink: "text-black font-normal text-base hover:text-brand-pink transition-opacity relative pb-1 text-xl",
+    navLinkActive: "text-black font-normal text-base hover:text-brand-pink transition-opacity relative pb-1 text-xl after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-brand-pink",
     connectButton: "bg-brand-yellow text-black font-normal text-base px-4 py-2 rounded-lg hover:opacity-90 transition-opacity",
-  },
-  variants: {
-    active: {
-      true: {
-        navLink: "after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-brand-pink",
-      },
-      false: {
-        navLink: "",
-      },
-    },
   },
 });
 
@@ -34,7 +26,7 @@ export default function Navbar({
   navItems: NavItem[];
 }) {
   const pathname = usePathname();
-  const styles = navbarStyles();
+  const styles = useMemo(() => navbarStyles(), []);
 
   return (
     <nav className={styles.container()}>
@@ -68,7 +60,7 @@ export default function Navbar({
               <li key={href}>
                 <Link
                   href={href}
-                  className={styles.navLink({ active: isActive })}
+                  className={isActive ? styles.navLinkActive() : styles.navLink()}
                 >
                   {name}
                 </Link>

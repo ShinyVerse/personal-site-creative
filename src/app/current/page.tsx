@@ -8,25 +8,18 @@ import PageSection from "../components/PageSection";
 
 const nowPageStyles = tv({
   slots: {
-    container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
+    container: "bg-white w-full max-w-[1600px] mx-auto",
     content: "grid grid-cols-1 lg:grid-cols-2 items-start",
     titleText: "font-bold text-3xl md:text-1xl lg:text-2xl leading-tight mt-2",
     bodyText: "text-wrap text-start",
     illustrationSection: "flex relative",
-    illustrationContainer: "relative w-full aspect-square m-4 lg:m-0",
+    illustrationContainer: "relative w-full aspect-square m-4 lg:m-0 max-w-2xl",
     cardsSection: "mt-[-3%] lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-2 font-normal text-white mx-auto",
-    infoSquare: "rounded-md flex flex-col items-start justify-start relative aspect-square shadow-xl/20 min-h-[250px] max-w-[350px] md:w-auto gap-4 mt-4",
-    infoSquareContent: "flex flex-col items-start gap-3 px-4 pb-2 pt-[35%] md:pt-[15%] xl:pt-[35%]",
+    infoSquare: "rounded-md flex flex-col items-start justify-start relative aspect-square shadow-xl/20 min-h-[200px] max-w-[300px] md:w-auto gap-4 mt-4",
+    infoSquareContent: "flex flex-col items-start gap-3 px-4 pb-2 pt-[35%] md:pt-[15%] xl:pt-[25%]",
+    icon: "text-white w-[50px] h-[50px] md:w-[30px] md:h-[30px] xl:w-[50px] xl:h-[50px]",
   },
 });
-
-
-const nowEntryColors = [
-  "bg-primary",
-  "bg-primary",
-  "bg-primary",   
-  "bg-primary",      
-];
 
 const nowEntries = [
   {
@@ -49,7 +42,6 @@ const nowEntries = [
     title: "Artistic",
     description: "Exploring digital design and abstract positioning",
   },
-
 ];
 
 export default function CurrentPage() {
@@ -77,13 +69,12 @@ export default function CurrentPage() {
 
         {/* Right Section - Cards Grid */}
         <div className={styles.cardsSection()}>
-          {nowEntries.map((entry, idx) => {
+          {nowEntries.map((entry) => {
             const IconComponent = entry.icon;
-            const bgColor = nowEntryColors[idx % 4];
             return (
-              <div key={entry.title} className={`${styles.infoSquare()} ${bgColor}`}>
+              <div key={entry.title} className={`${styles.infoSquare()} bg-primary`}>
                 <div className={styles.infoSquareContent()}>
-                  <IconComponent className="text-white w-[50px] h-[50px] md:w-[30px] md:h-[30px] xl:w-[50px] xl:h-[50px]" />
+                  <IconComponent className={styles.icon()} />
                   <p className={styles.titleText()}>{entry.title}</p>
                   <p className={styles.bodyText()}>{entry.description}</p>
                 </div>

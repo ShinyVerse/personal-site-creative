@@ -11,7 +11,7 @@ const careerPageStyles = tv({
     heading:
     "text-[60px] md:text-[100px] font-handwriting text-secondary text-start",
     horizontalSection: "p-5",
-    container: "bg-white w-full overflow-hidden max-w-[1800px] mx-auto",
+    container: "bg-white w-full overflow-hidden max-w-[1600px] mx-auto",
     content: "grid grid-cols-1 lg:grid-cols-2 md:gap-0 px-0 py-16 mx-auto text-left",
   },
 });

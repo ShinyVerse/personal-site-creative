@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { tv } from "tailwind-variants";
 import { useIsMobile } from "../hooks/useIsMobile";
 import MobileNavbar from "./MobileNavBar";
@@ -21,18 +21,9 @@ export type NavItem = {
 
 const navBarDeciderStyles = tv({
   slots: {
-    main: "",
+    mainOpen: "pt-[200px]",
+    mainClosed: "pt-[50px]",
     desktopContainer: "flex-1 overflow-x-hidden bg-white",
-  },
-  variants: {
-    navOpen: {
-      true: {
-        main: "pt-[200px]",
-      },
-      false: {
-        main: "pt-[50px]",
-      },
-    },
   },
 });
 
@@ -43,7 +34,7 @@ export default function NavBarDecider({
 }) {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
-  const styles = navBarDeciderStyles({ navOpen: isOpen });
+  const styles = useMemo(() => navBarDeciderStyles(), []);
 
   return (
     <>
@@ -54,7 +45,7 @@ export default function NavBarDecider({
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
-          <main className={styles.main()}>{children}</main>
+          <main className={isOpen ? styles.mainOpen() : styles.mainClosed()}>{children}</main>
         </>
       ) : (
         <>

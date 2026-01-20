@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
+import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
 import { NavItem } from "./NavBarDecider";
@@ -13,17 +14,8 @@ const navbarStyles = tv({
     drawButton: "absolute bottom-2 left-1/2 -translate-x-1/2 text-black z-10",
     list: "flex flex-col gap-3 list-none p-2 bg-white w-full",
     listItem: "text-black font-normal text-sm p-2",
+    listItemActive: "text-brand-pink font-normal text-sm p-2",
     buttonItem: "bg-brand-yellow text-black font-normal text-sm p-2 rounded-lg text-center",
-  },
-  variants: {
-    active: {
-      true: {
-        listItem: "text-brand-pink",
-      },
-      false: {
-        listItem: "",
-      },
-    },
   },
 });
 
@@ -36,7 +28,7 @@ export default function MobileNavbar({
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const styles = navbarStyles();
+  const styles = useMemo(() => navbarStyles(), []);
   const pathname = usePathname();
 
   return (
@@ -51,21 +43,26 @@ export default function MobileNavbar({
         {isOpen ? <ChevronUp size={28} /> : <ChevronDown size={28} />}
       </button>
       <ul className={styles.list()}>
-        {navItems.map(({ name, href, isButton }) => (
-          <li key={href}>
-            <Link
-              href={href}
-              onClick={() => setIsOpen(false)}
-              className={
-                isButton
-                  ? styles.buttonItem()
-                  : styles.listItem({ active: pathname === href })
-              }
-            >
-              {isOpen ? name : ""}
-            </Link>
-          </li>
-        ))}
+        {navItems.map(({ name, href, isButton }) => {
+          const isActive = pathname === href;
+          return (
+            <li key={href}>
+              <Link
+                href={href}
+                onClick={() => setIsOpen(false)}
+                className={
+                  isButton
+                    ? styles.buttonItem()
+                    : isActive
+                    ? styles.listItemActive()
+                    : styles.listItem()
+                }
+              >
+                {isOpen ? name : ""}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </motion.nav>
   );

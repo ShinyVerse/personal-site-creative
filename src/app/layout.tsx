@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import {  Orbitron, Poppins, Lexend_Deca } from "next/font/google";
 
-import AuthHandler from "./components/AuthHandler";
 import NavBarDecider from "./components/NavBarDecider";
-import { AuthProvider } from "./contexts/AuthContext";
 import "./globals.css";
 
 
@@ -48,12 +46,9 @@ export default function RootLayout({
       className={`${handwriting.variable} ${block.variable} ${normal.variable} antialiased`}
     >
       <body>
-        <AuthProvider>
-          <AuthHandler />
-          <div className="flex h-screen flex-col">
-            <NavBarDecider>{children}</NavBarDecider>
-          </div>
-        </AuthProvider>
+        <div className="flex h-screen flex-col">
+          <NavBarDecider>{children}</NavBarDecider>
+        </div>
       </body>
     </html>
   );
