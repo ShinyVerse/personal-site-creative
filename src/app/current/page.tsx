@@ -12,7 +12,7 @@ const nowPageStyles = tv({
     content: "grid grid-cols-1 lg:grid-cols-2 items-start",
     titleText: "font-bold text-3xl md:text-1xl lg:text-2xl leading-tight mt-2",
     bodyText: "text-wrap text-start",
-    illustrationSection: "flex relative",
+    illustrationSection: "flex relative items-center justify-center",
     illustrationContainer: "relative w-full aspect-square m-4 lg:m-0 max-w-2xl",
     cardsSection: "mt-[-3%] lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-2 font-normal text-white mx-auto",
     infoSquare: "rounded-md flex flex-col items-start justify-start relative aspect-square shadow-xl/20 min-h-[200px] max-w-[300px] md:w-auto gap-4 mt-4",
