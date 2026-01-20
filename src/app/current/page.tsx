@@ -54,7 +54,7 @@ export default function CurrentPage() {
         <div className={styles.illustrationSection()}>
           <div className={styles.illustrationContainer()}>
             <Image
-              src="/current-hero.png"
+              src="/sokka-hero.png"
               alt="3D illustration of a cat with abstract background elements"
               fill
               className="object-contain"

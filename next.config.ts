@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    turbopack: {
+      // Explicitly set the root to prevent Next.js from detecting parent lockfiles
+      root: '.',
+    },
+  },
 };
 
 export default nextConfig;
