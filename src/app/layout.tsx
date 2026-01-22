@@ -3,6 +3,7 @@ import {  Orbitron, Poppins, Lexend_Deca } from "next/font/google";
 import Script from "next/script";
 
 import NavBarDecider from "./components/NavBarDecider";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
 
 
@@ -63,6 +64,7 @@ export default function RootLayout({
           `}
         </Script>
 
+        <GoogleAnalytics />
         <div className="flex h-screen flex-col">
           <NavBarDecider>{children}</NavBarDecider>
         </div>
