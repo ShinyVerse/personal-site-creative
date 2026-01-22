@@ -27,8 +27,8 @@ const FOOD_IMAGE_SET = [
 ];
 
 export const metadata: Metadata = {
-  title: "About me - Laura Jackson",
-  description: "Learn more about Laura Jackson, her background and interests",
+  title: "About me",
+  description: "Learn more about her background and interests",
 };
 
 export default function AboutPage() {

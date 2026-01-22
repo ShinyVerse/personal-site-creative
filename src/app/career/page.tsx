@@ -60,8 +60,8 @@ const productEntries = [
 ];
 
 export const metadata: Metadata = {
-  title: "Laura Jackson Career",
-  description: "Learn more about Laura Jackson's roles, skills and experiences",
+  title: "Career",
+  description: "Learn more about her roles, skills and experiences",
 };
 
 export default async function CareerPage() {

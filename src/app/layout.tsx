@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {  Orbitron, Poppins, Lexend_Deca } from "next/font/google";
+import Script from "next/script";
 
 import NavBarDecider from "./components/NavBarDecider";
 import "./globals.css";
@@ -24,7 +25,7 @@ const handwriting = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Laura Jackson Personal Site",
+  title: "The purposeful ponderer",
   description: "A place for exploration and showcasing bits and bobs",
   icons: {
     icon: [
@@ -46,6 +47,22 @@ export default function RootLayout({
       className={`${handwriting.variable} ${block.variable} ${normal.variable} antialiased`}
     >
       <body>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BW06EQ9YRS"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BW06EQ9YRS', {
+              anonymize_ip: true
+            });
+          `}
+        </Script>
+
         <div className="flex h-screen flex-col">
           <NavBarDecider>{children}</NavBarDecider>
         </div>
