@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import {  Orbitron, Poppins, Lexend_Deca } from "next/font/google";
 import Script from "next/script";
 
+import GoogleAnalyticsTracker from "./components/GoogleAnalytics";
 import NavBarDecider from "./components/NavBarDecider";
-import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
-
 
 const normal = Lexend_Deca({
   subsets: ["latin"],
@@ -48,23 +47,21 @@ export default function RootLayout({
       className={`${handwriting.variable} ${block.variable} ${normal.variable} antialiased`}
     >
       <body>
-        {/* Google tag (gtag.js) */}
+        {/* Google Analytics Scripts */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BW06EQ9YRS"
           strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-BW06EQ9YRS', {
-              anonymize_ip: true
-            });
+            gtag('config', 'G-BW06EQ9YRS', { anonymize_ip: true });
           `}
         </Script>
 
-        <GoogleAnalytics />
+        <GoogleAnalyticsTracker />
         <div className="flex h-screen flex-col">
           <NavBarDecider>{children}</NavBarDecider>
         </div>
